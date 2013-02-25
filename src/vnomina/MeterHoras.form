@@ -155,6 +155,9 @@
           <Image iconType="3" name="/vnomina/Button_Next.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdelanteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAtras">
       <Properties>
@@ -163,6 +166,9 @@
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtrasActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblFecha">
       <Properties>
@@ -226,16 +232,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Insertar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInsertarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAceptar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Aceptar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
 
@@ -245,7 +260,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="chekRadio" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="checkRadio" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="checkArma" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="checkFestivo" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -261,13 +276,13 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="checkArma" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="chekRadio" min="-2" max="-2" attributes="0"/>
+                  <Component id="checkRadio" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JCheckBox" name="chekRadio">
+        <Component class="javax.swing.JCheckBox" name="checkRadio">
           <Properties>
             <Property name="text" type="java.lang.String" value="Radioscopia"/>
           </Properties>
@@ -288,6 +303,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Guardar clave"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarClaveActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>

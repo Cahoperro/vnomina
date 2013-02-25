@@ -12,6 +12,22 @@ public class MeterHoras extends javax.swing.JFrame {
     public MeterHoras() {
         initComponents();
         this.setLocationRelativeTo(null);
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MeterHoras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MeterHoras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MeterHoras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MeterHoras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -35,7 +51,7 @@ public class MeterHoras extends javax.swing.JFrame {
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        chekRadio = new javax.swing.JCheckBox();
+        checkRadio = new javax.swing.JCheckBox();
         checkArma = new javax.swing.JCheckBox();
         checkFestivo = new javax.swing.JCheckBox();
         btnGuardarClave = new javax.swing.JButton();
@@ -48,9 +64,19 @@ public class MeterHoras extends javax.swing.JFrame {
         setResizable(false);
 
         btnAdelante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Button_Next.png"))); // NOI18N
+        btnAdelante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdelanteActionPerformed(evt);
+            }
+        });
 
         btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Button_Back.png"))); // NOI18N
         btnAtras.setToolTipText("");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
 
         lblFecha.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         lblFecha.setText("Miercoles 12 de Diciembre");
@@ -76,12 +102,27 @@ public class MeterHoras extends javax.swing.JFrame {
         txtClave.setColumns(4);
 
         btnInsertar.setText("Insertar");
+        btnInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertarActionPerformed(evt);
+            }
+        });
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
-        chekRadio.setText("Radioscopia");
+        checkRadio.setText("Radioscopia");
 
         checkArma.setText("Arma");
 
@@ -94,7 +135,7 @@ public class MeterHoras extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chekRadio)
+                    .addComponent(checkRadio)
                     .addComponent(checkArma)
                     .addComponent(checkFestivo))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -107,10 +148,15 @@ public class MeterHoras extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(checkArma)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chekRadio))
+                .addComponent(checkRadio))
         );
 
         btnGuardarClave.setText("Guardar clave");
+        btnGuardarClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarClaveActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Clave servicio");
 
@@ -211,40 +257,30 @@ public class MeterHoras extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MeterHoras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MeterHoras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MeterHoras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MeterHoras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInsertarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MeterHoras().setVisible(true);
-            }
-        });
-    }
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAtrasActionPerformed
+
+    private void btnAdelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdelanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdelanteActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void btnGuardarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarClaveActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnAdelante;
@@ -254,7 +290,7 @@ public class MeterHoras extends javax.swing.JFrame {
     private javax.swing.JButton btnInsertar;
     private javax.swing.JCheckBox checkArma;
     private javax.swing.JCheckBox checkFestivo;
-    private javax.swing.JCheckBox chekRadio;
+    private javax.swing.JCheckBox checkRadio;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

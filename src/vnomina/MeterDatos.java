@@ -88,11 +88,11 @@ public class MeterDatos extends javax.swing.JFrame {
 
         jLabel1.setText("Horas convenio");
 
-        jLabel2.setText("Antiguedad");
+        jLabel2.setText("Años antiguedad");
 
         jLabel3.setText("Salrio base");
 
-        jLabel4.setText("plus transporte");
+        jLabel4.setText("Plus transporte");
 
         jLabel5.setText("Plus vestuario");
 
@@ -177,7 +177,7 @@ public class MeterDatos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8))
                     .addComponent(btnObtenerDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtRadio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

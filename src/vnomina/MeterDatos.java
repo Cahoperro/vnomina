@@ -12,6 +12,7 @@ public class MeterDatos extends javax.swing.JFrame {
     public MeterDatos() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setVisible(true);
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

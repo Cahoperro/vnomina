@@ -152,7 +152,7 @@
     <Component class="javax.swing.JButton" name="btnAdelante">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/vnomina/Button_Next.png"/>
+          <Image iconType="3" name="/vnomina/Images/Button_Next.png"/>
         </Property>
       </Properties>
       <Events>
@@ -162,7 +162,7 @@
     <Component class="javax.swing.JButton" name="btnAtras">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/vnomina/Button_Back.png"/>
+          <Image iconType="3" name="/vnomina/Images/Button_Back.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>

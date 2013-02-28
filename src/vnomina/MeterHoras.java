@@ -12,6 +12,7 @@ public class MeterHoras extends javax.swing.JFrame {
     public MeterHoras() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setVisible(true);
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -63,14 +64,14 @@ public class MeterHoras extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(525, 345));
         setResizable(false);
 
-        btnAdelante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Button_Next.png"))); // NOI18N
+        btnAdelante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/Button_Next.png"))); // NOI18N
         btnAdelante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdelanteActionPerformed(evt);
             }
         });
 
-        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Button_Back.png"))); // NOI18N
+        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/Button_Back.png"))); // NOI18N
         btnAtras.setToolTipText("");
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

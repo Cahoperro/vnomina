@@ -72,14 +72,16 @@ public class Principal extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         txtIrpf = new javax.swing.JTextField();
         btnCalcular = new javax.swing.JButton();
+        chkVieja = new javax.swing.JCheckBox();
+        chkBuena = new javax.swing.JCheckBox();
         javax.swing.JCheckBox chkPagas = new javax.swing.JCheckBox();
         jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        radioQuinquenios = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Vnomina");
         setName("principal"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(800, 580));
+        setPreferredSize(new java.awt.Dimension(800, 535));
         setResizable(false);
 
         barra.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -102,6 +104,11 @@ public class Principal extends javax.swing.JFrame {
         btnAbrir.setFocusable(false);
         btnAbrir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAbrir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirActionPerformed(evt);
+            }
+        });
         barra.add(btnAbrir);
 
         btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/cerrar.png"))); // NOI18N
@@ -109,6 +116,11 @@ public class Principal extends javax.swing.JFrame {
         btnCerrar.setFocusable(false);
         btnCerrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCerrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
         barra.add(btnCerrar);
 
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/modificar.png"))); // NOI18N
@@ -128,6 +140,11 @@ public class Principal extends javax.swing.JFrame {
         btnGuardar.setFocusable(false);
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
         barra.add(btnGuardar);
 
         btnGuardarComo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/guardarComo.png"))); // NOI18N
@@ -135,6 +152,11 @@ public class Principal extends javax.swing.JFrame {
         btnGuardarComo.setFocusable(false);
         btnGuardarComo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardarComo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnGuardarComo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarComoActionPerformed(evt);
+            }
+        });
         barra.add(btnGuardarComo);
 
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/imprimir.png"))); // NOI18N
@@ -142,6 +164,11 @@ public class Principal extends javax.swing.JFrame {
         btnImprimir.setFocusable(false);
         btnImprimir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnImprimir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
         barra.add(btnImprimir);
 
         btnAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/ayuda.png"))); // NOI18N
@@ -149,6 +176,11 @@ public class Principal extends javax.swing.JFrame {
         btnAyuda.setFocusable(false);
         btnAyuda.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAyuda.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAyudaActionPerformed(evt);
+            }
+        });
         barra.add(btnAyuda);
 
         btnAcerca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/acerca.png"))); // NOI18N
@@ -156,6 +188,11 @@ public class Principal extends javax.swing.JFrame {
         btnAcerca.setFocusable(false);
         btnAcerca.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAcerca.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAcerca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcercaActionPerformed(evt);
+            }
+        });
         barra.add(btnAcerca);
 
         lblInfo.setFont(new java.awt.Font("DejaVu Sans", 3, 16)); // NOI18N
@@ -250,6 +287,10 @@ public class Principal extends javax.swing.JFrame {
 
         btnCalcular.setText("Calcular");
 
+        chkVieja.setText("Nochevieja");
+
+        chkBuena.setText("Nochebuena");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -311,6 +352,10 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(chkBuena)
+                .addGap(18, 18, 18)
+                .addComponent(chkVieja)
+                .addGap(18, 18, 18)
                 .addComponent(btnCalcular)
                 .addGap(25, 25, 25))
         );
@@ -383,7 +428,10 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel12)
                         .addComponent(lblTotalDevengado)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(btnCalcular))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCalcular)
+                    .addComponent(chkVieja)
+                    .addComponent(chkBuena)))
         );
 
         chkPagas.setSelected(true);
@@ -392,9 +440,9 @@ public class Principal extends javax.swing.JFrame {
         grupo.add(jRadioButton1);
         jRadioButton1.setText("Trienios");
 
-        grupo.add(jRadioButton2);
-        jRadioButton2.setSelected(true);
-        jRadioButton2.setText("Quinquenios");
+        grupo.add(radioQuinquenios);
+        radioQuinquenios.setSelected(true);
+        radioQuinquenios.setText("Quinquenios");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -403,7 +451,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                .addComponent(jRadioButton2)
+                .addComponent(radioQuinquenios)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton1)
                 .addGap(18, 18, 18)
@@ -428,24 +476,52 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(selectorMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(chkPagas)
                         .addComponent(jRadioButton1)
-                        .addComponent(jRadioButton2)))
+                        .addComponent(radioQuinquenios)))
                 .addGap(18, 18, 18)
                 .addComponent(lblInfo)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        new MeterDatos().setVisible(true);
+        new MeterDatos();
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        new MeterHoras().setVisible(true);
+        new MeterHoras();
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
+        // Codigo de abrir
+    }//GEN-LAST:event_btnAbrirActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // Codigo de cerrar
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // Codigo de guardar
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarComoActionPerformed
+        // Codigo de guardar como
+    }//GEN-LAST:event_btnGuardarComoActionPerformed
+
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        // Codigo de imprimir
+    }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
+        // Codigo de ayuda
+    }//GEN-LAST:event_btnAyudaActionPerformed
+
+    private void btnAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcercaActionPerformed
+        new AcercaDe();
+    }//GEN-LAST:event_btnAcercaActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -490,6 +566,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JCheckBox chkBuena;
+    private javax.swing.JCheckBox chkVieja;
     private javax.swing.ButtonGroup grupo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -514,7 +592,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JLabel lblAntiguedad;
     private javax.swing.JLabel lblComunes;
     private javax.swing.JLabel lblDesempleo;
@@ -533,6 +610,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lblTotalDevengado;
     private javax.swing.JLabel lblTransporte;
     private javax.swing.JLabel lblVestuario;
+    private javax.swing.JRadioButton radioQuinquenios;
     private javax.swing.JComboBox selectorMes;
     private javax.swing.JTextField txtIrpf;
     // End of variables declaration//GEN-END:variables

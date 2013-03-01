@@ -6,13 +6,19 @@ package vnomina;
  */
 public class Principal extends javax.swing.JFrame {
 
+    Objeto principal;
+    Datos d;
+    MeterDatos meteDato;
+
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+        this.setVisible(true);
+        chkBuena.setVisible(false);
+        chkVieja.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -494,7 +500,11 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        new MeterDatos();
+        meteDato = new MeterDatos(this);
+        d = new Datos();
+        principal = new Objeto(d);
+        
+        
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -506,7 +516,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-        // Codigo de cerrar
+       
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -530,10 +540,10 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAcercaActionPerformed
 
     private void selectorMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectorMesItemStateChanged
-        if (selectorMes.getSelectedIndex() == 11){
+        if (selectorMes.getSelectedIndex() == 11) {
             chkBuena.setVisible(true);
             chkVieja.setVisible(true);
-        }else{
+        } else {
             chkBuena.setVisible(false);
             chkVieja.setVisible(false);
         }
@@ -566,7 +576,7 @@ public class Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal().setVisible(true);
+                Principal inicio = new Principal();
             }
         });
     }

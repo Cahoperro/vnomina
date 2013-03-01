@@ -12,6 +12,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -201,6 +202,11 @@ public class Principal extends javax.swing.JFrame {
 
         selectorMes.setMaximumRowCount(12);
         selectorMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        selectorMes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                selectorMesItemStateChanged(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
         jLabel1.setText("PERCEPCIONES SALARIALES:");
@@ -522,6 +528,16 @@ public class Principal extends javax.swing.JFrame {
     private void btnAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcercaActionPerformed
         new AcercaDe();
     }//GEN-LAST:event_btnAcercaActionPerformed
+
+    private void selectorMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectorMesItemStateChanged
+        if (selectorMes.getSelectedIndex() == 11){
+            chkBuena.setVisible(true);
+            chkVieja.setVisible(true);
+        }else{
+            chkBuena.setVisible(false);
+            chkVieja.setVisible(false);
+        }
+    }//GEN-LAST:event_selectorMesItemStateChanged
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

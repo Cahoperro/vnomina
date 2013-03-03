@@ -1,5 +1,14 @@
 package vnomina;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author cahoperro
@@ -541,8 +550,8 @@ public class Principal extends javax.swing.JFrame {
         meteDato = new MeterDatos(this);
         d = new Datos();
         principal = new Objeto(d);
-        
-        
+
+
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -550,19 +559,70 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
-        // Codigo de abrir
+        JFileChooser selector = new JFileChooser();
+        String fichero = "";
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos chp", "chp");
+        selector.setFileFilter(filtro);
+        try {
+            if (selector.showOpenDialog(null) == selector.APPROVE_OPTION) {
+                fichero = selector.getSelectedFile().toString();
+                System.out.println("Fichero seleccionado: " + fichero);
+                try {
+                    FileInputStream fis = new FileInputStream(fichero);
+                    ObjectInputStream ois = new ObjectInputStream(fis);
+                    //El método readObject() recupera el objeto
+                    principal = (Objeto) ois.readObject();
+                    ois.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("Restauración cancelada");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(principal.datos.anio);
     }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-       
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // Codigo de guardar
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarComoActionPerformed
-        // Codigo de guardar como
+        JFileChooser selector = new JFileChooser();
+        String fichero = "";
+
+        try {
+            if (selector.showSaveDialog(null) == selector.APPROVE_OPTION) {
+                fichero = selector.getSelectedFile().toString();
+                System.out.println("Fichero seleccionado: " + fichero);
+                try {
+                   //Creamos el archivo
+                    FileOutputStream fs = new FileOutputStream(fichero + ".chp");
+                    //Esta clase tiene el método writeObject() que necesitamos
+                    ObjectOutputStream os = new ObjectOutputStream(fs);
+                    //El método writeObject() serializa el objeto y lo escribe en el archivo
+                    os.writeObject(principal);
+                    //Hay que cerrar siempre el archivo
+                    os.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("Restauración cancelada");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnGuardarComoActionPerformed
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed

@@ -80,7 +80,7 @@ public class MeterHoras extends javax.swing.JFrame {
         });
 
         lblFecha.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-        lblFecha.setText("Miercoles 12 de Diciembre");
+        lblFecha.setText("Ninguna fecha seleccionada");
 
         txtServicio1.setColumns(15);
 

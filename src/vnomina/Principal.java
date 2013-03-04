@@ -15,11 +15,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author cahoperro
  */
 public class Principal extends javax.swing.JFrame {
-
+    int anio;
     Objeto principal;
     Datos d;
     MeterDatos meteDato;
-    String fichero, mes;
+    String fichero, textomes;
 
     /**
      * Creates new form Principal
@@ -551,12 +551,14 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        String p = JOptionPane.showInputDialog("Introduce el año");
+        anio = Integer.parseInt(p);
         meteDato = new MeterDatos(this);
         d = new Datos();
-        principal = new Objeto(d);
+        principal = new Objeto(d, anio);
         selectorMes.setEnabled(true);
         btnCalcular.setEnabled(true);
-       
+        
 
     }//GEN-LAST:event_btnNuevoActionPerformed
 
@@ -579,6 +581,7 @@ public class Principal extends javax.swing.JFrame {
                 //El método readObject() recupera el objeto
                 principal = (Objeto) ois.readObject();
                 ois.close();
+                anio = principal.anio;
                 mostrarTitulo();
 
                 
@@ -596,6 +599,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         //codigo cerrar
+        
+        for (int i = 0; i<12; i++){
+            Mes temp = principal.mes[i];
+            System.out.println(temp.n);
+        }
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -638,7 +646,6 @@ public class Principal extends javax.swing.JFrame {
         try {
             if (selector.showSaveDialog(null) == selector.APPROVE_OPTION) {
                 fichero = selector.getSelectedFile().toString();
-                System.out.println("Fichero seleccionado: " + fichero);
                 //Creamos el archivo
                 FileOutputStream fs = new FileOutputStream(fichero + ".chp");
                 //Esta clase tiene el método writeObject() que necesitamos
@@ -671,9 +678,9 @@ public class Principal extends javax.swing.JFrame {
         }
     }
     public void mostrarTitulo(){
-        int texto = principal.datos.anio;
-        mes = selectorMes.getSelectedItem().toString();
-        lblInfo.setText(mes + " de " + texto);
+        int texto = anio;
+        textomes = selectorMes.getSelectedItem().toString();
+        lblInfo.setText(textomes + " de " + texto);
     }
 
     public static void main(String args[]) {

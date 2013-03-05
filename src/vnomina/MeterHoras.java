@@ -5,14 +5,15 @@ package vnomina;
  * @author cahoperro
  */
 public class MeterHoras extends javax.swing.JFrame {
-
+    Objeto Obj;
     /**
      * Creates new form MeterHoras
      */
-    public MeterHoras() {
+    public MeterHoras(Objeto Obj) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        this.Obj = Obj;
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -280,6 +281,7 @@ public class MeterHoras extends javax.swing.JFrame {
 
     private void btnGuardarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClaveActionPerformed
         // TODO add your handling code here:
+       Obj.claves.put(txtClave.getText(),null);
     }//GEN-LAST:event_btnGuardarClaveActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -258,6 +258,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel12.setText("Total devengado");
 
         lblSalarioBase.setText("00.00");
+        lblSalarioBase.setPreferredSize(new java.awt.Dimension(35, 13));
 
         lblHorasExtras.setText("00.00");
 
@@ -315,6 +316,11 @@ public class Principal extends javax.swing.JFrame {
         txtIrpf.setColumns(3);
 
         btnCalcular.setText("Calcular");
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularActionPerformed(evt);
+            }
+        });
 
         grupo.add(radioQuinquenios);
         radioQuinquenios.setSelected(true);
@@ -393,7 +399,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGroup(panelNominaLayout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addGap(95, 95, 95)
-                            .addComponent(lblSalarioBase))
+                            .addComponent(lblSalarioBase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jLabel1))
                     .addComponent(jLabel9))
                 .addGap(105, 105, 105)
@@ -420,7 +426,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(panelNominaLayout.createSequentialGroup()
                         .addComponent(txtIrpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNominaLayout.createSequentialGroup()
@@ -440,7 +446,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(panelNominaLayout.createSequentialGroup()
                         .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(lblSalarioBase)
+                            .addComponent(lblSalarioBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel24)
                             .addComponent(lblComunes))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -563,7 +569,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        new MeterHoras();
+        new MeterHoras(principal);
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
@@ -574,16 +580,15 @@ public class Principal extends javax.swing.JFrame {
         try {
             if (selector.showOpenDialog(null) == selector.APPROVE_OPTION) {
                 fichero = selector.getSelectedFile().toString();
-                System.out.println("Fichero seleccionado: " + fichero);
-
                 FileInputStream fis = new FileInputStream(fichero);
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 //El método readObject() recupera el objeto
                 principal = (Objeto) ois.readObject();
                 ois.close();
                 anio = principal.anio;
+                selectorMes.setSelectedIndex(principal.mesActual);
                 mostrarTitulo();
-
+                mostrarResultado();
                 
             }
         } catch (HeadlessException | IOException | ClassNotFoundException e) {
@@ -600,10 +605,7 @@ public class Principal extends javax.swing.JFrame {
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         //codigo cerrar
         
-        for (int i = 0; i<12; i++){
-            Mes temp = principal.mes[i];
-            System.out.println(temp.n);
-        }
+        
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -621,10 +623,12 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
         // Codigo de imprimir
+       
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
         // Codigo de ayuda
+        
     }//GEN-LAST:event_btnAyudaActionPerformed
 
     private void btnAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcercaActionPerformed
@@ -639,8 +643,15 @@ public class Principal extends javax.swing.JFrame {
             chkBuena.setVisible(false);
             chkVieja.setVisible(false);
         }
+        principal.mesActual = selectorMes.getSelectedIndex();
         mostrarTitulo();
+        mostrarResultado();
     }//GEN-LAST:event_selectorMesItemStateChanged
+
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
+        // TODO add your handling code here:
+        mostrarResultado();
+    }//GEN-LAST:event_btnCalcularActionPerformed
     private void guardarComo() {
         JFileChooser selector = new JFileChooser();
         try {
@@ -656,6 +667,7 @@ public class Principal extends javax.swing.JFrame {
                 os.close();
             }
         } catch (HeadlessException | IOException e) {
+            fichero = null;
             JOptionPane.showMessageDialog(null,
                     "Errror al guardar el archivo",
                     "Aviso",
@@ -681,6 +693,13 @@ public class Principal extends javax.swing.JFrame {
         int texto = anio;
         textomes = selectorMes.getSelectedItem().toString();
         lblInfo.setText(textomes + " de " + texto);
+    }
+    public void mostrarResultado(){
+        System.out.println("El mes actual es: "+principal.mesActual);
+        lblSalarioBase.setText(""+principal.datos.salarioBase);
+        lblPeligrosidad.setText(""+principal.datos.peligro);
+        lblTransporte.setText(""+principal.datos.transporte);
+        lblVestuario.setText(""+principal.datos.vestuario);
     }
 
     public static void main(String args[]) {

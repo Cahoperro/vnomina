@@ -101,6 +101,8 @@ public class Principal extends javax.swing.JFrame {
         chkBuena = new javax.swing.JCheckBox();
         chkVieja = new javax.swing.JCheckBox();
         panelHoras = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Vnomina");
@@ -425,7 +427,7 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(lblIrpf)
                             .addComponent(lblTotalDeducir)
                             .addComponent(lblLiquido))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31))
                     .addGroup(panelNominaLayout.createSequentialGroup()
@@ -521,15 +523,78 @@ public class Principal extends javax.swing.JFrame {
 
         panelGeneral.addTab("Mostrar nomina", panelNomina);
 
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Dia", "Servicio 1", "Ent", "Sal", "Servicio 2", "Ent", "Sal", "Horas", "Nocturnas", "Festivas"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabla.setColumnSelectionAllowed(true);
+        tabla.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabla);
+        tabla.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        tabla.getColumnModel().getColumn(0).setPreferredWidth(35);
+        tabla.getColumnModel().getColumn(0).setMaxWidth(35);
+        tabla.getColumnModel().getColumn(1).setPreferredWidth(180);
+        tabla.getColumnModel().getColumn(4).setPreferredWidth(180);
+
         javax.swing.GroupLayout panelHorasLayout = new javax.swing.GroupLayout(panelHoras);
         panelHoras.setLayout(panelHorasLayout);
         panelHorasLayout.setHorizontalGroup(
             panelHorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 820, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
         );
         panelHorasLayout.setVerticalGroup(
             panelHorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 426, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         panelGeneral.addTab("Mostrar horarios", panelHoras);
@@ -608,6 +673,7 @@ public class Principal extends javax.swing.JFrame {
                     "Error al abrir el archivo",
                     "Aviso",
                     JOptionPane.ERROR_MESSAGE);
+            fichero = null;
         }
 
 
@@ -781,6 +847,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAntiguedad;
     private javax.swing.JLabel lblComunes;
     private javax.swing.JLabel lblDesempleo;
@@ -803,6 +870,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel panelHoras;
     private javax.swing.JRadioButton radioQuinquenios;
     private javax.swing.JComboBox selectorMes;
+    private javax.swing.JTable tabla;
     private javax.swing.JTextField txtIrpf;
     // End of variables declaration//GEN-END:variables
 }

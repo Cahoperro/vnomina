@@ -151,7 +151,7 @@ public class Principal extends javax.swing.JFrame {
         barra.add(btnCerrar);
 
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/modificar.png"))); // NOI18N
-        btnModificar.setToolTipText("Modificar");
+        btnModificar.setToolTipText("Meter horaios");
         btnModificar.setFocusable(false);
         btnModificar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnModificar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -772,10 +772,10 @@ public class Principal extends javax.swing.JFrame {
 
     public void mostrarResultado() {
         System.out.println("El mes actual es: " + principal.mesActual);
-        lblSalarioBase.setText("" + principal.datos.salarioBase);
-        lblPeligrosidad.setText("" + principal.datos.peligro);
-        lblTransporte.setText("" + principal.datos.transporte);
-        lblVestuario.setText("" + principal.datos.vestuario);
+        lblSalarioBase.setText("" + principal.datos.getSalarioBase());
+        lblPeligrosidad.setText("" + principal.datos.getPeligro());
+        lblTransporte.setText("" + principal.datos.getTransporte());
+        lblVestuario.setText("" + principal.datos.getVestuario());
     }
 
     public static void main(String args[]) {

@@ -8,13 +8,19 @@ import java.util.HashMap;
  * @author cahoperro
  */
 public class Objeto implements Serializable{
+    Mes[] mes; 
+    Datos datos;
     HashMap<String, Dias> claves;
     private boolean guardado = false;
     int mesActual;
-    Mes[] mes; 
-    Datos datos;
-    boolean bis;
+    int diaActual;
     int anio;
+    boolean bis;
+    double cComunes;
+    double desempleo;
+    double FProfesional;
+    double totalAportaciones;
+    
     public Objeto(Datos datosRec, int year){
         claves = new HashMap<>();
         mesActual = 0;

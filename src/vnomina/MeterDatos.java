@@ -360,22 +360,22 @@ public class MeterDatos extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
         try{
-        inicio.d.antiguedad = Integer.parseInt(txtAntiguedad.getText());
-        inicio.d.horaArma = Double.parseDouble(txtHoraArma.getText().replace(',', '.'));
-        inicio.d.horaExtra = Double.parseDouble(txtHoraExtra.getText().replace(',', '.'));
-        inicio.d.horaFestiva = Double.parseDouble(txtHoraFestiva.getText().replace(',', '.'));
-        inicio.d.horaNocturna = Double.parseDouble(txtHoraNocturna.getText().replace(',', '.'));
-        inicio.d.horasConvenio = Double.parseDouble(txtHorasConvenio.getText().replace(',', '.'));
-        inicio.d.kilometraje = Double.parseDouble(txtKilometraje.getText().replace(',', '.'));
-        inicio.d.nochebuena = Double.parseDouble(txtNochebuena.getText().replace(',', '.'));
-        inicio.d.peligro = Double.parseDouble(txtPeligrosidad.getText().replace(',', '.'));
-        inicio.d.quinquenio = Double.parseDouble(txtQuinquenio.getText().replace(',', '.'));
-        inicio.d.radio = Double.parseDouble(txtRadio.getText().replace(',', '.'));
-        inicio.d.radioBasica = Double.parseDouble(txtRadioBasica.getText().replace(',', '.'));
-        inicio.d.salarioBase = Double.parseDouble(txtSalarioBase.getText().replace(',', '.'));
-        inicio.d.transporte = Double.parseDouble(txtTransporte.getText().replace(',', '.'));
-        inicio.d.trienio = Double.parseDouble(txtVestuario.getText().replace(',', '.'));
-        inicio.d.vestuario = Double.parseDouble(txtVestuario.getText().replace(',', '.'));
+        inicio.d.setAntiguedad(Integer.parseInt(txtAntiguedad.getText()));
+        inicio.d.setHoraArma(Double.parseDouble(txtHoraArma.getText().replace(',', '.')));
+        inicio.d.setHoraExtra(Double.parseDouble(txtHoraExtra.getText().replace(',', '.')));
+        inicio.d.setHoraFestiva(Double.parseDouble(txtHoraFestiva.getText().replace(',', '.')));
+        inicio.d.setHoraNocturna(Double.parseDouble(txtHoraNocturna.getText().replace(',', '.')));
+        inicio.d.setHorasConvenio(Double.parseDouble(txtHorasConvenio.getText().replace(',', '.')));
+        inicio.d.setKilometraje(Double.parseDouble(txtKilometraje.getText().replace(',', '.')));
+        inicio.d.setNochebuena(Double.parseDouble(txtNochebuena.getText().replace(',', '.')));
+        inicio.d.setPeligro(Double.parseDouble(txtPeligrosidad.getText().replace(',', '.')));
+        inicio.d.setQuinquenio(Double.parseDouble(txtQuinquenio.getText().replace(',', '.')));
+        inicio.d.setRadio(Double.parseDouble(txtRadio.getText().replace(',', '.')));
+        inicio.d.setRadioBasica(Double.parseDouble(txtRadioBasica.getText().replace(',', '.')));
+        inicio.d.setSalarioBase(Double.parseDouble(txtSalarioBase.getText().replace(',', '.')));
+        inicio.d.setTransporte(Double.parseDouble(txtTransporte.getText().replace(',', '.')));
+        inicio.d.setTrienio(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
+        inicio.d.setVestuario(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
         inicio.mostrarTitulo();
         this.dispose();
         }catch(NumberFormatException ex){

@@ -760,7 +760,13 @@ public class Principal extends javax.swing.JFrame {
         if (principal != null && !principal.guardado) {
             int g = JOptionPane.showConfirmDialog(null, "¿Quieres guardar antes de salir?");
             if (g == 0) {
-                guardar();
+                if (principal != null) {
+                    if (fichero == null) {
+                        guardarComo();
+                    } else {
+                        guardar();
+                    }
+                }
             }
         }
     }//GEN-LAST:event_formWindowClosing

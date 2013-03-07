@@ -12,10 +12,11 @@ public class MeterHoras extends javax.swing.JFrame {
     Objeto Obj;
     private String[] nombreMeses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo",
         "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-    private String[] diaSemana = {"Domingo","Lunes","Martes","Miercoles",
-                                "Jueves","Viernes","Sabado"};
+    private String[] diaSemana = {"Domingo", "Lunes", "Martes", "Miercoles",
+        "Jueves", "Viernes", "Sabado"};
     GregorianCalendar calendario;
     int diaSem;
+
     /**
      * Creates new form MeterHoras
      */
@@ -64,7 +65,6 @@ public class MeterHoras extends javax.swing.JFrame {
         txtClave = new javax.swing.JTextField();
         btnInsertar = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         checkRadio = new javax.swing.JCheckBox();
         checkArma = new javax.swing.JCheckBox();
@@ -74,11 +74,12 @@ public class MeterHoras extends javax.swing.JFrame {
         btnGuardarClave = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnBorrarClave = new javax.swing.JButton();
+        checkVacaciones = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Introducir horarios");
         setName("MeterHoras"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(525, 345));
+        setPreferredSize(new java.awt.Dimension(530, 345));
         setResizable(false);
 
         btnAdelante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/Button_Next.png"))); // NOI18N
@@ -118,6 +119,11 @@ public class MeterHoras extends javax.swing.JFrame {
         jLabel4.setText("Salida");
 
         txtClave.setColumns(4);
+        txtClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtClaveKeyPressed(evt);
+            }
+        });
 
         btnInsertar.setText("Insertar");
         btnInsertar.addActionListener(new java.awt.event.ActionListener() {
@@ -130,13 +136,6 @@ public class MeterHoras extends javax.swing.JFrame {
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
-            }
-        });
-
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -201,6 +200,8 @@ public class MeterHoras extends javax.swing.JFrame {
 
         btnBorrarClave.setText("Borrar clave");
 
+        checkVacaciones.setText("Vacaciones");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -215,7 +216,7 @@ public class MeterHoras extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnInsertar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnBorrarClave)
@@ -235,18 +236,16 @@ public class MeterHoras extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(txtEntrada1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(jLabel3)
-                                                    .addComponent(txtEntrada2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                    .addComponent(txtEntrada2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(checkVacaciones))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel4)
                                             .addComponent(txtSalida2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtSalida1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                                .addGap(18, 23, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(btnCancelar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnAceptar))
+                                    .addComponent(btnAceptar, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
@@ -283,21 +282,21 @@ public class MeterHoras extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtSalida1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtSalida2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtSalida2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(checkVacaciones))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnInsertar)
                     .addComponent(btnGuardarClave)
                     .addComponent(btnBorrarClave))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptar)
-                    .addComponent(btnCancelar))
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAceptar)
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -311,37 +310,43 @@ public class MeterHoras extends javax.swing.JFrame {
         Obj.mes[Obj.mesActual].dia[Obj.diaActual].setEntrada2(txtEntrada2.getText());
         Obj.mes[Obj.mesActual].dia[Obj.diaActual].setSalida1(txtSalida1.getText());
         Obj.mes[Obj.mesActual].dia[Obj.diaActual].setSalida2(txtSalida2.getText());
-        if(checkArma.isSelected()){
+        if (checkArma.isSelected()) {
             Obj.mes[Obj.mesActual].dia[Obj.diaActual].setArma(true);
-        }else{
+        } else {
             Obj.mes[Obj.mesActual].dia[Obj.diaActual].setArma(false);
         }
-        if(checkFestivo.isSelected()){
+        if (checkFestivo.isSelected()) {
             Obj.mes[Obj.mesActual].dia[Obj.diaActual].setFestivo(true);
-        }else{
+        } else {
             Obj.mes[Obj.mesActual].dia[Obj.diaActual].setFestivo(false);
         }
-        
-        if(checkRadio.isSelected()){
+
+        if (checkRadio.isSelected()) {
             Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadioscopia(true);
-        }else{
+        } else {
             Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadioscopia(false);
         }
-        
-        if(optBasica.isSelected()){
+
+        if (optBasica.isSelected()) {
             Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadioB(true);
-        }else{
+        } else {
             Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadioB(false);
         }
-        if(optPortuaria.isSelected()){
+        if (optPortuaria.isSelected()) {
             Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadio(true);
-        }else{
+        } else {
             Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadio(false);
         }
-        
-        if (Obj.diaActual < Obj.mes[Obj.mesActual].getN()-1){
-        Obj.diaActual++;
-        mostrar();
+
+        if (checkVacaciones.isSelected()) {
+            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setVacaciones(true);
+        } else {
+            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setVacaciones(false);
+        }
+
+        if (Obj.diaActual < Obj.mes[Obj.mesActual].getN() - 1) {
+            Obj.diaActual++;
+            mostrar();
         }
         limpiarCampos();
         Obj.guardado = false;
@@ -357,24 +362,21 @@ public class MeterHoras extends javax.swing.JFrame {
 
     private void btnAdelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdelanteActionPerformed
         // TODO add your handling code here:
-        if (Obj.diaActual < Obj.mes[Obj.mesActual].getN()-1){
-        Obj.diaActual++;
-        mostrar();
+        if (Obj.diaActual < Obj.mes[Obj.mesActual].getN() - 1) {
+            Obj.diaActual++;
+            mostrar();
         }
     }//GEN-LAST:event_btnAdelanteActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        
+
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnGuardarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClaveActionPerformed
         // TODO add your handling code here:
-        Obj.claves.put(txtClave.getText(), null);
+        Obj.claves.put(txtClave.getText(), Obj.mes[Obj.mesActual].dia[Obj.diaActual]);
+
     }//GEN-LAST:event_btnGuardarClaveActionPerformed
 
     private void checkRadioStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_checkRadioStateChanged
@@ -387,10 +389,30 @@ public class MeterHoras extends javax.swing.JFrame {
             optPortuaria.setEnabled(false);
         }
     }//GEN-LAST:event_checkRadioStateChanged
+
+    private void txtClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == 10) {
+            Dias clave = Obj.claves.get(txtClave.getText());
+            txtServicio1.setText(clave.getServicio1());
+            txtServicio2.setText(clave.getServicio2());
+            txtSalida1.setText(clave.getSalida1());
+            txtSalida2.setText(clave.getSalida2());
+            txtEntrada1.setText(clave.getEntrada1());
+            txtEntrada2.setText(clave.getEntrada2());
+            checkArma.setSelected(clave.isArma());
+            checkFestivo.setSelected(clave.isFestivo());
+            checkRadio.setSelected(clave.isRadioscopia());
+            optPortuaria.setSelected(clave.isRadio());
+            optBasica.setSelected(clave.isRadioB());
+            checkVacaciones.setSelected(clave.isVacaciones());
+           
+        }
+    }//GEN-LAST:event_txtClaveKeyPressed
     private void mostrar() {
-        calendario = new GregorianCalendar(Obj.anio, Obj.mesActual, Obj.diaActual+1);
+        calendario = new GregorianCalendar(Obj.anio, Obj.mesActual, Obj.diaActual + 1);
         diaSem = calendario.get(Calendar.DAY_OF_WEEK);
-        lblFecha.setText(diaSemana[diaSem-1]+" "+(Obj.diaActual+1) + " de " + nombreMeses[Obj.mesActual]);
+        lblFecha.setText(diaSemana[diaSem - 1] + " " + (Obj.diaActual + 1) + " de " + nombreMeses[Obj.mesActual]);
         txtServicio1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getServicio1());
         txtServicio2.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getServicio2());
         txtSalida1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getSalida1());
@@ -402,7 +424,9 @@ public class MeterHoras extends javax.swing.JFrame {
         checkRadio.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isRadioscopia());
         optPortuaria.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isRadio());
         optBasica.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isRadioB());
+        checkVacaciones.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isVacaciones());
     }
+
     private void limpiarCampos() {
         txtServicio1.setText("");
         txtServicio2.setText("");
@@ -416,12 +440,12 @@ public class MeterHoras extends javax.swing.JFrame {
     private javax.swing.JButton btnAdelante;
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnBorrarClave;
-    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardarClave;
     private javax.swing.JButton btnInsertar;
     private javax.swing.JCheckBox checkArma;
     private javax.swing.JCheckBox checkFestivo;
     private javax.swing.JCheckBox checkRadio;
+    private javax.swing.JCheckBox checkVacaciones;
     private javax.swing.ButtonGroup grupoRadio;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -439,6 +463,4 @@ public class MeterHoras extends javax.swing.JFrame {
     private javax.swing.JTextField txtServicio1;
     private javax.swing.JTextField txtServicio2;
     // End of variables declaration//GEN-END:variables
-
-    
 }

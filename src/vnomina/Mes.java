@@ -34,6 +34,10 @@ public class Mes implements Serializable {
             dia[j] = new Dias();
         }
     }
+    
+    public void calculoMes(){
+        
+    }
 
     public int getN() {
         return n;

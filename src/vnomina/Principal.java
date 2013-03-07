@@ -109,6 +109,11 @@ public class Principal extends javax.swing.JFrame {
         setName("principal"); // NOI18N
         setPreferredSize(new java.awt.Dimension(825, 535));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         barra.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         barra.setFloatable(false);
@@ -645,55 +650,78 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        new MeterHoras(principal);
+        if (principal != null) {
+            new MeterHoras(principal);
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
-        JFileChooser selector = new JFileChooser();
-
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos chp", "chp");
-        selector.setFileFilter(filtro);
-        try {
-            if (selector.showOpenDialog(null) == selector.APPROVE_OPTION) {
-                fichero = selector.getSelectedFile().toString();
-                FileInputStream fis = new FileInputStream(fichero);
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                //El método readObject() recupera el objeto
-                principal = (Objeto) ois.readObject();
-                ois.close();
-                anio = principal.anio;
-                selectorMes.setSelectedIndex(principal.mesActual);
-                selectorMes.setEnabled(true);
-                btnCalcular.setEnabled(true);
-                mostrarTitulo();
-                mostrarResultado();
+        if (principal == null) {
+            JFileChooser selector = new JFileChooser();
+            FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos chp", "chp");
+            selector.setFileFilter(filtro);
+            try {
+                if (selector.showOpenDialog(null) == selector.APPROVE_OPTION) {
+                    fichero = selector.getSelectedFile().toString();
+                    FileInputStream fis = new FileInputStream(fichero);
+                    ObjectInputStream ois = new ObjectInputStream(fis);
+                    //El método readObject() recupera el objeto
+                    principal = (Objeto) ois.readObject();
+                    ois.close();
+                    anio = principal.anio;
+                    selectorMes.setSelectedIndex(principal.mesActual);
+                    selectorMes.setEnabled(true);
+                    btnCalcular.setEnabled(true);
+                    mostrarTitulo();
+                    mostrarResultado();
+                }
+            } catch (HeadlessException | IOException | ClassNotFoundException e) {
+                JOptionPane.showMessageDialog(null,
+                        "Error al abrir el archivo",
+                        "Aviso",
+                        JOptionPane.ERROR_MESSAGE);
+                fichero = null;
             }
-        } catch (HeadlessException | IOException | ClassNotFoundException e) {
+
+        } else {
             JOptionPane.showMessageDialog(null,
-                    "Error al abrir el archivo",
+                    "Ya hay un archivo abierto",
                     "Aviso",
-                    JOptionPane.ERROR_MESSAGE);
-            fichero = null;
+                    JOptionPane.INFORMATION_MESSAGE);
         }
-
-
     }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         //codigo cerrar
+        if (principal != null && !principal.guardado) {
+            int g = JOptionPane.showConfirmDialog(null, "¿Quieres guardar antes de cerrar?");
+            if (g == 0) {
+                guardar();
+                principal = null;
+                reiniciar();
+            }
+        } else {
+            principal = null;
+            reiniciar();
+        }
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         //codigo guardar
-        if (fichero == null) {
-            guardarComo();
-        } else {
-            guardar();
+        if (principal != null) {
+            if (fichero == null) {
+                guardarComo();
+            } else {
+                guardar();
+            }
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarComoActionPerformed
-        guardarComo();
+        //codigo guardar como
+        if (principal != null) {
+            guardarComo();
+        }
     }//GEN-LAST:event_btnGuardarComoActionPerformed
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
@@ -726,6 +754,16 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         mostrarResultado();
     }//GEN-LAST:event_btnCalcularActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        if (principal != null && !principal.guardado) {
+            int g = JOptionPane.showConfirmDialog(null, "¿Quieres guardar antes de salir?");
+            if (g == 0) {
+                guardar();
+            }
+        }
+    }//GEN-LAST:event_formWindowClosing
     private void guardarComo() {
         JFileChooser selector = new JFileChooser();
         try {
@@ -739,6 +777,7 @@ public class Principal extends javax.swing.JFrame {
                 os.writeObject(principal);
                 //Hay que cerrar siempre el archivo
                 os.close();
+                principal.guardado = true;
             }
         } catch (HeadlessException | IOException e) {
             fichero = null;
@@ -756,6 +795,7 @@ public class Principal extends javax.swing.JFrame {
             ObjectOutputStream os = new ObjectOutputStream(fs);
             os.writeObject(principal);
             os.close();
+            principal.guardado = true;
         } catch (HeadlessException | IOException e) {
             JOptionPane.showMessageDialog(null,
                     "Errror al guardar el archivo",
@@ -771,11 +811,31 @@ public class Principal extends javax.swing.JFrame {
     }
 
     public void mostrarResultado() {
-        System.out.println("El mes actual es: " + principal.mesActual);
         lblSalarioBase.setText("" + principal.datos.getSalarioBase());
         lblPeligrosidad.setText("" + principal.datos.getPeligro());
         lblTransporte.setText("" + principal.datos.getTransporte());
         lblVestuario.setText("" + principal.datos.getVestuario());
+    }
+
+    private void reiniciar() {
+        lblSalarioBase.setText("00.00");
+        lblPeligrosidad.setText("00.00");
+        lblTransporte.setText("00.00");
+        lblVestuario.setText("00.00");
+        lblAntiguedad.setText("00.00");
+        lblComunes.setText("00.00");
+        lblDesempleo.setText("00.00");
+        lblFP.setText("00.00");
+        lblFestivos.setText("00.00");
+        lblHorasExtras.setText("00.00");
+        lblInfo.setText("Ningun documento abierto");
+        lblIrpf.setText("00.00");
+        lblLiquido.setText("000.00");
+        lblNocturnidad.setText("00.00");
+        lblPagas.setText("00.00");
+        lblTolalAportaciones.setText("00.00");
+        lblTotalDeducir.setText("00.00");
+        lblTotalDevengado.setText("00.00");
     }
 
     public static void main(String args[]) {

@@ -7,13 +7,35 @@ import java.io.Serializable;
  * @author cahoperro
  */
 public class Dias implements Serializable{
-    private boolean arma,festivo,radio;
+    private boolean arma,festivo,radioscopia,radio,radioB;
     private String servicio1,servicio2,entrada1,entrada2,salida1,salida2,claveServicio;
     private double tempHoras;
     private double tempNocturnas;
     private double tempFestivas;
-    public Dias(){
-        
+    private int diaSemana;
+
+    public int getDiaSemana() {
+        return diaSemana;
+    }
+
+    public void setDiaSemana(int diaSemana) {
+        this.diaSemana = diaSemana;
+    }
+   
+    public boolean isRadioscopia() {
+        return radioscopia;
+    }
+
+    public void setRadioscopia(boolean radioscopia) {
+        this.radioscopia = radioscopia;
+    }
+
+    public boolean isRadioB() {
+        return radioB;
+    }
+
+    public void setRadioB(boolean radioB) {
+        this.radioB = radioB;
     }
     
     public double getTempHoras() {

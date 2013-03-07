@@ -1,5 +1,8 @@
 package vnomina;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 /**
  *
  * @author cahoperro
@@ -9,7 +12,10 @@ public class MeterHoras extends javax.swing.JFrame {
     Objeto Obj;
     private String[] nombreMeses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo",
         "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-
+    private String[] diaSemana = {"Domingo","Lunes","Martes","Miercoles",
+                                "Jueves","Viernes","Sabado"};
+    GregorianCalendar calendario;
+    int diaSem;
     /**
      * Creates new form MeterHoras
      */
@@ -146,6 +152,7 @@ public class MeterHoras extends javax.swing.JFrame {
         checkFestivo.setText("Festivo");
 
         grupoRadio.add(optBasica);
+        optBasica.setSelected(true);
         optBasica.setText("Basica");
         optBasica.setEnabled(false);
 
@@ -314,12 +321,30 @@ public class MeterHoras extends javax.swing.JFrame {
         }else{
             Obj.mes[Obj.mesActual].dia[Obj.diaActual].setFestivo(false);
         }
+        
+        if(checkRadio.isSelected()){
+            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadioscopia(true);
+        }else{
+            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadioscopia(false);
+        }
+        
+        if(optBasica.isSelected()){
+            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadioB(true);
+        }else{
+            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadioB(false);
+        }
+        if(optPortuaria.isSelected()){
+            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadio(true);
+        }else{
+            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadio(false);
+        }
+        
         if (Obj.diaActual < Obj.mes[Obj.mesActual].getN()-1){
         Obj.diaActual++;
         mostrar();
         }
         limpiarCampos();
-        
+        Obj.guardado = false;
     }//GEN-LAST:event_btnInsertarActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
@@ -343,6 +368,7 @@ public class MeterHoras extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
@@ -362,7 +388,9 @@ public class MeterHoras extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkRadioStateChanged
     private void mostrar() {
-        lblFecha.setText((Obj.diaActual+1) + " de " + nombreMeses[Obj.mesActual]);
+        calendario = new GregorianCalendar(Obj.anio, Obj.mesActual, Obj.diaActual+1);
+        diaSem = calendario.get(Calendar.DAY_OF_WEEK);
+        lblFecha.setText(diaSemana[diaSem-1]+" "+(Obj.diaActual+1) + " de " + nombreMeses[Obj.mesActual]);
         txtServicio1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getServicio1());
         txtServicio2.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getServicio2());
         txtSalida1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getSalida1());
@@ -371,6 +399,9 @@ public class MeterHoras extends javax.swing.JFrame {
         txtEntrada2.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getEntrada2());
         checkArma.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isArma());
         checkFestivo.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isFestivo());
+        checkRadio.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isRadioscopia());
+        optPortuaria.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isRadio());
+        optBasica.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isRadioB());
     }
     private void limpiarCampos() {
         txtServicio1.setText("");

@@ -75,6 +75,7 @@ public class MeterHoras extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         btnBorrarClave = new javax.swing.JButton();
         checkVacaciones = new javax.swing.JCheckBox();
+        btnLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Introducir horarios");
@@ -199,8 +200,20 @@ public class MeterHoras extends javax.swing.JFrame {
         jLabel5.setText("Clave servicio");
 
         btnBorrarClave.setText("Borrar clave");
+        btnBorrarClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarClaveActionPerformed(evt);
+            }
+        });
 
         checkVacaciones.setText("Vacaciones");
+
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -245,13 +258,16 @@ public class MeterHoras extends javax.swing.JFrame {
                                             .addComponent(txtSalida1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(18, 23, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnAceptar, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(btnAtras)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(btnAdelante))))))
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnAtras)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnAdelante))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnLimpiar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAceptar)))
                         .addGap(26, 26, 26))))
         );
         layout.setVerticalGroup(
@@ -295,7 +311,9 @@ public class MeterHoras extends javax.swing.JFrame {
                     .addComponent(btnGuardarClave)
                     .addComponent(btnBorrarClave))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAceptar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAceptar)
+                    .addComponent(btnLimpiar))
                 .addGap(20, 20, 20))
         );
 
@@ -303,7 +321,147 @@ public class MeterHoras extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+
+        insertar();
+    }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+
+        if (Obj.diaActual > 0) {
+            Obj.diaActual--;
+            mostrar();
+        }
+    }//GEN-LAST:event_btnAtrasActionPerformed
+
+    private void btnAdelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdelanteActionPerformed
+
+        if (Obj.diaActual < Obj.mes[Obj.mesActual].getN() - 1) {
+            Obj.diaActual++;
+            mostrar();
+        }
+    }//GEN-LAST:event_btnAdelanteActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+
+        this.dispose();
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void btnGuardarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClaveActionPerformed
+        Dias tem = new Dias();
+        tem.setServicio1(txtServicio1.getText());
+        tem.setServicio2(txtServicio2.getText());
+        tem.setEntrada1(txtEntrada1.getText());
+        tem.setEntrada2(txtEntrada2.getText());
+        tem.setSalida1(txtSalida1.getText());
+        tem.setSalida2(txtSalida2.getText());
+        if (checkArma.isSelected()) {
+            tem.setArma(true);
+        } else {
+            tem.setArma(false);
+        }
+        if (checkFestivo.isSelected()) {
+            tem.setFestivo(true);
+        } else {
+            tem.setFestivo(false);
+        }
+
+        if (checkRadio.isSelected()) {
+            tem.setRadioscopia(true);
+        } else {
+            tem.setRadioscopia(false);
+        }
+
+        if (optBasica.isSelected()) {
+            tem.setRadioB(true);
+        } else {
+            tem.setRadioB(false);
+        }
+        if (optPortuaria.isSelected()) {
+            tem.setRadio(true);
+        } else {
+            tem.setRadio(false);
+        }
+
+        if (checkVacaciones.isSelected()) {
+            tem.setVacaciones(true);
+        } else {
+            tem.setVacaciones(false);
+        }
+        Obj.claves.put(txtClave.getText(), tem);
+
+    }//GEN-LAST:event_btnGuardarClaveActionPerformed
+
+    private void checkRadioStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_checkRadioStateChanged
+
+        if (checkRadio.isSelected()) {
+            optBasica.setEnabled(true);
+            optPortuaria.setEnabled(true);
+        } else {
+            optBasica.setEnabled(false);
+            optPortuaria.setEnabled(false);
+        }
+    }//GEN-LAST:event_checkRadioStateChanged
+
+    private void txtClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyPressed
+
+        if (evt.getKeyCode() == 10) {
+            if (Obj.claves.get(txtClave.getText()) != null) {
+                Dias clave = Obj.claves.get(txtClave.getText());
+                txtServicio1.setText(clave.getServicio1());
+                txtServicio2.setText(clave.getServicio2());
+                txtSalida1.setText(clave.getSalida1());
+                txtSalida2.setText(clave.getSalida2());
+                txtEntrada1.setText(clave.getEntrada1());
+                txtEntrada2.setText(clave.getEntrada2());
+                checkArma.setSelected(clave.isArma());
+                checkFestivo.setSelected(clave.isFestivo());
+                checkRadio.setSelected(clave.isRadioscopia());
+                optPortuaria.setSelected(clave.isRadio());
+                optBasica.setSelected(clave.isRadioB());
+                checkVacaciones.setSelected(clave.isVacaciones());
+                txtClave.setText("");
+                insertar();
+            }
+        }
+    }//GEN-LAST:event_txtClaveKeyPressed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+
+        txtServicio1.setText("");
+        txtServicio2.setText("");
+        txtSalida1.setText("");
+        txtSalida2.setText("");
+        txtEntrada1.setText("");
+        txtEntrada2.setText("");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnBorrarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarClaveActionPerformed
         // TODO add your handling code here:
+        Obj.claves.remove(txtClave.getText());
+        txtClave.setText("");
+    }//GEN-LAST:event_btnBorrarClaveActionPerformed
+    private void mostrar() {
+        calendario = new GregorianCalendar(Obj.anio, Obj.mesActual, Obj.diaActual + 1);
+        diaSem = calendario.get(Calendar.DAY_OF_WEEK);
+        if (diaSem == 1 || diaSem == 7){
+           Obj.mes[Obj.mesActual].dia[Obj.diaActual].setFestivo(true);
+        }
+        lblFecha.setText(diaSemana[diaSem - 1] + " " + (Obj.diaActual + 1) + " de " + nombreMeses[Obj.mesActual]);
+        txtServicio1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getServicio1());
+        txtServicio2.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getServicio2());
+        txtSalida1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getSalida1());
+        txtSalida2.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getSalida2());
+        txtEntrada1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getEntrada1());
+        txtEntrada2.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getEntrada2());
+        checkArma.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isArma());
+        checkFestivo.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isFestivo());
+        checkRadio.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isRadioscopia());
+        optPortuaria.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isRadio());
+        optBasica.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isRadioB());
+        checkVacaciones.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isVacaciones());
+    }
+
+    public void insertar() {
         Obj.mes[Obj.mesActual].dia[Obj.diaActual].setServicio1(txtServicio1.getText());
         Obj.mes[Obj.mesActual].dia[Obj.diaActual].setServicio2(txtServicio2.getText());
         Obj.mes[Obj.mesActual].dia[Obj.diaActual].setEntrada1(txtEntrada1.getText());
@@ -346,94 +504,10 @@ public class MeterHoras extends javax.swing.JFrame {
 
         if (Obj.diaActual < Obj.mes[Obj.mesActual].getN() - 1) {
             Obj.diaActual++;
-            mostrar();
         }
-        limpiarCampos();
+        mostrar();
+        txtClave.setText("");
         Obj.guardado = false;
-    }//GEN-LAST:event_btnInsertarActionPerformed
-
-    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-        // TODO add your handling code here:
-        if (Obj.diaActual > 0) {
-            Obj.diaActual--;
-            mostrar();
-        }
-    }//GEN-LAST:event_btnAtrasActionPerformed
-
-    private void btnAdelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdelanteActionPerformed
-        // TODO add your handling code here:
-        if (Obj.diaActual < Obj.mes[Obj.mesActual].getN() - 1) {
-            Obj.diaActual++;
-            mostrar();
-        }
-    }//GEN-LAST:event_btnAdelanteActionPerformed
-
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-
-        this.dispose();
-    }//GEN-LAST:event_btnAceptarActionPerformed
-
-    private void btnGuardarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClaveActionPerformed
-        // TODO add your handling code here:
-        Obj.claves.put(txtClave.getText(), Obj.mes[Obj.mesActual].dia[Obj.diaActual]);
-
-    }//GEN-LAST:event_btnGuardarClaveActionPerformed
-
-    private void checkRadioStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_checkRadioStateChanged
-        // TODO add your handling code here:
-        if (checkRadio.isSelected()) {
-            optBasica.setEnabled(true);
-            optPortuaria.setEnabled(true);
-        } else {
-            optBasica.setEnabled(false);
-            optPortuaria.setEnabled(false);
-        }
-    }//GEN-LAST:event_checkRadioStateChanged
-
-    private void txtClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == 10) {
-            Dias clave = Obj.claves.get(txtClave.getText());
-            txtServicio1.setText(clave.getServicio1());
-            txtServicio2.setText(clave.getServicio2());
-            txtSalida1.setText(clave.getSalida1());
-            txtSalida2.setText(clave.getSalida2());
-            txtEntrada1.setText(clave.getEntrada1());
-            txtEntrada2.setText(clave.getEntrada2());
-            checkArma.setSelected(clave.isArma());
-            checkFestivo.setSelected(clave.isFestivo());
-            checkRadio.setSelected(clave.isRadioscopia());
-            optPortuaria.setSelected(clave.isRadio());
-            optBasica.setSelected(clave.isRadioB());
-            checkVacaciones.setSelected(clave.isVacaciones());
-           
-        }
-    }//GEN-LAST:event_txtClaveKeyPressed
-    private void mostrar() {
-        calendario = new GregorianCalendar(Obj.anio, Obj.mesActual, Obj.diaActual + 1);
-        diaSem = calendario.get(Calendar.DAY_OF_WEEK);
-        lblFecha.setText(diaSemana[diaSem - 1] + " " + (Obj.diaActual + 1) + " de " + nombreMeses[Obj.mesActual]);
-        txtServicio1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getServicio1());
-        txtServicio2.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getServicio2());
-        txtSalida1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getSalida1());
-        txtSalida2.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getSalida2());
-        txtEntrada1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getEntrada1());
-        txtEntrada2.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getEntrada2());
-        checkArma.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isArma());
-        checkFestivo.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isFestivo());
-        checkRadio.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isRadioscopia());
-        optPortuaria.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isRadio());
-        optBasica.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isRadioB());
-        checkVacaciones.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isVacaciones());
-    }
-
-    private void limpiarCampos() {
-        txtServicio1.setText("");
-        txtServicio2.setText("");
-        txtSalida1.setText("");
-        txtSalida2.setText("");
-        txtEntrada1.setText("");
-        txtEntrada2.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
@@ -442,6 +516,7 @@ public class MeterHoras extends javax.swing.JFrame {
     private javax.swing.JButton btnBorrarClave;
     private javax.swing.JButton btnGuardarClave;
     private javax.swing.JButton btnInsertar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JCheckBox checkArma;
     private javax.swing.JCheckBox checkFestivo;
     private javax.swing.JCheckBox checkRadio;

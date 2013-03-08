@@ -693,10 +693,14 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         //codigo cerrar
+
         if (principal != null && !principal.guardado) {
             int g = JOptionPane.showConfirmDialog(null, "¿Quieres guardar antes de cerrar?");
             if (g == 0) {
                 guardar();
+                principal = null;
+                reiniciar();
+            } else {
                 principal = null;
                 reiniciar();
             }
@@ -842,6 +846,8 @@ public class Principal extends javax.swing.JFrame {
         lblTolalAportaciones.setText("00.00");
         lblTotalDeducir.setText("00.00");
         lblTotalDevengado.setText("00.00");
+        selectorMes.setEnabled(false);
+        btnCalcular.setEnabled(false);
     }
 
     public static void main(String args[]) {

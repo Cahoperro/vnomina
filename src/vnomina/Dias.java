@@ -1,23 +1,82 @@
 package vnomina;
 
 import java.io.Serializable;
+import java.util.GregorianCalendar;
 
 /**
  *
  * @author cahoperro
  */
-public class Dias implements Serializable{
-    private boolean arma,festivo,radioscopia,radio,radioB,vacaciones;
-    private String servicio1,servicio2,entrada1,entrada2,salida1,salida2,claveServicio;
-    private double tempHoras;
-    private double tempNocturnas;
-    private double tempFestivas;
-    private int diaSemana;
+public class Dias implements Serializable {
 
-    public void calculoDia(){
-       
+    private boolean arma, festivo, radioscopia, radio, radioB, vacaciones;
+    private String servicio1, servicio2, entrada1, entrada2, salida1, salida2, claveServicio;
+    private double tempHoras, tempNocturnas, tempFestivas, tempRadio, tempRadioB;
+    private double tempHoras1, tempHoras2;
+    private int diaSemana;
+    private int HEntrada1, MEntrada1, HSalida1, MSalida1;
+    private int HEntrada2, MEntrada2, HSalida2, MSalida2;
+    private GregorianCalendar cal1, cal2;
+
+    public void calculoHorasDia() {
+        calHoras();
+        calNocturnas();
+        calFestivas();
     }
-    
+
+    private void calHoras() {
+        String[] ste;
+        String[] sts;
+        if (!"".equals(entrada1) && !"".equals(salida1)) {
+            ste = entrada1.split(":");
+            sts = salida1.split(":");
+            HEntrada1 = Integer.parseInt(ste[0]);
+            MEntrada1 = Integer.parseInt(ste[1]);
+            HSalida1 = Integer.parseInt(sts[0]);
+            MSalida1 = Integer.parseInt(sts[1]);
+            tempHoras1 = calculo(HEntrada1, MEntrada1, HSalida1, MSalida1);
+        } else {
+            tempHoras1 = 0;
+        }
+
+        if (!"".equals(entrada2) && !"".equals(salida2)) {
+            ste = entrada2.split(":");
+            sts = salida2.split(":");
+            HEntrada2 = Integer.parseInt(ste[0]);
+            MEntrada2 = Integer.parseInt(ste[1]);
+            HSalida2 = Integer.parseInt(sts[0]);
+            MSalida2 = Integer.parseInt(sts[1]);
+            tempHoras2 = calculo(HEntrada2, MEntrada2, HSalida2, MSalida2);
+        } else {
+            tempHoras2 = 0;
+        }
+        tempHoras = tempHoras1 + tempHoras2;
+        
+        tempRadio = 0;
+        tempRadioB = 0;
+        if(radio){
+           tempRadio = tempHoras;
+        }else if (radioB){
+            tempRadioB = tempHoras;
+         }
+    }
+
+    private double calculo(int h1, int m1, int h2, int m2) {
+        cal1 = new GregorianCalendar(2013, 7, 12, h1, m1);
+        cal2 = new GregorianCalendar(2013, 7, 12, h2, m2);
+        double uno = cal1.getTimeInMillis();
+        double dos = cal2.getTimeInMillis();
+        return (dos - uno) / 3600000;
+    }
+
+    private void calNocturnas() {
+        
+    }
+
+    private void calFestivas() {
+        
+    }
+
     public boolean isVacaciones() {
         return vacaciones;
     }
@@ -33,7 +92,7 @@ public class Dias implements Serializable{
     public void setDiaSemana(int diaSemana) {
         this.diaSemana = diaSemana;
     }
-   
+
     public boolean isRadioscopia() {
         return radioscopia;
     }
@@ -49,7 +108,7 @@ public class Dias implements Serializable{
     public void setRadioB(boolean radioB) {
         this.radioB = radioB;
     }
-    
+
     public double getTempHoras() {
         return tempHoras;
     }
@@ -73,7 +132,7 @@ public class Dias implements Serializable{
     public void setTempFestivas(double tempFestivas) {
         this.tempFestivas = tempFestivas;
     }
-    
+
     public boolean isArma() {
         return arma;
     }
@@ -153,5 +212,4 @@ public class Dias implements Serializable{
     public void setClaveServicio(String claveServicio) {
         this.claveServicio = claveServicio;
     }
-    
 }

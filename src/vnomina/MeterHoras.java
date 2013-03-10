@@ -342,7 +342,7 @@ public class MeterHoras extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdelanteActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-
+        
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
@@ -464,10 +464,10 @@ public class MeterHoras extends javax.swing.JFrame {
     public void insertar() {
         Obj.mes[Obj.mesActual].dia[Obj.diaActual].setServicio1(txtServicio1.getText());
         Obj.mes[Obj.mesActual].dia[Obj.diaActual].setServicio2(txtServicio2.getText());
-        Obj.mes[Obj.mesActual].dia[Obj.diaActual].setEntrada1(txtEntrada1.getText());
-        Obj.mes[Obj.mesActual].dia[Obj.diaActual].setEntrada2(txtEntrada2.getText());
-        Obj.mes[Obj.mesActual].dia[Obj.diaActual].setSalida1(txtSalida1.getText());
-        Obj.mes[Obj.mesActual].dia[Obj.diaActual].setSalida2(txtSalida2.getText());
+        Obj.mes[Obj.mesActual].dia[Obj.diaActual].setEntrada1(txtEntrada1.getText().replace('.', ':'));
+        Obj.mes[Obj.mesActual].dia[Obj.diaActual].setEntrada2(txtEntrada2.getText().replace('.', ':'));
+        Obj.mes[Obj.mesActual].dia[Obj.diaActual].setSalida1(txtSalida1.getText().replace('.', ':'));
+        Obj.mes[Obj.mesActual].dia[Obj.diaActual].setSalida2(txtSalida2.getText().replace('.', ':'));
         if (checkArma.isSelected()) {
             Obj.mes[Obj.mesActual].dia[Obj.diaActual].setArma(true);
         } else {

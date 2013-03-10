@@ -14,9 +14,10 @@ public class MeterHoras extends javax.swing.JFrame {
         "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
     private String[] diaSemana = {"Domingo", "Lunes", "Martes", "Miercoles",
         "Jueves", "Viernes", "Sabado"};
-    GregorianCalendar calendario;
+    private GregorianCalendar calendario;
     int diaSem;
-
+    double horas,nocturnas,festivas,radio,radioB;
+    
     /**
      * Creates new form MeterHoras
      */
@@ -342,6 +343,20 @@ public class MeterHoras extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdelanteActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        
+        for (int i =0; i <Obj.mes[Obj.mesActual].getN(); i++){
+           Obj.mes[Obj.mesActual].dia[i].calculoHorasDia();
+           horas += Obj.mes[Obj.mesActual].dia[i].getTempHoras();
+           nocturnas += Obj.mes[Obj.mesActual].dia[i].getTempNocturnas();
+           festivas += Obj.mes[Obj.mesActual].dia[i].getTempFestivas();
+           radio += Obj.mes[Obj.mesActual].dia[i].getTempRadio();
+           radioB += Obj.mes[Obj.mesActual].dia[i].getTempRadioB();
+        }
+        Obj.mes[Obj.mesActual].setHorasMes(horas);
+        Obj.mes[Obj.mesActual].setHorasNocturnas(nocturnas);
+        Obj.mes[Obj.mesActual].setHorasFestivas(festivas);
+        Obj.mes[Obj.mesActual].setHorasRadio(radio);
+        Obj.mes[Obj.mesActual].setHorasRadioB(radioB);
         
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed

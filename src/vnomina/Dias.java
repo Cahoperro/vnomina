@@ -66,7 +66,11 @@ public class Dias implements Serializable {
         cal2 = new GregorianCalendar(2013, 7, 12, h2, m2);
         double uno = cal1.getTimeInMillis();
         double dos = cal2.getTimeInMillis();
-        return (dos - uno) / 3600000;
+        double res = (dos - uno) / 3600000;
+        if(res < 0){
+            res = res +24;
+        }
+        return res;
     }
 
     private void calNocturnas() {
@@ -76,6 +80,16 @@ public class Dias implements Serializable {
     private void calFestivas() {
         
     }
+
+    public double getTempRadio() {
+        return tempRadio;
+    }
+
+    public double getTempRadioB() {
+        return tempRadioB;
+    }
+    
+    
 
     public boolean isVacaciones() {
         return vacaciones;

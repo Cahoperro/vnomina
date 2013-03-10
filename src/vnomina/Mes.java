@@ -10,6 +10,8 @@ public class Mes implements Serializable {
 
     Dias[] dia;
     private int n;
+    private double horasMes,horasNocturnas,horasFestivas,horasRadio,HorasRadioB;
+    private double totalRadio,totalRadioB;
     private double totalFestivos;
     private double totalNocturnidad;
     private double prorrata;
@@ -37,6 +39,62 @@ public class Mes implements Serializable {
     
     public void calculoMes(){
         
+    }
+
+    public double getHorasMes() {
+        return horasMes;
+    }
+
+    public void setHorasMes(double horasMes) {
+        this.horasMes = horasMes;
+    }
+
+    public double getHorasNocturnas() {
+        return horasNocturnas;
+    }
+
+    public void setHorasNocturnas(double horasNocturnas) {
+        this.horasNocturnas = horasNocturnas;
+    }
+
+    public double getHorasFestivas() {
+        return horasFestivas;
+    }
+
+    public void setHorasFestivas(double horasFestivas) {
+        this.horasFestivas = horasFestivas;
+    }
+
+    public double getHorasRadio() {
+        return horasRadio;
+    }
+
+    public void setHorasRadio(double horasRadio) {
+        this.horasRadio = horasRadio;
+    }
+
+    public double getHorasRadioB() {
+        return HorasRadioB;
+    }
+
+    public void setHorasRadioB(double HorasRadioB) {
+        this.HorasRadioB = HorasRadioB;
+    }
+
+    public double getTotalRadio() {
+        return totalRadio;
+    }
+
+    public void setTotalRadio(double totalRadio) {
+        this.totalRadio = totalRadio;
+    }
+
+    public double getTotalRadioB() {
+        return totalRadioB;
+    }
+
+    public void setTotalRadioB(double totalRadioB) {
+        this.totalRadioB = totalRadioB;
     }
 
     public int getN() {

@@ -346,7 +346,7 @@ public class MeterHoras extends javax.swing.JFrame {
         
         for (int i =0; i < Obj.mes[Obj.mesActual].getN(); i++){
            
-           Obj.mes[Obj.mesActual].dia[i].calculoHorasDia();
+           Obj.mes[Obj.mesActual].dia[i].calHoras();
            horas += Obj.mes[Obj.mesActual].dia[i].getTempHoras();
            nocturnas += Obj.mes[Obj.mesActual].dia[i].getTempNocturnas();
            festivas += Obj.mes[Obj.mesActual].dia[i].getTempFestivas();

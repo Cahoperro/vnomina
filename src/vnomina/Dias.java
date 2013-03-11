@@ -27,7 +27,8 @@ public class Dias implements Serializable {
     private void calHoras() {
         String[] ste;
         String[] sts;
-        if (!"".equals(entrada1) && !"".equals(salida1)) {
+        
+        if (entrada1 != null && salida1 != null && !entrada1.isEmpty() && !salida1.isEmpty()) {
             ste = entrada1.split(":");
             sts = salida1.split(":");
             HEntrada1 = Integer.parseInt(ste[0]);
@@ -38,8 +39,9 @@ public class Dias implements Serializable {
         } else {
             tempHoras1 = 0;
         }
+        
 
-        if (!"".equals(entrada2) && !"".equals(salida2)) {
+        if (entrada2 != null && salida2 != null && !entrada2.isEmpty() && !salida2.isEmpty()) {
             ste = entrada2.split(":");
             sts = salida2.split(":");
             HEntrada2 = Integer.parseInt(ste[0]);
@@ -74,7 +76,13 @@ public class Dias implements Serializable {
     }
 
     private void calNocturnas() {
-        
+       GregorianCalendar noche = new GregorianCalendar(2013, 7, 12, 22, 0);
+       GregorianCalendar noche2 = new GregorianCalendar(2013, 7, 13, 6, 0);
+       cal1 = new GregorianCalendar(2013, 7, 12, HEntrada1, MEntrada1);
+       cal2 = new GregorianCalendar(2013, 7, 12, HEntrada2, MEntrada2);
+       double mNoche = noche.getTimeInMillis();
+       double mNoche2 = noche2.getTimeInMillis();
+       
     }
 
     private void calFestivas() {

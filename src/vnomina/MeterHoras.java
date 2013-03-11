@@ -16,7 +16,7 @@ public class MeterHoras extends javax.swing.JFrame {
         "Jueves", "Viernes", "Sabado"};
     private GregorianCalendar calendario;
     int diaSem;
-    double horas,nocturnas,festivas,radio,radioB;
+    private double horas,nocturnas,festivas,radio,radioB;
     
     /**
      * Creates new form MeterHoras
@@ -344,20 +344,26 @@ public class MeterHoras extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         
-        for (int i =0; i <Obj.mes[Obj.mesActual].getN(); i++){
+        for (int i =0; i < Obj.mes[Obj.mesActual].getN(); i++){
+           
            Obj.mes[Obj.mesActual].dia[i].calculoHorasDia();
            horas += Obj.mes[Obj.mesActual].dia[i].getTempHoras();
            nocturnas += Obj.mes[Obj.mesActual].dia[i].getTempNocturnas();
            festivas += Obj.mes[Obj.mesActual].dia[i].getTempFestivas();
            radio += Obj.mes[Obj.mesActual].dia[i].getTempRadio();
            radioB += Obj.mes[Obj.mesActual].dia[i].getTempRadioB();
-        }
+         }
+        
         Obj.mes[Obj.mesActual].setHorasMes(horas);
         Obj.mes[Obj.mesActual].setHorasNocturnas(nocturnas);
         Obj.mes[Obj.mesActual].setHorasFestivas(festivas);
         Obj.mes[Obj.mesActual].setHorasRadio(radio);
         Obj.mes[Obj.mesActual].setHorasRadioB(radioB);
-        
+        System.out.println("total horas: "+horas);
+        System.out.println("total nocturnas: "+nocturnas);
+        System.out.println("total festivas: "+festivas);
+        System.out.println("total radio: "+radio);
+        System.out.println("total radioB: "+radioB);
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
@@ -374,12 +380,7 @@ public class MeterHoras extends javax.swing.JFrame {
         } else {
             tem.setArma(false);
         }
-        if (checkFestivo.isSelected()) {
-            tem.setFestivo(true);
-        } else {
-            tem.setFestivo(false);
-        }
-
+        
         if (checkRadio.isSelected()) {
             tem.setRadioscopia(true);
         } else {
@@ -397,11 +398,6 @@ public class MeterHoras extends javax.swing.JFrame {
             tem.setRadio(false);
         }
 
-        if (checkVacaciones.isSelected()) {
-            tem.setVacaciones(true);
-        } else {
-            tem.setVacaciones(false);
-        }
         Obj.claves.put(txtClave.getText(), tem);
 
     }//GEN-LAST:event_btnGuardarClaveActionPerformed

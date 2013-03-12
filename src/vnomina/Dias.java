@@ -12,18 +12,20 @@ public class Dias implements Serializable {
     private boolean arma, festivo, radioscopia, radio, radioB, vacaciones;
     private String servicio1, servicio2, entrada1, entrada2, salida1, salida2, claveServicio;
     private double tempHoras, tempNocturnas, tempFestivas, tempRadio, tempRadioB;
-    private double tempHoras1, tempHoras2,tempNoct1,tempNoct2,tempFest1,temFest2;
+    private double tempHoras1, tempHoras2, tempNoct1, tempNoct2, tempFest1, tempFest2;
     private int diaSemana;
     private int HEntrada1, MEntrada1, HSalida1, MSalida1;
     private int HEntrada2, MEntrada2, HSalida2, MSalida2;
-    private GregorianCalendar gc22,gc6,gcEnt, gcSal;
+    private GregorianCalendar gcEnt, gcSal;
 
-    
-
-    public void calHoras() {
+    public void calHoras(boolean array[]) {
+        boolean arr[] = array;
         String[] ste;
         String[] sts;
-        
+        for (int i = 0; i < arr.length; i++){
+            System.out.print(i+" ");
+            System.out.println(arr[i]);
+        }
         if (entrada1 != null && salida1 != null && !entrada1.isEmpty() && !salida1.isEmpty()) {
             ste = entrada1.split(":");
             sts = salida1.split(":");
@@ -32,11 +34,14 @@ public class Dias implements Serializable {
             HSalida1 = Integer.parseInt(sts[0]);
             MSalida1 = Integer.parseInt(sts[1]);
             tempHoras1 = calculo(HEntrada1, MEntrada1, HSalida1, MSalida1);
-            tempNoct1 = calNocturnas(HEntrada1, MEntrada1, HSalida1, MSalida1);
+            tempNoct1 = calNocturnas(HEntrada1, MEntrada1, tempHoras1);
+            tempFest1 = calFestivas(HEntrada1, MEntrada1, HSalida1, MSalida1);
         } else {
             tempHoras1 = 0;
+            tempNoct1 = 0;
+            tempFest1 = 0;
         }
-        
+
 
         if (entrada2 != null && salida2 != null && !entrada2.isEmpty() && !salida2.isEmpty()) {
             ste = entrada2.split(":");
@@ -46,22 +51,29 @@ public class Dias implements Serializable {
             HSalida2 = Integer.parseInt(sts[0]);
             MSalida2 = Integer.parseInt(sts[1]);
             tempHoras2 = calculo(HEntrada2, MEntrada2, HSalida2, MSalida2);
-            tempNoct2 = calNocturnas(HEntrada2, MEntrada2, HSalida2, MSalida2);
-            
+            tempNoct2 = calNocturnas(HEntrada2, MEntrada2, tempHoras2);
+            tempFest2 = calFestivas(HEntrada2, MEntrada2, HSalida2, MSalida2);
+
         } else {
             tempHoras2 = 0;
-            tempNocturnas = 0;
+            tempNoct2 = 0;
+            tempFest2 = 0;
         }
         tempHoras = tempHoras1 + tempHoras2;
         tempNocturnas = tempNoct1 + tempNoct2;
-        
-        tempRadio = 0;
-        tempRadioB = 0;
-        if(radio){
-           tempRadio = tempHoras;
-        }else if (radioB){
-            tempRadioB = tempHoras;
-         }
+        tempFestivas = tempFest1 + tempFest2;
+
+
+        if (radioscopia) {
+            if (radio) {
+                tempRadio = tempHoras;
+            } else if (radioB) {
+                tempRadioB = tempHoras;
+            }
+        } else {
+            tempRadio = 0;
+            tempRadioB = 0;
+        }
     }
 
     private double calculo(int h1, int m1, int h2, int m2) {
@@ -70,48 +82,43 @@ public class Dias implements Serializable {
         double uno = gcEnt.getTimeInMillis();
         double dos = gcSal.getTimeInMillis();
         double res = (dos - uno) / 3600000;
-        if(res < 0){
-            res = res +24;
+        if (res < 0) {
+            res = res + 24;
         }
         return res;
     }
 
-    private double calNocturnas(int h1, int m1, int h2, int m2) {
-        double noct = 0;
-        double nocta;
-        double noctb;
-        
-        gc22 = new GregorianCalendar(2013, 1, 1, 22, 0);
-        gc6 = new GregorianCalendar(2013, 1, 1, 6, 0);
-        gcEnt = new GregorianCalendar(2013, 1, 1, h1, m1);
-        gcSal = new GregorianCalendar(2013, 1, 1, h2, m2);
-        
-        double h22 = gc22.getTimeInMillis();
-        double h6 = gc6.getTimeInMillis();
-        double hEnt = gcEnt.getTimeInMillis();
-        double hSal = gcSal.getTimeInMillis();
-        
-        nocta = (hEnt - h22) / 3600000;
-        noctb = (h6 - hSal) / 3600000;
-        if (nocta < 0){
-            nocta = 0;
+    private double calNocturnas(int h1, int m1, double h) {
+        int horaEnt = h1;
+        double minutoEnt = m1;
+        double nocturnas;
+        double horas = h;
+        double ent = horaEnt+(minutoEnt/60);
+
+        if (ent <= 6) {
+            nocturnas = (6 - ent);
+            if (nocturnas > horas) {
+                nocturnas = horas;
+            }
+        } else if(ent > 22){
+            nocturnas = horas;
+        }else {
+            nocturnas = horas - (Math.abs(22 - ent));
+            
         }
         
-        if (noctb < 0){
-            noctb = 0;
-        }
-        
-        noct = 8-(nocta + noctb);
-        if (noct < 0){
-           noct = noct+24;
-        }
-        
-        return noct;
-       
+        if (nocturnas > 8) {
+                nocturnas = 8;
+            } else if (nocturnas < 0) {
+                nocturnas = 0;
+            }
+        return nocturnas;
     }
 
-    private void calFestivas() {
+    private double calFestivas(int h1, int m1, int h2, int m2) {
+        double fest = 0;
         
+        return fest;
     }
 
     public double getTempRadio() {
@@ -121,8 +128,6 @@ public class Dias implements Serializable {
     public double getTempRadioB() {
         return tempRadioB;
     }
-    
-    
 
     public boolean isVacaciones() {
         return vacaciones;

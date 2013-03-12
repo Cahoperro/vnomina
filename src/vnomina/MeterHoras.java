@@ -16,8 +16,8 @@ public class MeterHoras extends javax.swing.JFrame {
         "Jueves", "Viernes", "Sabado"};
     private GregorianCalendar calendario;
     int diaSem;
-    private double horas,nocturnas,festivas,radio,radioB;
-    
+    private double horas, nocturnas, festivas, radio, radioB;
+
     /**
      * Creates new form MeterHoras
      */
@@ -343,27 +343,37 @@ public class MeterHoras extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdelanteActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        
-        for (int i =0; i < Obj.mes[Obj.mesActual].getN(); i++){
-           
-           Obj.mes[Obj.mesActual].dia[i].calHoras();
-           horas += Obj.mes[Obj.mesActual].dia[i].getTempHoras();
-           nocturnas += Obj.mes[Obj.mesActual].dia[i].getTempNocturnas();
-           festivas += Obj.mes[Obj.mesActual].dia[i].getTempFestivas();
-           radio += Obj.mes[Obj.mesActual].dia[i].getTempRadio();
-           radioB += Obj.mes[Obj.mesActual].dia[i].getTempRadioB();
-         }
-        
+
+        boolean array[] = new boolean[Obj.mes[Obj.mesActual].getN() + 1];
+
+        for (int i = 0; i < Obj.mes[Obj.mesActual].getN(); i++) {
+            array[i] = Obj.mes[Obj.mesActual].dia[i].isFestivo();
+        }
+        if (Obj.mesActual != 11) {
+            array[Obj.mes[Obj.mesActual].getN()] = Obj.mes[Obj.mesActual + 1].dia[0].isFestivo();
+        } else {
+            array[31] = true;
+        }
+        for (int i = 0; i < Obj.mes[Obj.mesActual].getN(); i++) {
+
+            Obj.mes[Obj.mesActual].dia[i].calHoras(array);
+            horas += Obj.mes[Obj.mesActual].dia[i].getTempHoras();
+            nocturnas += Obj.mes[Obj.mesActual].dia[i].getTempNocturnas();
+            festivas += Obj.mes[Obj.mesActual].dia[i].getTempFestivas();
+            radio += Obj.mes[Obj.mesActual].dia[i].getTempRadio();
+            radioB += Obj.mes[Obj.mesActual].dia[i].getTempRadioB();
+        }
+
         Obj.mes[Obj.mesActual].setHorasMes(horas);
         Obj.mes[Obj.mesActual].setHorasNocturnas(nocturnas);
         Obj.mes[Obj.mesActual].setHorasFestivas(festivas);
         Obj.mes[Obj.mesActual].setHorasRadio(radio);
         Obj.mes[Obj.mesActual].setHorasRadioB(radioB);
-        System.out.println("total horas: "+horas);
-        System.out.println("total nocturnas: "+nocturnas);
-        System.out.println("total festivas: "+festivas);
-        System.out.println("total radio: "+radio);
-        System.out.println("total radioB: "+radioB);
+        System.out.println("total horas: " + horas);
+        System.out.println("total nocturnas: " + nocturnas);
+        System.out.println("total festivas: " + festivas);
+        System.out.println("total radio: " + radio);
+        System.out.println("total radioB: " + radioB);
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
@@ -380,7 +390,7 @@ public class MeterHoras extends javax.swing.JFrame {
         } else {
             tem.setArma(false);
         }
-        
+
         if (checkRadio.isSelected()) {
             tem.setRadioscopia(true);
         } else {
@@ -454,8 +464,8 @@ public class MeterHoras extends javax.swing.JFrame {
     private void mostrar() {
         calendario = new GregorianCalendar(Obj.anio, Obj.mesActual, Obj.diaActual + 1);
         diaSem = calendario.get(Calendar.DAY_OF_WEEK);
-        if (diaSem == 1 || diaSem == 7){
-           Obj.mes[Obj.mesActual].dia[Obj.diaActual].setFestivo(true);
+        if (diaSem == 1 || diaSem == 7) {
+            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setFestivo(true);
         }
         lblFecha.setText(diaSemana[diaSem - 1] + " " + (Obj.diaActual + 1) + " de " + nombreMeses[Obj.mesActual]);
         txtServicio1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getServicio1());

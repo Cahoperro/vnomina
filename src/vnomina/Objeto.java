@@ -1,6 +1,8 @@
 package vnomina;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 /**
@@ -21,6 +23,7 @@ public class Objeto implements Serializable {
     double desempleo;
     double FProfesional;
     double totalAportaciones;
+    GregorianCalendar gc;
 
     public Objeto(Datos datosRec, int year) {
         claves = new HashMap<>();
@@ -35,6 +38,18 @@ public class Objeto implements Serializable {
         }
         for (int i = 0; i <= 11; i++) {
             mes[i] = new Mes(i, bis);
+        }
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < mes[i].getN(); j++) {
+                gc = new GregorianCalendar(anio, i, j);
+                int d = gc.get(Calendar.DAY_OF_WEEK);
+
+                if (d == 1 || d == 7) {
+                    mes[i].dia[j].setFestivo(true);
+                } else {
+                    mes[i].dia[j].setFestivo(false);
+                }
+            }
         }
         mes[0].dia[0].setFestivo(true);
         mes[0].dia[5].setFestivo(true);

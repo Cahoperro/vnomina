@@ -39,12 +39,13 @@ public class Objeto implements Serializable {
         for (int i = 0; i <= 11; i++) {
             mes[i] = new Mes(i, bis);
         }
+        // rellenar los dias festivos
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < mes[i].getN(); j++) {
                 gc = new GregorianCalendar(anio, i, j);
                 int d = gc.get(Calendar.DAY_OF_WEEK);
 
-                if (d == 1 || d == 7) {
+                if (d == 0 || d == 6) {
                     mes[i].dia[j].setFestivo(true);
                 } else {
                     mes[i].dia[j].setFestivo(false);

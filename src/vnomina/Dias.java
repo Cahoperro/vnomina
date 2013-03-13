@@ -17,15 +17,13 @@ public class Dias implements Serializable {
     private int HEntrada1, MEntrada1, HSalida1, MSalida1;
     private int HEntrada2, MEntrada2, HSalida2, MSalida2;
     private GregorianCalendar gcEnt, gcSal;
+    private Objeto Ob;
 
-    public void calHoras(boolean array[]) {
-        boolean arr[] = array;
+    public void calHoras(Objeto Obj) {
+        Ob = Obj;
         String[] ste;
         String[] sts;
-        for (int i = 0; i < arr.length; i++){
-            System.out.print(i+" ");
-            System.out.println(arr[i]);
-        }
+
         if (entrada1 != null && salida1 != null && !entrada1.isEmpty() && !salida1.isEmpty()) {
             ste = entrada1.split(":");
             sts = salida1.split(":");
@@ -35,7 +33,7 @@ public class Dias implements Serializable {
             MSalida1 = Integer.parseInt(sts[1]);
             tempHoras1 = calculo(HEntrada1, MEntrada1, HSalida1, MSalida1);
             tempNoct1 = calNocturnas(HEntrada1, MEntrada1, tempHoras1);
-            tempFest1 = calFestivas(HEntrada1, MEntrada1, HSalida1, MSalida1);
+            tempFest1 = calFestivas(HEntrada1, MEntrada1, tempHoras1);
         } else {
             tempHoras1 = 0;
             tempNoct1 = 0;
@@ -52,7 +50,7 @@ public class Dias implements Serializable {
             MSalida2 = Integer.parseInt(sts[1]);
             tempHoras2 = calculo(HEntrada2, MEntrada2, HSalida2, MSalida2);
             tempNoct2 = calNocturnas(HEntrada2, MEntrada2, tempHoras2);
-            tempFest2 = calFestivas(HEntrada2, MEntrada2, HSalida2, MSalida2);
+            tempFest2 = calFestivas(HEntrada2, MEntrada2, tempHoras2);
 
         } else {
             tempHoras2 = 0;
@@ -93,31 +91,62 @@ public class Dias implements Serializable {
         double minutoEnt = m1;
         double nocturnas;
         double horas = h;
-        double ent = horaEnt+(minutoEnt/60);
+        double ent = horaEnt + (minutoEnt / 60);
 
         if (ent <= 6) {
             nocturnas = (6 - ent);
             if (nocturnas > horas) {
                 nocturnas = horas;
             }
-        } else if(ent > 22){
+        } else if (ent > 22) {
             nocturnas = horas;
-        }else {
+        } else {
             nocturnas = horas - (Math.abs(22 - ent));
-            
+
         }
-        
+
         if (nocturnas > 8) {
-                nocturnas = 8;
-            } else if (nocturnas < 0) {
-                nocturnas = 0;
-            }
+            nocturnas = 8;
+        } else if (nocturnas < 0) {
+            nocturnas = 0;
+        }
         return nocturnas;
     }
 
-    private double calFestivas(int h1, int m1, int h2, int m2) {
-        double fest = 0;
-        
+    private double calFestivas(int h1, int m1, double h) {
+        double ent = h1 + (m1 / 60);
+        double horas = h;
+        boolean hoy, manana;
+        double fest;
+        hoy = festivo;
+        if (Ob.mesActual == 11 && Ob.diaActual == 30) {
+            manana = true;
+        } else {
+            if (Ob.diaActual == Ob.mes[Ob.mesActual].getN() - 1) {
+                manana = Ob.mes[Ob.mesActual + 1].dia[0].isFestivo();
+            } else {
+                manana = Ob.mes[Ob.mesActual].dia[Ob.diaActual + 1].isFestivo();
+            }
+        }
+        if (hoy && manana){
+          fest = horas;  
+        }else if (hoy && !manana){
+            if (ent >=0 && ent < 5){
+                fest = 0;
+            }else{
+                fest = 24 -ent;
+            }
+        }else if (!hoy && manana){
+            if (ent >=0 && ent < 5){
+                fest = horas;
+            }else{
+                fest = horas - (24 -ent);
+            }
+        }else{
+            fest = 0;
+        }
+        if (fest < 0) fest = 0;
+        if (fest > horas) fest = horas;
         return fest;
     }
 

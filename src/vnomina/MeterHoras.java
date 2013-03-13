@@ -344,19 +344,10 @@ public class MeterHoras extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
-        boolean array[] = new boolean[Obj.mes[Obj.mesActual].getN() + 1];
-
-        for (int i = 0; i < Obj.mes[Obj.mesActual].getN(); i++) {
-            array[i] = Obj.mes[Obj.mesActual].dia[i].isFestivo();
-        }
-        if (Obj.mesActual != 11) {
-            array[Obj.mes[Obj.mesActual].getN()] = Obj.mes[Obj.mesActual + 1].dia[0].isFestivo();
-        } else {
-            array[31] = true;
-        }
+        
         for (int i = 0; i < Obj.mes[Obj.mesActual].getN(); i++) {
 
-            Obj.mes[Obj.mesActual].dia[i].calHoras(array);
+            Obj.mes[Obj.mesActual].dia[i].calHoras(Obj);
             horas += Obj.mes[Obj.mesActual].dia[i].getTempHoras();
             nocturnas += Obj.mes[Obj.mesActual].dia[i].getTempNocturnas();
             festivas += Obj.mes[Obj.mesActual].dia[i].getTempFestivas();
@@ -464,9 +455,7 @@ public class MeterHoras extends javax.swing.JFrame {
     private void mostrar() {
         calendario = new GregorianCalendar(Obj.anio, Obj.mesActual, Obj.diaActual + 1);
         diaSem = calendario.get(Calendar.DAY_OF_WEEK);
-        if (diaSem == 1 || diaSem == 7) {
-            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setFestivo(true);
-        }
+
         lblFecha.setText(diaSemana[diaSem - 1] + " " + (Obj.diaActual + 1) + " de " + nombreMeses[Obj.mesActual]);
         txtServicio1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getServicio1());
         txtServicio2.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getServicio2());

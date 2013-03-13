@@ -1,8 +1,5 @@
 package vnomina;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 /**
  *
  * @author cahoperro
@@ -12,9 +9,6 @@ public class MeterHoras extends javax.swing.JFrame {
     Objeto Obj;
     private String[] nombreMeses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo",
         "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-    private String[] diaSemana = {"Domingo", "Lunes", "Martes", "Miercoles",
-        "Jueves", "Viernes", "Sabado"};
-    private GregorianCalendar calendario;
     int diaSem;
     private double horas, nocturnas, festivas, radio, radioB;
 
@@ -344,7 +338,6 @@ public class MeterHoras extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
-        
         for (int i = 0; i < Obj.mes[Obj.mesActual].getN(); i++) {
 
             Obj.mes[Obj.mesActual].dia[i].calHoras(Obj);
@@ -438,13 +431,8 @@ public class MeterHoras extends javax.swing.JFrame {
     }//GEN-LAST:event_txtClaveKeyPressed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiar();
 
-        txtServicio1.setText("");
-        txtServicio2.setText("");
-        txtSalida1.setText("");
-        txtSalida2.setText("");
-        txtEntrada1.setText("");
-        txtEntrada2.setText("");
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnBorrarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarClaveActionPerformed
@@ -453,10 +441,32 @@ public class MeterHoras extends javax.swing.JFrame {
         txtClave.setText("");
     }//GEN-LAST:event_btnBorrarClaveActionPerformed
     private void mostrar() {
-        calendario = new GregorianCalendar(Obj.anio, Obj.mesActual, Obj.diaActual + 1);
-        diaSem = calendario.get(Calendar.DAY_OF_WEEK);
-
-        lblFecha.setText(diaSemana[diaSem - 1] + " " + (Obj.diaActual + 1) + " de " + nombreMeses[Obj.mesActual]);
+        String diaSemana = "";
+        switch (Obj.mes[Obj.mesActual].dia[Obj.diaActual].getDiaSemana()) {
+            case 1:
+                diaSemana = "Lunes";
+                break;
+            case 2:
+                diaSemana = "Martes";
+                break;
+            case 3:
+                diaSemana = "Miercoles";
+                break;
+            case 4:
+                diaSemana = "Jueves";
+                break;
+            case 5:
+                diaSemana = "Viernes";
+                break;
+            case 6:
+                diaSemana = "Sabado";
+                break;
+            case 7:
+                diaSemana = "Domingo";
+                break;
+        }
+        System.out.println("dia semana " + Obj.mes[Obj.mesActual].dia[Obj.diaActual].getDiaSemana());
+        lblFecha.setText(diaSemana + " " + (Obj.diaActual + 1) + " de " + nombreMeses[Obj.mesActual]);
         txtServicio1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getServicio1());
         txtServicio2.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getServicio2());
         txtSalida1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getSalida1());
@@ -517,7 +527,17 @@ public class MeterHoras extends javax.swing.JFrame {
         }
         mostrar();
         txtClave.setText("");
+        limpiar();
         Obj.guardado = false;
+    }
+
+    void limpiar() {
+        txtServicio1.setText("");
+        txtServicio2.setText("");
+        txtSalida1.setText("");
+        txtSalida2.setText("");
+        txtEntrada1.setText("");
+        txtEntrada2.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;

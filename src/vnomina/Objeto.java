@@ -44,8 +44,8 @@ public class Objeto implements Serializable {
             for (int j = 0; j < mes[i].getN(); j++) {
                 gc = new GregorianCalendar(anio, i, j);
                 int d = gc.get(Calendar.DAY_OF_WEEK);
-
-                if (d == 0 || d == 6) {
+                mes[i].dia[j].setDiaSemana(d);
+                if (d == 6 || d == 7) {
                     mes[i].dia[j].setFestivo(true);
                 } else {
                     mes[i].dia[j].setFestivo(false);

@@ -825,6 +825,7 @@ public class Principal extends javax.swing.JFrame {
         lblPeligrosidad.setText("" + principal.datos.getPeligro());
         lblTransporte.setText("" + principal.datos.getTransporte());
         lblVestuario.setText("" + principal.datos.getVestuario());
+        
     }
 
     private void reiniciar() {

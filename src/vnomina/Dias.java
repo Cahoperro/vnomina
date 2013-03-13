@@ -114,7 +114,7 @@ public class Dias implements Serializable {
     }
 
     private double calFestivas(int h1, int m1, double h) {
-        double ent = h1 + (m1 / 60);
+        double ent = (double)h1 + ((double)m1 / 60);
         double horas = h;
         boolean hoy, manana;
         double fest;

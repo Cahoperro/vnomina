@@ -17,6 +17,25 @@ public class MeterDatos extends javax.swing.JFrame {
         this.setVisible(true);
         lblInfo.setVisible(false);
         this.inicio = inicio;
+
+        if (inicio.principal.datos != null) {
+            txtAntiguedad.setText("" + inicio.principal.datos.getAntiguedad());
+            txtHoraArma.setText("" + inicio.principal.datos.getHoraArma());
+            txtHoraExtra.setText("" + inicio.principal.datos.getHoraExtra());
+            txtHoraFestiva.setText("" + inicio.principal.datos.getHoraFestiva());
+            txtHoraNocturna.setText("" + inicio.principal.datos.getHoraNocturna());
+            txtHorasConvenio.setText("" + inicio.principal.datos.getHorasConvenio());
+            txtKilometraje.setText("" + inicio.principal.datos.getKilometraje());
+            txtNochebuena.setText("" + inicio.principal.datos.getNochebuena());
+            txtPeligrosidad.setText("" + inicio.principal.datos.getPeligro());
+            txtQuinquenio.setText("" + inicio.principal.datos.getQuinquenio());
+            txtRadio.setText("" + inicio.principal.datos.getRadio());
+            txtRadioBasica.setText("" + inicio.principal.datos.getRadioBasica());
+            txtSalarioBase.setText("" + inicio.principal.datos.getSalarioBase());
+            txtTransporte.setText("" + inicio.principal.datos.getTransporte());
+            txtTrienio.setText("" + inicio.principal.datos.getTrienio());
+            txtVestuario.setText("" + inicio.principal.datos.getVestuario());
+        }
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -161,6 +180,7 @@ public class MeterDatos extends javax.swing.JFrame {
         jLabel16.setText("Radioscopia");
 
         btnObtenerDatos.setText("Obtener datos");
+        btnObtenerDatos.setToolTipText("Obtener los datos desde internet");
         btnObtenerDatos.setPreferredSize(new java.awt.Dimension(70, 25));
         btnObtenerDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,11 +197,18 @@ public class MeterDatos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
+                .addComponent(btnObtenerDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtHorasConvenio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -254,17 +281,8 @@ public class MeterDatos extends javax.swing.JFrame {
                                         .addComponent(jLabel15)))
                                 .addGap(20, 20, 20))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnObtenerDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(20, 20, 20))))
+                        .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,28 +376,52 @@ public class MeterDatos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-
-        try{
-        inicio.d.setAntiguedad(Integer.parseInt(txtAntiguedad.getText()));
-        inicio.d.setHoraArma(Double.parseDouble(txtHoraArma.getText().replace(',', '.')));
-        inicio.d.setHoraExtra(Double.parseDouble(txtHoraExtra.getText().replace(',', '.')));
-        inicio.d.setHoraFestiva(Double.parseDouble(txtHoraFestiva.getText().replace(',', '.')));
-        inicio.d.setHoraNocturna(Double.parseDouble(txtHoraNocturna.getText().replace(',', '.')));
-        inicio.d.setHorasConvenio(Double.parseDouble(txtHorasConvenio.getText().replace(',', '.')));
-        inicio.d.setKilometraje(Double.parseDouble(txtKilometraje.getText().replace(',', '.')));
-        inicio.d.setNochebuena(Double.parseDouble(txtNochebuena.getText().replace(',', '.')));
-        inicio.d.setPeligro(Double.parseDouble(txtPeligrosidad.getText().replace(',', '.')));
-        inicio.d.setQuinquenio(Double.parseDouble(txtQuinquenio.getText().replace(',', '.')));
-        inicio.d.setRadio(Double.parseDouble(txtRadio.getText().replace(',', '.')));
-        inicio.d.setRadioBasica(Double.parseDouble(txtRadioBasica.getText().replace(',', '.')));
-        inicio.d.setSalarioBase(Double.parseDouble(txtSalarioBase.getText().replace(',', '.')));
-        inicio.d.setTransporte(Double.parseDouble(txtTransporte.getText().replace(',', '.')));
-        inicio.d.setTrienio(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
-        inicio.d.setVestuario(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
-        inicio.mostrarTitulo();
-        this.dispose();
-        }catch(NumberFormatException ex){
-            lblInfo.setVisible(true);
+        if (inicio.principal.datos == null) {
+            try {
+                inicio.d.setAntiguedad(Integer.parseInt(txtAntiguedad.getText()));
+                inicio.d.setHoraArma(Double.parseDouble(txtHoraArma.getText().replace(',', '.')));
+                inicio.d.setHoraExtra(Double.parseDouble(txtHoraExtra.getText().replace(',', '.')));
+                inicio.d.setHoraFestiva(Double.parseDouble(txtHoraFestiva.getText().replace(',', '.')));
+                inicio.d.setHoraNocturna(Double.parseDouble(txtHoraNocturna.getText().replace(',', '.')));
+                inicio.d.setHorasConvenio(Double.parseDouble(txtHorasConvenio.getText().replace(',', '.')));
+                inicio.d.setKilometraje(Double.parseDouble(txtKilometraje.getText().replace(',', '.')));
+                inicio.d.setNochebuena(Double.parseDouble(txtNochebuena.getText().replace(',', '.')));
+                inicio.d.setPeligro(Double.parseDouble(txtPeligrosidad.getText().replace(',', '.')));
+                inicio.d.setQuinquenio(Double.parseDouble(txtQuinquenio.getText().replace(',', '.')));
+                inicio.d.setRadio(Double.parseDouble(txtRadio.getText().replace(',', '.')));
+                inicio.d.setRadioBasica(Double.parseDouble(txtRadioBasica.getText().replace(',', '.')));
+                inicio.d.setSalarioBase(Double.parseDouble(txtSalarioBase.getText().replace(',', '.')));
+                inicio.d.setTransporte(Double.parseDouble(txtTransporte.getText().replace(',', '.')));
+                inicio.d.setTrienio(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
+                inicio.d.setVestuario(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
+                inicio.mostrarTitulo();
+                this.dispose();
+            } catch (NumberFormatException ex) {
+                lblInfo.setVisible(true);
+            }
+        }else{
+            try {
+                inicio.principal.datos.setAntiguedad(Integer.parseInt(txtAntiguedad.getText()));
+                inicio.principal.datos.setHoraArma(Double.parseDouble(txtHoraArma.getText().replace(',', '.')));
+                inicio.principal.datos.setHoraExtra(Double.parseDouble(txtHoraExtra.getText().replace(',', '.')));
+                inicio.principal.datos.setHoraFestiva(Double.parseDouble(txtHoraFestiva.getText().replace(',', '.')));
+                inicio.principal.datos.setHoraNocturna(Double.parseDouble(txtHoraNocturna.getText().replace(',', '.')));
+                inicio.principal.datos.setHorasConvenio(Double.parseDouble(txtHorasConvenio.getText().replace(',', '.')));
+                inicio.principal.datos.setKilometraje(Double.parseDouble(txtKilometraje.getText().replace(',', '.')));
+                inicio.principal.datos.setNochebuena(Double.parseDouble(txtNochebuena.getText().replace(',', '.')));
+                inicio.principal.datos.setPeligro(Double.parseDouble(txtPeligrosidad.getText().replace(',', '.')));
+                inicio.principal.datos.setQuinquenio(Double.parseDouble(txtQuinquenio.getText().replace(',', '.')));
+                inicio.principal.datos.setRadio(Double.parseDouble(txtRadio.getText().replace(',', '.')));
+                inicio.principal.datos.setRadioBasica(Double.parseDouble(txtRadioBasica.getText().replace(',', '.')));
+                inicio.principal.datos.setSalarioBase(Double.parseDouble(txtSalarioBase.getText().replace(',', '.')));
+                inicio.principal.datos.setTransporte(Double.parseDouble(txtTransporte.getText().replace(',', '.')));
+                inicio.principal.datos.setTrienio(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
+                inicio.principal.datos.setVestuario(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
+                inicio.mostrarTitulo();
+                this.dispose();
+            } catch (NumberFormatException ex) {
+                lblInfo.setVisible(true);
+            }
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -75,7 +75,7 @@ public class MeterHoras extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Introducir horarios");
         setName("MeterHoras"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(530, 345));
+        setPreferredSize(new java.awt.Dimension(530, 355));
         setResizable(false);
 
         btnAdelante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/Button_Next.png"))); // NOI18N
@@ -322,18 +322,20 @@ public class MeterHoras extends javax.swing.JFrame {
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
 
-        if (Obj.diaActual > 0) {
-            Obj.diaActual--;
-            mostrar();
+        if (Obj.diaActual < 1) {
+            Obj.diaActual = Obj.mes[Obj.mesActual].getN();
         }
+        Obj.diaActual--;
+        mostrar(); 
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnAdelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdelanteActionPerformed
 
-        if (Obj.diaActual < Obj.mes[Obj.mesActual].getN() - 1) {
-            Obj.diaActual++;
-            mostrar();
+        if (Obj.diaActual >= Obj.mes[Obj.mesActual].getN() - 1) {
+            Obj.diaActual = -1;
         }
+        Obj.diaActual++;
+        mostrar();
     }//GEN-LAST:event_btnAdelanteActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
@@ -465,7 +467,7 @@ public class MeterHoras extends javax.swing.JFrame {
                 diaSemana = "Domingo";
                 break;
         }
-        System.out.println("dia semana " + Obj.mes[Obj.mesActual].dia[Obj.diaActual].getDiaSemana());
+
         lblFecha.setText(diaSemana + " " + (Obj.diaActual + 1) + " de " + nombreMeses[Obj.mesActual]);
         txtServicio1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getServicio1());
         txtServicio2.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getServicio2());

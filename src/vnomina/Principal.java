@@ -47,6 +47,7 @@ public class Principal extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnGuardarComo = new javax.swing.JButton();
+        btnCambio = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
         btnAyuda = new javax.swing.JButton();
         btnAcerca = new javax.swing.JButton();
@@ -156,7 +157,7 @@ public class Principal extends javax.swing.JFrame {
         barra.add(btnCerrar);
 
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/modificar.png"))); // NOI18N
-        btnModificar.setToolTipText("Meter horaios");
+        btnModificar.setToolTipText("Meter horarios");
         btnModificar.setFocusable(false);
         btnModificar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnModificar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -190,6 +191,18 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         barra.add(btnGuardarComo);
+
+        btnCambio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/cambio.png"))); // NOI18N
+        btnCambio.setToolTipText("Cambiar los datos iniciales");
+        btnCambio.setFocusable(false);
+        btnCambio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCambio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCambio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambioActionPerformed(evt);
+            }
+        });
+        barra.add(btnCambio);
 
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/imprimir.png"))); // NOI18N
         btnImprimir.setToolTipText("Imprimir");
@@ -774,6 +787,13 @@ public class Principal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void btnCambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambioActionPerformed
+        // TODO add your handling code here:
+        if (principal != null){
+           meteDato = new MeterDatos(this);
+        }
+    }//GEN-LAST:event_btnCambioActionPerformed
     private void guardarComo() {
         JFileChooser selector = new JFileChooser();
         try {
@@ -888,6 +908,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnAcerca;
     private javax.swing.JButton btnAyuda;
     private javax.swing.JButton btnCalcular;
+    private javax.swing.JButton btnCambio;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnGuardarComo;

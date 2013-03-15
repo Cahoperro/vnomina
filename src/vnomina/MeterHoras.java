@@ -12,9 +12,8 @@ public class MeterHoras extends javax.swing.JFrame {
     int diaSem;
     private double horas, nocturnas, festivas, radio, radioB;
 
-    /**
-     * Creates new form MeterHoras
-     */
+    // Constructor de la ventana meter horas
+    
     public MeterHoras(Objeto Obj) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -326,7 +325,7 @@ public class MeterHoras extends javax.swing.JFrame {
             Obj.diaActual = Obj.mes[Obj.mesActual].getN();
         }
         Obj.diaActual--;
-        mostrar(); 
+        mostrar();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnAdelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdelanteActionPerformed
@@ -341,7 +340,7 @@ public class MeterHoras extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
         for (int i = 0; i < Obj.mes[Obj.mesActual].getN(); i++) {
-
+            
             Obj.mes[Obj.mesActual].dia[i].calHoras(Obj);
             horas += Obj.mes[Obj.mesActual].dia[i].getTempHoras();
             nocturnas += Obj.mes[Obj.mesActual].dia[i].getTempNocturnas();
@@ -349,12 +348,23 @@ public class MeterHoras extends javax.swing.JFrame {
             radio += Obj.mes[Obj.mesActual].dia[i].getTempRadio();
             radioB += Obj.mes[Obj.mesActual].dia[i].getTempRadioB();
         }
+        
+        // Limitar el numero de decimales a 2
+        
+        horas = (Math.floor(horas*100)/100);
+        nocturnas = (Math.floor(nocturnas*100)/100);
+        festivas = (Math.floor(festivas*100)/100);
+        radio = (Math.floor(radio*100)/100);
+        radioB = (Math.floor(radioB*100)/100);
 
+        // Introducir las horas en el Objeto principal
+  
         Obj.mes[Obj.mesActual].setHorasMes(horas);
         Obj.mes[Obj.mesActual].setHorasNocturnas(nocturnas);
         Obj.mes[Obj.mesActual].setHorasFestivas(festivas);
         Obj.mes[Obj.mesActual].setHorasRadio(radio);
         Obj.mes[Obj.mesActual].setHorasRadioB(radioB);
+
         System.out.println("total horas: " + horas);
         System.out.println("total nocturnas: " + nocturnas);
         System.out.println("total festivas: " + festivas);
@@ -484,12 +494,47 @@ public class MeterHoras extends javax.swing.JFrame {
     }
 
     public void insertar() {
+        boolean valido = true;
+
         Obj.mes[Obj.mesActual].dia[Obj.diaActual].setServicio1(txtServicio1.getText());
         Obj.mes[Obj.mesActual].dia[Obj.diaActual].setServicio2(txtServicio2.getText());
-        Obj.mes[Obj.mesActual].dia[Obj.diaActual].setEntrada1(txtEntrada1.getText().replace('.', ':'));
-        Obj.mes[Obj.mesActual].dia[Obj.diaActual].setEntrada2(txtEntrada2.getText().replace('.', ':'));
-        Obj.mes[Obj.mesActual].dia[Obj.diaActual].setSalida1(txtSalida1.getText().replace('.', ':'));
-        Obj.mes[Obj.mesActual].dia[Obj.diaActual].setSalida2(txtSalida2.getText().replace('.', ':'));
+
+        String ent1 = txtEntrada1.getText().replace('.', ':');
+        if (validar(ent1)) {
+            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setEntrada1(ent1);
+        } else {
+            txtEntrada1.requestFocus();
+            txtEntrada1.selectAll();
+            valido = false;
+        }
+
+        String ent2 = txtEntrada2.getText().replace('.', ':');
+        if (validar(ent2)) {
+            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setEntrada2(ent2);
+        } else {
+            txtEntrada2.requestFocus();
+            txtEntrada2.selectAll();
+            valido = false;
+        }
+
+        String sal1 = txtSalida1.getText().replace('.', ':');
+        if (validar(sal1)) {
+            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setSalida1(sal1);
+        } else {
+            txtSalida1.requestFocus();
+            txtSalida1.selectAll();
+            valido = false;
+        }
+
+        String sal2 = txtSalida2.getText().replace('.', ':');
+        if (validar(sal2)) {
+            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setSalida2(sal2);
+        } else {
+            txtSalida2.requestFocus();
+            txtSalida2.selectAll();
+            valido = false;
+        }
+
         if (checkArma.isSelected()) {
             Obj.mes[Obj.mesActual].dia[Obj.diaActual].setArma(true);
         } else {
@@ -527,10 +572,12 @@ public class MeterHoras extends javax.swing.JFrame {
         if (Obj.diaActual < Obj.mes[Obj.mesActual].getN() - 1) {
             Obj.diaActual++;
         }
-        mostrar();
-        txtClave.setText("");
-        limpiar();
-        Obj.guardado = false;
+        if (valido) {
+            mostrar();
+            txtClave.setText("");
+            limpiar();
+            Obj.guardado = false;
+        }
     }
 
     void limpiar() {
@@ -540,6 +587,31 @@ public class MeterHoras extends javax.swing.JFrame {
         txtSalida2.setText("");
         txtEntrada1.setText("");
         txtEntrada2.setText("");
+    }
+
+    private boolean validar(String hora) {
+        boolean res = true;
+        int h = 0;
+        int m = 0;
+        if (!"".equals(hora)) {
+            String[] temp = hora.split(":");
+            if (temp.length < 2) {
+                res = false;
+            }
+            try {
+                h = Integer.parseInt(temp[0]);
+                m = Integer.parseInt(temp[1]);
+            } catch (NumberFormatException ex) {
+                res = false;
+            }
+            if (h < 0 || h > 23) {
+                res = false;
+            }
+            if (m < 0 || m > 59) {
+                res = false;
+            }
+        }
+        return res;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;

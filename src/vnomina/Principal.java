@@ -106,7 +106,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Vnomina");
         setName("principal"); // NOI18N
         setPreferredSize(new java.awt.Dimension(825, 535));
@@ -785,14 +785,24 @@ public class Principal extends javax.swing.JFrame {
                 if (principal != null) {
                     if (fichero == null) {
                         guardarComo();
+                        this.dispose();
+                        System.exit(0);
                     } else {
                         guardar();
+                        this.dispose();
+                        System.exit(0);
                     }
                 }
-            }else if(g == 1){
+            }else if(g == 2){
                 // codigo para cancelar
-               
+            
+            }else{
+                this.dispose();
+                System.exit(0);
             }
+        }else{
+            this.dispose();
+                System.exit(0);
         }
     }//GEN-LAST:event_formWindowClosing
 

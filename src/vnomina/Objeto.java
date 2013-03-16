@@ -39,7 +39,7 @@ public class Objeto implements Serializable {
         for (int i = 0; i <= 11; i++) {
             mes[i] = new Mes(i, bis);
         }
-        // rellenar los dias festivos
+        // rellenar los dias festivos (sabados y domingos)
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < mes[i].getN(); j++) {
                 gc = new GregorianCalendar(anio, i, j);
@@ -52,6 +52,7 @@ public class Objeto implements Serializable {
                 }
             }
         }
+
         mes[0].dia[0].setFestivo(true);
         mes[0].dia[5].setFestivo(true);
         mes[4].dia[0].setFestivo(true);
@@ -61,5 +62,43 @@ public class Objeto implements Serializable {
         mes[11].dia[5].setFestivo(true);
         mes[11].dia[7].setFestivo(true);
         mes[11].dia[24].setFestivo(true);
+
+        // calculo semana santa
+        int a, b, c, d, e;
+        int dm, m;
+        a = anio % 19;
+        b = anio % 4;
+        c = anio % 7;
+        d = ((19 * a) + 24) % 30;
+        e = ((2 * b) + (4 * c) + (6 * d) + 5) % 7;
+        int dia1 = 22 + d + e;
+        int dia2 = d + e - 9;
+
+        if (dia2 < 1) {
+            dm = dia1;
+            m = 3;
+        } else {
+            dm = dia2;
+            m = 4;
+        }
+        if (dm < 4) {
+            switch (dm) {
+                case 3:
+                    mes[m - 1].dia[dm - 3].setFestivo(true);
+                    mes[m - 2].dia[30].setFestivo(true);
+                    break;
+                case 2:
+                    mes[m - 2].dia[30].setFestivo(true);
+                    mes[m - 2].dia[29].setFestivo(true);
+                    break;
+                case 1:
+                    mes[m - 2].dia[29].setFestivo(true);
+                    mes[m - 2].dia[28].setFestivo(true);
+                    break;
+            }
+        } else {
+            mes[m - 1].dia[dm - 3].setFestivo(true);
+            mes[m - 1].dia[dm - 4].setFestivo(true);
+        }
     }
 }

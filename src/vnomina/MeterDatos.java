@@ -11,14 +11,14 @@ public class MeterDatos extends javax.swing.JFrame {
     /**
      * Creates new form MeterDatos
      */
-    public MeterDatos(Principal inicio) {
+    public MeterDatos(Principal init) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         lblInfo.setVisible(false);
-        this.inicio = inicio;
+        this.inicio = init;
 
-        if (inicio.principal.datos != null) {
+        if (inicio.principal != null) {
             txtAntiguedad.setText("" + inicio.principal.datos.getAntiguedad());
             txtHoraArma.setText("" + inicio.principal.datos.getHoraArma());
             txtHoraExtra.setText("" + inicio.principal.datos.getHoraExtra());
@@ -395,6 +395,7 @@ public class MeterDatos extends javax.swing.JFrame {
                 inicio.d.setTrienio(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
                 inicio.d.setVestuario(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
                 inicio.mostrarTitulo();
+                
                 this.dispose();
             } catch (NumberFormatException ex) {
                 lblInfo.setVisible(true);
@@ -418,6 +419,7 @@ public class MeterDatos extends javax.swing.JFrame {
                 inicio.principal.datos.setTrienio(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
                 inicio.principal.datos.setVestuario(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
                 inicio.mostrarTitulo();
+                
                 this.dispose();
             } catch (NumberFormatException ex) {
                 lblInfo.setVisible(true);

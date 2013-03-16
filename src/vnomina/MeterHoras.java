@@ -11,10 +11,11 @@ public class MeterHoras extends javax.swing.JFrame {
         "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
     int diaSem;
     private double horas, nocturnas, festivas, radio, radioB;
-
+    MeterHoras meteHora;
     // Constructor de la ventana meter horas
     
     public MeterHoras(Objeto Obj) {
+        
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);

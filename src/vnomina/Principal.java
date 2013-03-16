@@ -20,6 +20,7 @@ public class Principal extends javax.swing.JFrame {
     Objeto principal;
     Datos d;
     MeterDatos meteDato;
+    MeterHoras meteHora;
     String fichero, textomes;
 
     /**
@@ -649,22 +650,29 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        String p = JOptionPane.showInputDialog("Introduce el año");
-        try {
-            anio = Integer.parseInt(p);
-            meteDato = new MeterDatos(this);
-            d = new Datos();
-            principal = new Objeto(d, anio);
-            selectorMes.setEnabled(true);
-            btnCalcular.setEnabled(true);
-        } catch (NumberFormatException ex) {
+        if (principal == null) {
+            String p = JOptionPane.showInputDialog("Introduce el año");
+            try {
+                anio = Integer.parseInt(p);
+                meteDato = new MeterDatos(this);
+                d = new Datos();
+                principal = new Objeto(d, anio);
+                selectorMes.setEnabled(true);
+                btnCalcular.setEnabled(true);
+            } catch (NumberFormatException ex) {
+            }
+        }else{
+            JOptionPane.showMessageDialog(null,
+                    "Cierra el archivo abierto antes de crear uno nuevo",
+                    "Aviso",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
-
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+
         if (principal != null) {
-            new MeterHoras(principal);
+            meteHora = new MeterHoras(principal);
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -707,20 +715,17 @@ public class Principal extends javax.swing.JFrame {
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         //codigo cerrar
 
-        if (principal != null && !principal.guardado) {
+        if (principal != null || !principal.guardado) {
             int g = JOptionPane.showConfirmDialog(null, "¿Quieres guardar antes de cerrar?");
             if (g == 0) {
                 guardar();
                 principal = null;
                 reiniciar();
-            } else {
+            } else if (g == 1){
                 principal = null;
                 reiniciar();
             }
-        } else {
-            principal = null;
-            reiniciar();
-        }
+        } 
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -773,7 +778,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        // TODO add your handling code here:
+        
         if (principal != null && !principal.guardado) {
             int g = JOptionPane.showConfirmDialog(null, "¿Quieres guardar antes de salir?");
             if (g == 0) {
@@ -784,14 +789,17 @@ public class Principal extends javax.swing.JFrame {
                         guardar();
                     }
                 }
+            }else if(g == 1){
+                // codigo para cancelar
+               
             }
         }
     }//GEN-LAST:event_formWindowClosing
 
     private void btnCambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambioActionPerformed
         // TODO add your handling code here:
-        if (principal != null){
-           meteDato = new MeterDatos(this);
+        if (principal != null) {
+            meteDato = new MeterDatos(this);
         }
     }//GEN-LAST:event_btnCambioActionPerformed
     private void guardarComo() {
@@ -812,7 +820,7 @@ public class Principal extends javax.swing.JFrame {
         } catch (HeadlessException | IOException e) {
             fichero = null;
             JOptionPane.showMessageDialog(null,
-                    "Errror al guardar el archivo",
+                    "Error al guardar el archivo",
                     "Aviso",
                     JOptionPane.ERROR_MESSAGE);
         }
@@ -828,7 +836,7 @@ public class Principal extends javax.swing.JFrame {
             principal.guardado = true;
         } catch (HeadlessException | IOException e) {
             JOptionPane.showMessageDialog(null,
-                    "Errror al guardar el archivo",
+                    "Error al guardar el archivo",
                     "Aviso",
                     JOptionPane.ERROR_MESSAGE);
         }
@@ -845,7 +853,7 @@ public class Principal extends javax.swing.JFrame {
         lblPeligrosidad.setText("" + principal.datos.getPeligro());
         lblTransporte.setText("" + principal.datos.getTransporte());
         lblVestuario.setText("" + principal.datos.getVestuario());
-        
+
     }
 
     private void reiniciar() {

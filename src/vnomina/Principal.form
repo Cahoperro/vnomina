@@ -18,9 +18,6 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
-  <Events>
-    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosing"/>
-  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -123,7 +120,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCerrarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnModificar">
+        <Component class="javax.swing.JButton" name="btnMeterHoras">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/vnomina/Images/modificar.png"/>
@@ -134,7 +131,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMeterHorasActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnGuardar">
@@ -165,7 +162,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarComoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCambio">
+        <Component class="javax.swing.JButton" name="btnCambioDatos">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/vnomina/Images/cambio.png"/>
@@ -176,7 +173,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCambioActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCambioDatosActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnImprimir">
@@ -300,21 +297,21 @@
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblTotalDevengado" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblVestuario" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblTransporte" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblTotalDevengado" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <Component id="lblVestuario" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <Component id="lblTransporte" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblNocturnidad" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblPeligrosidad" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblFestivos" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblAntiguedad" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblPagas" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblHorasExtras" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblSalarioBase" max="-2" attributes="0"/>
+                                          <Component id="lblNocturnidad" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <Component id="lblPeligrosidad" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <Component id="lblFestivos" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <Component id="lblAntiguedad" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <Component id="lblPagas" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <Component id="lblHorasExtras" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <Component id="lblSalarioBase" min="-2" pref="60" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                                   </Group>
@@ -337,21 +334,23 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblComunes" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblDesempleo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblFP" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblTolalAportaciones" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblIrpf" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblTotalDeducir" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblLiquido" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblComunes" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="lblDesempleo" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="lblFP" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="lblTolalAportaciones" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="lblIrpf" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="lblTotalDeducir" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="46" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="txtIrpf" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtIrpf" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblLiquido" min="-2" pref="175" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="142" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -378,6 +377,7 @@
                                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblComunes" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblSalarioBase" alignment="3" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -414,9 +414,7 @@
                               </Group>
                               <Component id="jPanel2" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="lblSalarioBase" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="lblHorasExtras" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="lblAntiguedad" min="-2" max="-2" attributes="0"/>
@@ -457,7 +455,7 @@
                               <Component id="lblTotalDevengado" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="40" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnCalcular" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -533,52 +531,52 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblSalarioBase">
               <Properties>
-                <Property name="text" type="java.lang.String" value="00.00"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblHorasExtras">
               <Properties>
-                <Property name="text" type="java.lang.String" value="00.00"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAntiguedad">
               <Properties>
-                <Property name="text" type="java.lang.String" value="00.00"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblFestivos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="00.00"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblPeligrosidad">
               <Properties>
-                <Property name="text" type="java.lang.String" value="00.00"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblNocturnidad">
               <Properties>
-                <Property name="text" type="java.lang.String" value="00.00"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblPagas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="00.00"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblTransporte">
               <Properties>
-                <Property name="text" type="java.lang.String" value="00.00"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblVestuario">
               <Properties>
-                <Property name="text" type="java.lang.String" value="00.00"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblTotalDevengado">
               <Properties>
-                <Property name="text" type="java.lang.String" value="00.00"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel23">
@@ -626,32 +624,32 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblComunes">
               <Properties>
-                <Property name="text" type="java.lang.String" value="00.00"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblDesempleo">
               <Properties>
-                <Property name="text" type="java.lang.String" value="00.00"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblFP">
               <Properties>
-                <Property name="text" type="java.lang.String" value="00.00"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblTolalAportaciones">
               <Properties>
-                <Property name="text" type="java.lang.String" value="00.00"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblIrpf">
               <Properties>
-                <Property name="text" type="java.lang.String" value="00.00"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblTotalDeducir">
               <Properties>
-                <Property name="text" type="java.lang.String" value="00.00"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblLiquido">
@@ -662,7 +660,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="000.00"/>
+                <Property name="text" type="java.lang.String" value="0.0 &#x20ac;"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
@@ -688,13 +686,14 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="radioQuinquenios" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="radioTrienio" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="chkPagas" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="chkBuena" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="chkVieja" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="chkJefeEquipo" min="-2" max="-2" attributes="0"/>
+                              <Component id="chkVieja" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="37" max="32767" attributes="0"/>
                       </Group>
@@ -705,14 +704,16 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="radioQuinquenios" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="radioTrienio" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="chkPagas" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="chkJefeEquipo" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="chkBuena" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="chkVieja" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -727,7 +728,7 @@
                     <Property name="text" type="java.lang.String" value="Quinquenios"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+                <Component class="javax.swing.JRadioButton" name="radioTrienio">
                   <Properties>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="grupo"/>
@@ -740,14 +741,15 @@
                     <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="Prorrateo P.extras"/>
                   </Properties>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
-                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
-                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="chkBuena">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Nochebuena"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JCheckBox" name="chkJefeEquipo">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Jefe de equipo"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="chkVieja">

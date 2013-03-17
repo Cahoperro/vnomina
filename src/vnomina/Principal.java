@@ -22,12 +22,20 @@ public class Principal extends javax.swing.JFrame {
     MeterDatos meteDato;
     MeterHoras meteHora;
     String fichero, textomes;
-
+    double horas, horasFestivas, horasNocturnas, horasRadio, horasRadioB, horasArma;
+    double salarioBase, antiguedad, tAntiguedad, festivos, nocturnos, pPeligrosidad;
+    double horasVacaciones, pPagasExtras, horasExtra,  pTransporte, pVestuario;
+    double cComunes, desempleo, fp, tAportaciones, tDevengado, tDeducir,tExtra, liquido;
+    double vExtra, vNocturna, vFestiva, vRadio, vRadioB, vArma, baseCotizacion;
+    double vNochebuena, vQuinquenio, vTrienio, vKilometro, horasConvenio;
+    double dCcomunes, dHorasExtra, IRPF, tIrpf, JefeEquipo, tNochebuena;
     /**
      * Creates new form Principal
      */
     public Principal() {
+
         initComponents();
+        this.addWindowListener(new EscuchaVentana(this));
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         chkBuena.setVisible(false);
@@ -45,10 +53,10 @@ public class Principal extends javax.swing.JFrame {
         btnNuevo = new javax.swing.JButton();
         btnAbrir = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
+        btnMeterHoras = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnGuardarComo = new javax.swing.JButton();
-        btnCambio = new javax.swing.JButton();
+        btnCambioDatos = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
         btnAyuda = new javax.swing.JButton();
         btnAcerca = new javax.swing.JButton();
@@ -98,9 +106,10 @@ public class Principal extends javax.swing.JFrame {
         btnCalcular = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         radioQuinquenios = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        javax.swing.JCheckBox chkPagas = new javax.swing.JCheckBox();
+        radioTrienio = new javax.swing.JRadioButton();
+        chkPagas = new javax.swing.JCheckBox();
         chkBuena = new javax.swing.JCheckBox();
+        chkJefeEquipo = new javax.swing.JCheckBox();
         chkVieja = new javax.swing.JCheckBox();
         panelHoras = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -111,11 +120,6 @@ public class Principal extends javax.swing.JFrame {
         setName("principal"); // NOI18N
         setPreferredSize(new java.awt.Dimension(825, 535));
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
 
         barra.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         barra.setFloatable(false);
@@ -157,17 +161,17 @@ public class Principal extends javax.swing.JFrame {
         });
         barra.add(btnCerrar);
 
-        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/modificar.png"))); // NOI18N
-        btnModificar.setToolTipText("Meter horarios");
-        btnModificar.setFocusable(false);
-        btnModificar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnModificar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnMeterHoras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/modificar.png"))); // NOI18N
+        btnMeterHoras.setToolTipText("Meter horarios");
+        btnMeterHoras.setFocusable(false);
+        btnMeterHoras.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnMeterHoras.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnMeterHoras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
+                btnMeterHorasActionPerformed(evt);
             }
         });
-        barra.add(btnModificar);
+        barra.add(btnMeterHoras);
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/guardar.png"))); // NOI18N
         btnGuardar.setToolTipText("Guardar");
@@ -193,17 +197,17 @@ public class Principal extends javax.swing.JFrame {
         });
         barra.add(btnGuardarComo);
 
-        btnCambio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/cambio.png"))); // NOI18N
-        btnCambio.setToolTipText("Cambiar los datos iniciales");
-        btnCambio.setFocusable(false);
-        btnCambio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnCambio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnCambio.addActionListener(new java.awt.event.ActionListener() {
+        btnCambioDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/cambio.png"))); // NOI18N
+        btnCambioDatos.setToolTipText("Cambiar los datos iniciales");
+        btnCambioDatos.setFocusable(false);
+        btnCambioDatos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCambioDatos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCambioDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCambioActionPerformed(evt);
+                btnCambioDatosActionPerformed(evt);
             }
         });
-        barra.add(btnCambio);
+        barra.add(btnCambioDatos);
 
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/imprimir.png"))); // NOI18N
         btnImprimir.setToolTipText("Imprimir");
@@ -279,25 +283,25 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel12.setText("Total devengado");
 
-        lblSalarioBase.setText("00.00");
+        lblSalarioBase.setText("0.0");
 
-        lblHorasExtras.setText("00.00");
+        lblHorasExtras.setText("0.0");
 
-        lblAntiguedad.setText("00.00");
+        lblAntiguedad.setText("0.0");
 
-        lblFestivos.setText("00.00");
+        lblFestivos.setText("0.0");
 
-        lblPeligrosidad.setText("00.00");
+        lblPeligrosidad.setText("0.0");
 
-        lblNocturnidad.setText("00.00");
+        lblNocturnidad.setText("0.0");
 
-        lblPagas.setText("00.00");
+        lblPagas.setText("0.0");
 
-        lblTransporte.setText("00.00");
+        lblTransporte.setText("0.0");
 
-        lblVestuario.setText("00.00");
+        lblVestuario.setText("0.0");
 
-        lblTotalDevengado.setText("00.00");
+        lblTotalDevengado.setText("0.0");
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
         jLabel23.setText("DEDUCCIONES:");
@@ -316,21 +320,21 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel30.setText("Liquido a percibir");
 
-        lblComunes.setText("00.00");
+        lblComunes.setText("0.0");
 
-        lblDesempleo.setText("00.00");
+        lblDesempleo.setText("0.0");
 
-        lblFP.setText("00.00");
+        lblFP.setText("0.0");
 
-        lblTolalAportaciones.setText("00.00");
+        lblTolalAportaciones.setText("0.0");
 
-        lblIrpf.setText("00.00");
+        lblIrpf.setText("0.0");
 
-        lblTotalDeducir.setText("00.00");
+        lblTotalDeducir.setText("0.0");
 
         lblLiquido.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblLiquido.setForeground(new java.awt.Color(0, 51, 51));
-        lblLiquido.setText("000.00");
+        lblLiquido.setText("0.0 €");
 
         jLabel13.setText("Introduce el IRPF");
 
@@ -347,13 +351,15 @@ public class Principal extends javax.swing.JFrame {
         radioQuinquenios.setSelected(true);
         radioQuinquenios.setText("Quinquenios");
 
-        grupo.add(jRadioButton1);
-        jRadioButton1.setText("Trienios");
+        grupo.add(radioTrienio);
+        radioTrienio.setText("Trienios");
 
         chkPagas.setSelected(true);
         chkPagas.setText("Prorrateo P.extras");
 
         chkBuena.setText("Nochebuena");
+
+        chkJefeEquipo.setText("Jefe de equipo");
 
         chkVieja.setText("Nochevieja");
 
@@ -364,9 +370,10 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(radioQuinquenios)
-                    .addComponent(jRadioButton1)
+                    .addComponent(radioTrienio)
                     .addComponent(chkPagas)
                     .addComponent(chkBuena)
+                    .addComponent(chkJefeEquipo)
                     .addComponent(chkVieja))
                 .addGap(0, 37, Short.MAX_VALUE))
         );
@@ -375,14 +382,16 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(radioQuinquenios)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton1)
+                .addComponent(radioTrienio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(chkPagas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(chkJefeEquipo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(chkBuena)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(chkVieja)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelNominaLayout = new javax.swing.GroupLayout(panelNomina);
@@ -410,19 +419,19 @@ public class Principal extends javax.swing.JFrame {
                             .addGroup(panelNominaLayout.createSequentialGroup()
                                 .addGap(65, 65, 65)
                                 .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTotalDevengado)
-                                    .addComponent(lblVestuario)
-                                    .addComponent(lblTransporte)))
+                                    .addComponent(lblTotalDevengado, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblVestuario, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNominaLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNocturnidad)
-                                    .addComponent(lblPeligrosidad)
-                                    .addComponent(lblFestivos)
-                                    .addComponent(lblAntiguedad)
-                                    .addComponent(lblPagas)
-                                    .addComponent(lblHorasExtras)
-                                    .addComponent(lblSalarioBase))
+                                    .addComponent(lblNocturnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblPeligrosidad, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFestivos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblPagas, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblHorasExtras, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblSalarioBase, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(2, 2, 2)))))
                 .addGap(110, 110, 110)
                 .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -439,19 +448,20 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelNominaLayout.createSequentialGroup()
                         .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblComunes)
-                            .addComponent(lblDesempleo)
-                            .addComponent(lblFP)
-                            .addComponent(lblTolalAportaciones)
-                            .addComponent(lblIrpf)
-                            .addComponent(lblTotalDeducir)
-                            .addComponent(lblLiquido))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                            .addComponent(lblComunes, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDesempleo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblFP, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTolalAportaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblIrpf, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTotalDeducir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31))
                     .addGroup(panelNominaLayout.createSequentialGroup()
-                        .addComponent(txtIrpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtIrpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblLiquido, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(142, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNominaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCalcular)
@@ -471,7 +481,8 @@ public class Principal extends javax.swing.JFrame {
                             .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel2)
                                 .addComponent(jLabel24)
-                                .addComponent(lblComunes))
+                                .addComponent(lblComunes)
+                                .addComponent(lblSalarioBase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel3)
@@ -500,9 +511,7 @@ public class Principal extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jLabel8))
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelNominaLayout.createSequentialGroup()
-                        .addComponent(lblSalarioBase)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNominaLayout.createSequentialGroup()
                         .addComponent(lblHorasExtras)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblAntiguedad)
@@ -535,7 +544,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel12)
                         .addComponent(lblTotalDevengado)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCalcular)
                 .addContainerGap())
         );
@@ -650,6 +659,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        // Creacion de un archivo nuevo
         if (principal == null) {
             String p = JOptionPane.showInputDialog("Introduce el año");
             try {
@@ -661,7 +671,7 @@ public class Principal extends javax.swing.JFrame {
                 btnCalcular.setEnabled(true);
             } catch (NumberFormatException ex) {
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null,
                     "Cierra el archivo abierto antes de crear uno nuevo",
                     "Aviso",
@@ -669,14 +679,16 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnNuevoActionPerformed
 
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-
+    private void btnMeterHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMeterHorasActionPerformed
+        // Crear instancia MeterHoras para introducir horarios
         if (principal != null) {
             meteHora = new MeterHoras(principal);
         }
-    }//GEN-LAST:event_btnModificarActionPerformed
+        recuperarDatos();
+    }//GEN-LAST:event_btnMeterHorasActionPerformed
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
+        // Codigo de abrir archivo
         if (principal == null) {
             JFileChooser selector = new JFileChooser();
             FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos chp", "chp");
@@ -693,6 +705,7 @@ public class Principal extends javax.swing.JFrame {
                     selectorMes.setSelectedIndex(principal.mesActual);
                     selectorMes.setEnabled(true);
                     btnCalcular.setEnabled(true);
+                    recuperarDatos();
                     mostrarTitulo();
                     mostrarResultado();
                 }
@@ -713,19 +726,18 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-        //codigo cerrar
-
+        //codigo cerrar archivo
         if (principal != null || !principal.guardado) {
             int g = JOptionPane.showConfirmDialog(null, "¿Quieres guardar antes de cerrar?");
             if (g == 0) {
                 guardar();
                 principal = null;
                 reiniciar();
-            } else if (g == 1){
+            } else if (g == 1) {
                 principal = null;
                 reiniciar();
             }
-        } 
+        }
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -773,46 +785,131 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_selectorMesItemStateChanged
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-        // TODO add your handling code here:
-        mostrarResultado();
-    }//GEN-LAST:event_btnCalcularActionPerformed
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         
-        if (principal != null && !principal.guardado) {
-            int g = JOptionPane.showConfirmDialog(null, "¿Quieres guardar antes de salir?");
-            if (g == 0) {
-                if (principal != null) {
-                    if (fichero == null) {
-                        guardarComo();
-                        this.dispose();
-                        System.exit(0);
-                    } else {
-                        guardar();
-                        this.dispose();
-                        System.exit(0);
-                    }
-                }
-            }else if(g == 2){
-                // codigo para cancelar
-            
-            }else{
-                this.dispose();
-                System.exit(0);
-            }
+        // Calcular todos los totales
+        try{
+        tIrpf = Double.parseDouble(txtIrpf.getText());
+        
+        if (chkJefeEquipo.isSelected()){
+            JefeEquipo = salarioBase/10;
         }else{
-            this.dispose();
-                System.exit(0);
+            JefeEquipo = 0;
         }
-    }//GEN-LAST:event_formWindowClosing
-
-    private void btnCambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambioActionPerformed
-        // TODO add your handling code here:
+        if (chkBuena.isSelected() && chkVieja.isSelected()){
+            tNochebuena = vNochebuena * 2;
+        }else if (!chkBuena.isSelected() && !chkVieja.isSelected()){
+            tNochebuena = 0;
+        }else{
+            tNochebuena = vNochebuena;
+        }
+        horasExtra = horas - horasConvenio;
+        if(horasExtra < 0) horasExtra = 0;
+        tExtra = horasExtra * vExtra;
+        if(radioQuinquenios.isSelected()){
+            tAntiguedad = (Math.floor(antiguedad/5))*vQuinquenio;
+        }else{
+            tAntiguedad = (Math.floor(antiguedad/3))*vTrienio;
+        }
+        tAntiguedad = redondear(tAntiguedad);
+        festivos = redondear(horasFestivas * vFestiva);
+        nocturnos = redondear(horasNocturnas * vNocturna);
+        if (chkPagas.isSelected()){
+        pPagasExtras = ((salarioBase + tAntiguedad + pPeligrosidad + pTransporte + pVestuario)*3)/12;
+        }else{
+            pPagasExtras = 0;
+        }
+        pPagasExtras = redondear(pPagasExtras);
+        cComunes = redondear(salarioBase + tAntiguedad + festivos + nocturnos + pPeligrosidad + 
+                pPagasExtras + JefeEquipo + tNochebuena + horasRadio + horasRadioB);
+       
+        baseCotizacion = cComunes + tExtra;
+        tDevengado = redondear(cComunes + tExtra + pTransporte + pVestuario);
+        dCcomunes = redondear((cComunes * 4.7) / 100);
+        desempleo = redondear(((cComunes + tExtra) * 1.55) / 100);
+        fp = redondear(((cComunes + tExtra) * 0.1) / 100);
+        dHorasExtra = (tExtra * 4.7)/100;
+        IRPF = redondear((tDevengado * tIrpf) / 100);
+        tAportaciones = dCcomunes + fp + desempleo;
+        tDeducir = redondear(dCcomunes + desempleo + fp + dHorasExtra + IRPF);
+        liquido = redondear(tDevengado - tDeducir);
+        insertarDatos();
+        mostrarResultado();
+        }catch(NumberFormatException e){
+            txtIrpf.requestFocus();
+            txtIrpf.selectAll();
+        }
+     
+    }//GEN-LAST:event_btnCalcularActionPerformed
+    private void recuperarDatos(){
+        horasConvenio = principal.datos.getHorasConvenio();
+        salarioBase = principal.datos.getSalarioBase();
+        antiguedad = principal.datos.getAntiguedad();
+        pPeligrosidad = principal.datos.getPeligro();
+        pTransporte = principal.datos.getTransporte();
+        pVestuario = principal.datos.getVestuario();
+        vExtra = principal.datos.getHoraExtra();
+        vFestiva = principal.datos.getHoraFestiva();
+        vNocturna = principal.datos.getHoraNocturna();
+        vRadio = principal.datos.getRadio();
+        vRadioB = principal.datos.getRadioBasica();
+        vArma = principal.datos.getHoraArma();
+        vNochebuena = principal.datos.getNochebuena();
+        vQuinquenio = principal.datos.getQuinquenio();
+        vTrienio = principal.datos.getTrienio();
+        vKilometro = principal.datos.getKilometraje();
+        horas = principal.mes[principal.mesActual].getHorasMes();
+        horasFestivas = principal.mes[principal.mesActual].getHorasFestivas();
+        horasNocturnas = principal.mes[principal.mesActual].getHorasNocturnas();
+        horasRadio = principal.mes[principal.mesActual].getHorasRadio();
+        horasRadioB = principal.mes[principal.mesActual].getHorasRadioB();
+        horasArma = principal.mes[principal.mesActual].getHorasArma();
+        horasVacaciones = principal.mes[principal.mesActual].getHorasVacaciones();
+        IRPF = principal.mes[principal.mesActual].getIrpf();
+        cComunes = principal.mes[principal.mesActual].getcComunes();
+        tDevengado = principal.mes[principal.mesActual].getTotalDevengado();
+        tDeducir = principal.mes[principal.mesActual].getTotalDeducir();
+        fp = principal.mes[principal.mesActual].getFp();
+        desempleo = principal.mes[principal.mesActual].getDesempleo();
+        tAportaciones = principal.mes[principal.mesActual].gettAportaciones();
+        chkPagas.setSelected(principal.mes[principal.mesActual].isPorrateo());
+        chkBuena.setSelected(principal.mes[principal.mesActual].isNochebuena());
+        chkVieja.setSelected(principal.mes[principal.mesActual].isNochevieja());
+        chkJefeEquipo.setSelected(principal.mes[principal.mesActual].isJefeEquipo());
+        if (principal.mes[principal.mesActual].isTrienios()){
+            radioTrienio.setSelected(true);
+        }else{
+            radioQuinquenios.setSelected(true);
+        }
+      }
+    private void insertarDatos(){
+        principal.mes[principal.mesActual].setIrpf(IRPF);
+        principal.mes[principal.mesActual].setcComunes(cComunes);
+        principal.mes[principal.mesActual].setTotalDevengado(tDevengado);
+        principal.mes[principal.mesActual].setTotalDeducir(tDeducir);
+        principal.mes[principal.mesActual].setFp(fp);
+        principal.mes[principal.mesActual].setDesempleo(desempleo);
+        principal.mes[principal.mesActual].settAportaciones(tAportaciones);
+        if(chkPagas.isSelected()) {
+            principal.mes[principal.mesActual].setPorrateo(true);
+        }
+        if (chkBuena.isSelected()){
+            principal.mes[principal.mesActual].setNochebuena(true);
+        }
+        if (chkVieja.isSelected()){
+            principal.mes[principal.mesActual].setNochevieja(true);
+        }
+        if (chkJefeEquipo.isSelected()){
+            principal.mes[principal.mesActual].setJefeEquipo(true);
+        }
+        
+    }
+    private void btnCambioDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambioDatosActionPerformed
+        // Cambiar los datos iniciales del año
         if (principal != null) {
             meteDato = new MeterDatos(this);
         }
-    }//GEN-LAST:event_btnCambioActionPerformed
-    private void guardarComo() {
+    }//GEN-LAST:event_btnCambioDatosActionPerformed
+    public void guardarComo() {
         JFileChooser selector = new JFileChooser();
         try {
             if (selector.showSaveDialog(null) == selector.APPROVE_OPTION) {
@@ -836,7 +933,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-    private void guardar() {
+    public void guardar() {
 
         try {
             FileOutputStream fs = new FileOutputStream(fichero);
@@ -859,11 +956,24 @@ public class Principal extends javax.swing.JFrame {
     }
 
     public void mostrarResultado() {
-        lblSalarioBase.setText("" + principal.datos.getSalarioBase());
-        lblPeligrosidad.setText("" + principal.datos.getPeligro());
-        lblTransporte.setText("" + principal.datos.getTransporte());
-        lblVestuario.setText("" + principal.datos.getVestuario());
-
+        lblSalarioBase.setText("" + salarioBase);
+        lblPeligrosidad.setText("" + pPeligrosidad);
+        lblTransporte.setText("" + pTransporte);
+        lblVestuario.setText("" + pVestuario);
+        lblComunes.setText("" + dCcomunes);
+        lblDesempleo.setText("" + desempleo);
+        lblFP.setText("" + fp);
+        lblTolalAportaciones.setText("" + tAportaciones);
+        lblIrpf.setText("" + IRPF);
+        lblTotalDevengado.setText("" + tDevengado);
+        lblTotalDeducir.setText("" + tDeducir);
+        lblLiquido.setText("" + liquido);
+        lblPagas.setText("" + pPagasExtras);
+        lblFestivos.setText("" + festivos);
+        lblNocturnidad.setText("" + nocturnos);
+        lblAntiguedad.setText("" + tAntiguedad);
+        lblHorasExtras.setText("" + horasExtra * vExtra);
+        
     }
 
     private void reiniciar() {
@@ -887,6 +997,16 @@ public class Principal extends javax.swing.JFrame {
         lblTotalDevengado.setText("00.00");
         selectorMes.setEnabled(false);
         btnCalcular.setEnabled(false);
+    }
+
+    public void cerrar() {
+        this.setVisible(false);
+        this.dispose();
+        System.exit(0);
+    }
+    
+    private double redondear(double n){
+        return (Math.floor(n*100))/100;
     }
 
     public static void main(String args[]) {
@@ -926,14 +1046,16 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnAcerca;
     private javax.swing.JButton btnAyuda;
     private javax.swing.JButton btnCalcular;
-    private javax.swing.JButton btnCambio;
+    private javax.swing.JButton btnCambioDatos;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnGuardarComo;
     private javax.swing.JButton btnImprimir;
-    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnMeterHoras;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JCheckBox chkBuena;
+    private javax.swing.JCheckBox chkJefeEquipo;
+    private javax.swing.JCheckBox chkPagas;
     private javax.swing.JCheckBox chkVieja;
     private javax.swing.ButtonGroup grupo;
     private javax.swing.JLabel jLabel1;
@@ -958,7 +1080,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAntiguedad;
     private javax.swing.JLabel lblComunes;
@@ -981,6 +1102,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane panelGeneral;
     private javax.swing.JPanel panelHoras;
     private javax.swing.JRadioButton radioQuinquenios;
+    private javax.swing.JRadioButton radioTrienio;
     private javax.swing.JComboBox selectorMes;
     private javax.swing.JTable tabla;
     private javax.swing.JTextField txtIrpf;

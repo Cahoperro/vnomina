@@ -11,14 +11,12 @@ public class Mes implements Serializable {
     Dias[] dia;
     private int n;
     private double horasMes,horasNocturnas,horasFestivas,horasRadio,HorasRadioB;
-    private double totalRadio,totalRadioB;
-    private double totalFestivos;
-    private double totalNocturnidad;
-    private double prorrata;
-    private double totalDevengado;
-    private double irpf;
-    private double totalDeducir;
-    private double liquido;
+    private double horasArma,horasVacaciones,totalRadio,totalRadioB;
+    private double totalFestivos,totalNocturnidad,prorrata,totalDevengado;
+    private double irpf,totalDeducir,liquido,fp,cComunes,desempleo,antiguedad;
+    private double tAportaciones;
+    boolean porrateo,nochebuena, nochevieja,jefeEquipo,trienios;
+    
     public Mes(int i, boolean bis) {
         if (i == 3 || i == 5 || i == 8 || i == 10) {
             n = 30;
@@ -39,6 +37,102 @@ public class Mes implements Serializable {
     
     public void calculoMes(){
         
+    }
+
+    public boolean isNochebuena() {
+        return nochebuena;
+    }
+
+    public void setNochebuena(boolean nochebuena) {
+        this.nochebuena = nochebuena;
+    }
+
+    public boolean isNochevieja() {
+        return nochevieja;
+    }
+
+    public void setNochevieja(boolean nochevieja) {
+        this.nochevieja = nochevieja;
+    }
+
+    public boolean isTrienios() {
+        return trienios;
+    }
+
+    public void setTrienios(boolean trienios) {
+        this.trienios = trienios;
+    }
+
+    public double getFp() {
+        return fp;
+    }
+
+    public void setFp(double fp) {
+        this.fp = fp;
+    }
+
+    public double getcComunes() {
+        return cComunes;
+    }
+
+    public void setcComunes(double cComunes) {
+        this.cComunes = cComunes;
+    }
+
+    public double getDesempleo() {
+        return desempleo;
+    }
+
+    public void setDesempleo(double desempleo) {
+        this.desempleo = desempleo;
+    }
+
+    public double getAntiguedad() {
+        return antiguedad;
+    }
+
+    public void setAntiguedad(double antiguedad) {
+        this.antiguedad = antiguedad;
+    }
+
+    public double gettAportaciones() {
+        return tAportaciones;
+    }
+
+    public void settAportaciones(double tAportaciones) {
+        this.tAportaciones = tAportaciones;
+    }
+
+    public boolean isPorrateo() {
+        return porrateo;
+    }
+
+    public void setPorrateo(boolean porrateo) {
+        this.porrateo = porrateo;
+    }
+
+    public boolean isJefeEquipo() {
+        return jefeEquipo;
+    }
+
+    public void setJefeEquipo(boolean jefeEquipo) {
+        this.jefeEquipo = jefeEquipo;
+    }
+    
+    public double getHorasVacaciones() {
+        return horasVacaciones;
+    }
+
+    public void setHorasVacaciones(double horasVacaciones) {
+        this.horasVacaciones = horasVacaciones;
+    }
+
+    public double getHorasArma() {
+        return horasArma;
+    }
+
+    public void setHorasArma(double horasArma) {
+        this.horasArma = horasArma;
     }
 
     public double getHorasMes() {

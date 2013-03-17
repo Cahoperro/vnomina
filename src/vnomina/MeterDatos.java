@@ -392,7 +392,7 @@ public class MeterDatos extends javax.swing.JFrame {
                 inicio.d.setRadioBasica(Double.parseDouble(txtRadioBasica.getText().replace(',', '.')));
                 inicio.d.setSalarioBase(Double.parseDouble(txtSalarioBase.getText().replace(',', '.')));
                 inicio.d.setTransporte(Double.parseDouble(txtTransporte.getText().replace(',', '.')));
-                inicio.d.setTrienio(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
+                inicio.d.setTrienio(Double.parseDouble(txtTrienio.getText().replace(',', '.')));
                 inicio.d.setVestuario(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
                 inicio.mostrarTitulo();
                 
@@ -416,7 +416,7 @@ public class MeterDatos extends javax.swing.JFrame {
                 inicio.principal.datos.setRadioBasica(Double.parseDouble(txtRadioBasica.getText().replace(',', '.')));
                 inicio.principal.datos.setSalarioBase(Double.parseDouble(txtSalarioBase.getText().replace(',', '.')));
                 inicio.principal.datos.setTransporte(Double.parseDouble(txtTransporte.getText().replace(',', '.')));
-                inicio.principal.datos.setTrienio(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
+                inicio.principal.datos.setTrienio(Double.parseDouble(txtTrienio.getText().replace(',', '.')));
                 inicio.principal.datos.setVestuario(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
                 inicio.mostrarTitulo();
                 

@@ -10,7 +10,7 @@ public class MeterHoras extends javax.swing.JFrame {
     private String[] nombreMeses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo",
         "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
     int diaSem;
-    private double horas, nocturnas, festivas, radio, radioB;
+    private double horas, nocturnas, festivas, radio, radioB, arma, vacaciones;
     MeterHoras meteHora;
     // Constructor de la ventana meter horas
     
@@ -371,6 +371,7 @@ public class MeterHoras extends javax.swing.JFrame {
         System.out.println("total festivas: " + festivas);
         System.out.println("total radio: " + radio);
         System.out.println("total radioB: " + radioB);
+        
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 

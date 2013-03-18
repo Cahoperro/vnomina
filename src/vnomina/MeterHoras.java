@@ -1,5 +1,7 @@
 package vnomina;
 
+import javax.swing.JTextField;
+
 /**
  *
  * @author cahoperro
@@ -481,7 +483,7 @@ public class MeterHoras extends javax.swing.JFrame {
                 diaSemana = "Domingo";
                 break;
         }
-
+        
         lblFecha.setText(diaSemana + " " + (Obj.principal.diaActual + 1) + " de " + nombreMeses[Obj.principal.mesActual]);
         txtServicio1.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getServicio1());
         txtServicio2.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getServicio2());

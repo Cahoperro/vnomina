@@ -26,7 +26,7 @@ public class Principal extends javax.swing.JFrame {
     double salarioBase, antiguedad, tAntiguedad, festivos, nocturnos, pPeligrosidad;
     double horasVacaciones, pPagasExtras, horasExtra,  pTransporte, pVestuario;
     double cComunes, desempleo, fp, tAportaciones, tDevengado, tDeducir,tExtra, liquido;
-    double vExtra, vNocturna, vFestiva, vRadio, vRadioB, vArma, baseCotizacion;
+    double vExtra, vNocturna, vFestiva, vRadio, vRadioB, vArma;
     double vNochebuena, vQuinquenio, vTrienio, vKilometro, horasConvenio;
     double dCcomunes, dHorasExtra, IRPF, tIrpf, JefeEquipo, tNochebuena;
     /**
@@ -682,9 +682,9 @@ public class Principal extends javax.swing.JFrame {
     private void btnMeterHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMeterHorasActionPerformed
         // Crear instancia MeterHoras para introducir horarios
         if (principal != null) {
-            meteHora = new MeterHoras(principal);
+            meteHora = new MeterHoras(this);
         }
-        recuperarDatos();
+         
     }//GEN-LAST:event_btnMeterHorasActionPerformed
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
@@ -781,6 +781,7 @@ public class Principal extends javax.swing.JFrame {
         }
         principal.mesActual = selectorMes.getSelectedIndex();
         mostrarTitulo();
+        recuperarDatos();
         mostrarResultado();
     }//GEN-LAST:event_selectorMesItemStateChanged
 
@@ -804,7 +805,7 @@ public class Principal extends javax.swing.JFrame {
         }
         horasExtra = horas - horasConvenio;
         if(horasExtra < 0) horasExtra = 0;
-        tExtra = horasExtra * vExtra;
+        tExtra = redondear(horasExtra * vExtra);
         if(radioQuinquenios.isSelected()){
             tAntiguedad = (Math.floor(antiguedad/5))*vQuinquenio;
         }else{
@@ -821,18 +822,18 @@ public class Principal extends javax.swing.JFrame {
         pPagasExtras = redondear(pPagasExtras);
         cComunes = redondear(salarioBase + tAntiguedad + festivos + nocturnos + pPeligrosidad + 
                 pPagasExtras + JefeEquipo + tNochebuena + horasRadio + horasRadioB);
-       
-        baseCotizacion = cComunes + tExtra;
         tDevengado = redondear(cComunes + tExtra + pTransporte + pVestuario);
         dCcomunes = redondear((cComunes * 4.7) / 100);
         desempleo = redondear(((cComunes + tExtra) * 1.55) / 100);
         fp = redondear(((cComunes + tExtra) * 0.1) / 100);
         dHorasExtra = (tExtra * 4.7)/100;
         IRPF = redondear((tDevengado * tIrpf) / 100);
-        tAportaciones = dCcomunes + fp + desempleo;
+        tAportaciones = redondear(dCcomunes + fp + desempleo);
         tDeducir = redondear(dCcomunes + desempleo + fp + dHorasExtra + IRPF);
         liquido = redondear(tDevengado - tDeducir);
+        
         insertarDatos();
+        recuperarDatos();
         mostrarResultado();
         }catch(NumberFormatException e){
             txtIrpf.requestFocus();
@@ -840,7 +841,7 @@ public class Principal extends javax.swing.JFrame {
         }
      
     }//GEN-LAST:event_btnCalcularActionPerformed
-    private void recuperarDatos(){
+    public void recuperarDatos(){
         horasConvenio = principal.datos.getHorasConvenio();
         salarioBase = principal.datos.getSalarioBase();
         antiguedad = principal.datos.getAntiguedad();
@@ -865,12 +866,17 @@ public class Principal extends javax.swing.JFrame {
         horasArma = principal.mes[principal.mesActual].getHorasArma();
         horasVacaciones = principal.mes[principal.mesActual].getHorasVacaciones();
         IRPF = principal.mes[principal.mesActual].getIrpf();
-        cComunes = principal.mes[principal.mesActual].getcComunes();
+        tIrpf = principal.mes[principal.mesActual].gettIrpf();
+        dCcomunes = principal.mes[principal.mesActual].getcComunes();
         tDevengado = principal.mes[principal.mesActual].getTotalDevengado();
         tDeducir = principal.mes[principal.mesActual].getTotalDeducir();
+        tExtra = principal.mes[principal.mesActual].getExtras();
         fp = principal.mes[principal.mesActual].getFp();
         desempleo = principal.mes[principal.mesActual].getDesempleo();
         tAportaciones = principal.mes[principal.mesActual].gettAportaciones();
+        festivos = principal.mes[principal.mesActual].getTotalFestivos();
+        nocturnos = principal.mes[principal.mesActual].getTotalNocturnidad();
+        liquido = principal.mes[principal.mesActual].getLiquido();
         chkPagas.setSelected(principal.mes[principal.mesActual].isPorrateo());
         chkBuena.setSelected(principal.mes[principal.mesActual].isNochebuena());
         chkVieja.setSelected(principal.mes[principal.mesActual].isNochevieja());
@@ -883,23 +889,37 @@ public class Principal extends javax.swing.JFrame {
       }
     private void insertarDatos(){
         principal.mes[principal.mesActual].setIrpf(IRPF);
-        principal.mes[principal.mesActual].setcComunes(cComunes);
+        principal.mes[principal.mesActual].setcComunes(dCcomunes);
         principal.mes[principal.mesActual].setTotalDevengado(tDevengado);
         principal.mes[principal.mesActual].setTotalDeducir(tDeducir);
         principal.mes[principal.mesActual].setFp(fp);
         principal.mes[principal.mesActual].setDesempleo(desempleo);
         principal.mes[principal.mesActual].settAportaciones(tAportaciones);
+        principal.mes[principal.mesActual].setTotalFestivos(festivos);
+        principal.mes[principal.mesActual].setTotalNocturnidad(nocturnos);
+        principal.mes[principal.mesActual].setLiquido(liquido);
+        principal.mes[principal.mesActual].settIrpf(tIrpf);
+        principal.mes[principal.mesActual].setExtras(tExtra);
+        
         if(chkPagas.isSelected()) {
             principal.mes[principal.mesActual].setPorrateo(true);
+        }else{
+            principal.mes[principal.mesActual].setPorrateo(false);
         }
         if (chkBuena.isSelected()){
             principal.mes[principal.mesActual].setNochebuena(true);
+        }else{
+            principal.mes[principal.mesActual].setNochebuena(false); 
         }
         if (chkVieja.isSelected()){
             principal.mes[principal.mesActual].setNochevieja(true);
+        }else{
+            principal.mes[principal.mesActual].setNochevieja(false);
         }
         if (chkJefeEquipo.isSelected()){
             principal.mes[principal.mesActual].setJefeEquipo(true);
+        }else{
+            principal.mes[principal.mesActual].setJefeEquipo(false);
         }
         
     }
@@ -967,34 +987,35 @@ public class Principal extends javax.swing.JFrame {
         lblIrpf.setText("" + IRPF);
         lblTotalDevengado.setText("" + tDevengado);
         lblTotalDeducir.setText("" + tDeducir);
-        lblLiquido.setText("" + liquido);
+        lblLiquido.setText("" + liquido +" €");
         lblPagas.setText("" + pPagasExtras);
         lblFestivos.setText("" + festivos);
         lblNocturnidad.setText("" + nocturnos);
         lblAntiguedad.setText("" + tAntiguedad);
-        lblHorasExtras.setText("" + horasExtra * vExtra);
+        lblHorasExtras.setText("" + tExtra);
+        txtIrpf.setText(""+tIrpf);
         
     }
 
     private void reiniciar() {
-        lblSalarioBase.setText("00.00");
-        lblPeligrosidad.setText("00.00");
-        lblTransporte.setText("00.00");
-        lblVestuario.setText("00.00");
-        lblAntiguedad.setText("00.00");
-        lblComunes.setText("00.00");
-        lblDesempleo.setText("00.00");
-        lblFP.setText("00.00");
-        lblFestivos.setText("00.00");
-        lblHorasExtras.setText("00.00");
+        lblSalarioBase.setText("0.0");
+        lblPeligrosidad.setText("0.0");
+        lblTransporte.setText("0.0");
+        lblVestuario.setText("0.0");
+        lblAntiguedad.setText("0.0");
+        lblComunes.setText("0.0");
+        lblDesempleo.setText("0.0");
+        lblFP.setText("0.0");
+        lblFestivos.setText("0.0");
+        lblHorasExtras.setText("0.0");
         lblInfo.setText("Ningun documento abierto");
-        lblIrpf.setText("00.00");
-        lblLiquido.setText("000.00");
-        lblNocturnidad.setText("00.00");
-        lblPagas.setText("00.00");
-        lblTolalAportaciones.setText("00.00");
-        lblTotalDeducir.setText("00.00");
-        lblTotalDevengado.setText("00.00");
+        lblIrpf.setText("0.0");
+        lblLiquido.setText("0.0");
+        lblNocturnidad.setText("0.0");
+        lblPagas.setText("0.0");
+        lblTolalAportaciones.setText("0.0");
+        lblTotalDeducir.setText("0.0");
+        lblTotalDevengado.setText("0.0");
         selectorMes.setEnabled(false);
         btnCalcular.setEnabled(false);
     }

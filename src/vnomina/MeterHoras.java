@@ -6,7 +6,7 @@ package vnomina;
  */
 public class MeterHoras extends javax.swing.JFrame {
 
-    Objeto Obj;
+    Principal Obj;
     private String[] nombreMeses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo",
         "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
     int diaSem;
@@ -14,13 +14,13 @@ public class MeterHoras extends javax.swing.JFrame {
     MeterHoras meteHora;
     // Constructor de la ventana meter horas
     
-    public MeterHoras(Objeto Obj) {
+    public MeterHoras(Principal Obj) {
         
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.Obj = Obj;
-        Obj.diaActual = 0;
+        Obj.principal.diaActual = 0;
         mostrar();
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -322,32 +322,32 @@ public class MeterHoras extends javax.swing.JFrame {
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
 
-        if (Obj.diaActual < 1) {
-            Obj.diaActual = Obj.mes[Obj.mesActual].getN();
+        if (Obj.principal.diaActual < 1) {
+            Obj.principal.diaActual = Obj.principal.mes[Obj.principal.mesActual].getN();
         }
-        Obj.diaActual--;
+        Obj.principal.diaActual--;
         mostrar();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnAdelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdelanteActionPerformed
 
-        if (Obj.diaActual >= Obj.mes[Obj.mesActual].getN() - 1) {
-            Obj.diaActual = -1;
+        if (Obj.principal.diaActual >= Obj.principal.mes[Obj.principal.mesActual].getN() - 1) {
+            Obj.principal.diaActual = -1;
         }
-        Obj.diaActual++;
+        Obj.principal.diaActual++;
         mostrar();
     }//GEN-LAST:event_btnAdelanteActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-
-        for (int i = 0; i < Obj.mes[Obj.mesActual].getN(); i++) {
+        insertar();
+        for (int i = 0; i < Obj.principal.mes[Obj.principal.mesActual].getN(); i++) {
             
-            Obj.mes[Obj.mesActual].dia[i].calHoras(Obj);
-            horas += Obj.mes[Obj.mesActual].dia[i].getTempHoras();
-            nocturnas += Obj.mes[Obj.mesActual].dia[i].getTempNocturnas();
-            festivas += Obj.mes[Obj.mesActual].dia[i].getTempFestivas();
-            radio += Obj.mes[Obj.mesActual].dia[i].getTempRadio();
-            radioB += Obj.mes[Obj.mesActual].dia[i].getTempRadioB();
+            Obj.principal.mes[Obj.principal.mesActual].dia[i].calHoras(Obj.principal);
+            horas += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempHoras();
+            nocturnas += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempNocturnas();
+            festivas += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempFestivas();
+            radio += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempRadio();
+            radioB += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempRadioB();
         }
         
         // Limitar el numero de decimales a 2
@@ -360,18 +360,20 @@ public class MeterHoras extends javax.swing.JFrame {
 
         // Introducir las horas en el Objeto principal
   
-        Obj.mes[Obj.mesActual].setHorasMes(horas);
-        Obj.mes[Obj.mesActual].setHorasNocturnas(nocturnas);
-        Obj.mes[Obj.mesActual].setHorasFestivas(festivas);
-        Obj.mes[Obj.mesActual].setHorasRadio(radio);
-        Obj.mes[Obj.mesActual].setHorasRadioB(radioB);
-
+        Obj.principal.mes[Obj.principal.mesActual].setHorasMes(horas);
+        Obj.principal.mes[Obj.principal.mesActual].setHorasNocturnas(nocturnas);
+        Obj.principal.mes[Obj.principal.mesActual].setHorasFestivas(festivas);
+        Obj.principal.mes[Obj.principal.mesActual].setHorasRadio(radio);
+        Obj.principal.mes[Obj.principal.mesActual].setHorasRadioB(radioB);
+        
+        
         System.out.println("total horas: " + horas);
         System.out.println("total nocturnas: " + nocturnas);
         System.out.println("total festivas: " + festivas);
         System.out.println("total radio: " + radio);
         System.out.println("total radioB: " + radioB);
         
+        Obj.recuperarDatos();
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
@@ -406,7 +408,7 @@ public class MeterHoras extends javax.swing.JFrame {
             tem.setRadio(false);
         }
 
-        Obj.claves.put(txtClave.getText(), tem);
+        Obj.principal.claves.put(txtClave.getText(), tem);
 
     }//GEN-LAST:event_btnGuardarClaveActionPerformed
 
@@ -424,8 +426,8 @@ public class MeterHoras extends javax.swing.JFrame {
     private void txtClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyPressed
 
         if (evt.getKeyCode() == 10) {
-            if (Obj.claves.get(txtClave.getText()) != null) {
-                Dias clave = Obj.claves.get(txtClave.getText());
+            if (Obj.principal.claves.get(txtClave.getText()) != null) {
+                Dias clave = Obj.principal.claves.get(txtClave.getText());
                 txtServicio1.setText(clave.getServicio1());
                 txtServicio2.setText(clave.getServicio2());
                 txtSalida1.setText(clave.getSalida1());
@@ -451,12 +453,12 @@ public class MeterHoras extends javax.swing.JFrame {
 
     private void btnBorrarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarClaveActionPerformed
         // TODO add your handling code here:
-        Obj.claves.remove(txtClave.getText());
+        Obj.principal.claves.remove(txtClave.getText());
         txtClave.setText("");
     }//GEN-LAST:event_btnBorrarClaveActionPerformed
     private void mostrar() {
         String diaSemana = "";
-        switch (Obj.mes[Obj.mesActual].dia[Obj.diaActual].getDiaSemana()) {
+        switch (Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getDiaSemana()) {
             case 1:
                 diaSemana = "Lunes";
                 break;
@@ -480,30 +482,30 @@ public class MeterHoras extends javax.swing.JFrame {
                 break;
         }
 
-        lblFecha.setText(diaSemana + " " + (Obj.diaActual + 1) + " de " + nombreMeses[Obj.mesActual]);
-        txtServicio1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getServicio1());
-        txtServicio2.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getServicio2());
-        txtSalida1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getSalida1());
-        txtSalida2.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getSalida2());
-        txtEntrada1.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getEntrada1());
-        txtEntrada2.setText(Obj.mes[Obj.mesActual].dia[Obj.diaActual].getEntrada2());
-        checkArma.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isArma());
-        checkFestivo.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isFestivo());
-        checkRadio.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isRadioscopia());
-        optPortuaria.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isRadio());
-        optBasica.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isRadioB());
-        checkVacaciones.setSelected(Obj.mes[Obj.mesActual].dia[Obj.diaActual].isVacaciones());
+        lblFecha.setText(diaSemana + " " + (Obj.principal.diaActual + 1) + " de " + nombreMeses[Obj.principal.mesActual]);
+        txtServicio1.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getServicio1());
+        txtServicio2.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getServicio2());
+        txtSalida1.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getSalida1());
+        txtSalida2.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getSalida2());
+        txtEntrada1.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getEntrada1());
+        txtEntrada2.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getEntrada2());
+        checkArma.setSelected(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].isArma());
+        checkFestivo.setSelected(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].isFestivo());
+        checkRadio.setSelected(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].isRadioscopia());
+        optPortuaria.setSelected(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].isRadio());
+        optBasica.setSelected(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].isRadioB());
+        checkVacaciones.setSelected(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].isVacaciones());
     }
 
     public void insertar() {
         boolean valido = true;
 
-        Obj.mes[Obj.mesActual].dia[Obj.diaActual].setServicio1(txtServicio1.getText());
-        Obj.mes[Obj.mesActual].dia[Obj.diaActual].setServicio2(txtServicio2.getText());
+        Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setServicio1(txtServicio1.getText());
+        Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setServicio2(txtServicio2.getText());
 
         String ent1 = txtEntrada1.getText().replace('.', ':');
         if (validar(ent1)) {
-            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setEntrada1(ent1);
+            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setEntrada1(ent1);
         } else {
             txtEntrada1.requestFocus();
             txtEntrada1.selectAll();
@@ -512,7 +514,7 @@ public class MeterHoras extends javax.swing.JFrame {
 
         String ent2 = txtEntrada2.getText().replace('.', ':');
         if (validar(ent2)) {
-            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setEntrada2(ent2);
+            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setEntrada2(ent2);
         } else {
             txtEntrada2.requestFocus();
             txtEntrada2.selectAll();
@@ -521,7 +523,7 @@ public class MeterHoras extends javax.swing.JFrame {
 
         String sal1 = txtSalida1.getText().replace('.', ':');
         if (validar(sal1)) {
-            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setSalida1(sal1);
+            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setSalida1(sal1);
         } else {
             txtSalida1.requestFocus();
             txtSalida1.selectAll();
@@ -530,7 +532,7 @@ public class MeterHoras extends javax.swing.JFrame {
 
         String sal2 = txtSalida2.getText().replace('.', ':');
         if (validar(sal2)) {
-            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setSalida2(sal2);
+            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setSalida2(sal2);
         } else {
             txtSalida2.requestFocus();
             txtSalida2.selectAll();
@@ -538,47 +540,47 @@ public class MeterHoras extends javax.swing.JFrame {
         }
 
         if (checkArma.isSelected()) {
-            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setArma(true);
+            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setArma(true);
         } else {
-            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setArma(false);
+            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setArma(false);
         }
         if (checkFestivo.isSelected()) {
-            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setFestivo(true);
+            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setFestivo(true);
         } else {
-            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setFestivo(false);
+            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setFestivo(false);
         }
 
         if (checkRadio.isSelected()) {
-            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadioscopia(true);
+            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadioscopia(true);
         } else {
-            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadioscopia(false);
+            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadioscopia(false);
         }
 
         if (optBasica.isSelected()) {
-            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadioB(true);
+            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadioB(true);
         } else {
-            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadioB(false);
+            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadioB(false);
         }
         if (optPortuaria.isSelected()) {
-            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadio(true);
+            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadio(true);
         } else {
-            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setRadio(false);
+            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadio(false);
         }
 
         if (checkVacaciones.isSelected()) {
-            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setVacaciones(true);
+            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setVacaciones(true);
         } else {
-            Obj.mes[Obj.mesActual].dia[Obj.diaActual].setVacaciones(false);
+            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setVacaciones(false);
         }
 
-        if (Obj.diaActual < Obj.mes[Obj.mesActual].getN() - 1) {
-            Obj.diaActual++;
+        if (Obj.principal.diaActual < Obj.principal.mes[Obj.principal.mesActual].getN() - 1) {
+            Obj.principal.diaActual++;
         }
         if (valido) {
             mostrar();
             txtClave.setText("");
             limpiar();
-            Obj.guardado = false;
+            Obj.principal.guardado = false;
         }
     }
 

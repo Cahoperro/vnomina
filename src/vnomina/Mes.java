@@ -11,10 +11,10 @@ public class Mes implements Serializable {
     Dias[] dia;
     private int n;
     private double horasMes,horasNocturnas,horasFestivas,horasRadio,HorasRadioB;
-    private double horasArma,horasVacaciones,totalRadio,totalRadioB;
+    private double horasArma,horasVacaciones,totalRadio,totalRadioB, extras;
     private double totalFestivos,totalNocturnidad,prorrata,totalDevengado;
     private double irpf,totalDeducir,liquido,fp,cComunes,desempleo,antiguedad;
-    private double tAportaciones;
+    private double tAportaciones, tIrpf;
     boolean porrateo,nochebuena, nochevieja,jefeEquipo,trienios;
     
     public Mes(int i, boolean bis) {
@@ -39,6 +39,22 @@ public class Mes implements Serializable {
         
     }
 
+    public double getExtras() {
+        return extras;
+    }
+
+    public void setExtras(double extras) {
+        this.extras = extras;
+    }
+    
+    public double gettIrpf() {
+        return tIrpf;
+    }
+
+    public void settIrpf(double tIrpf) {
+        this.tIrpf = tIrpf;
+    }
+    
     public boolean isNochebuena() {
         return nochebuena;
     }

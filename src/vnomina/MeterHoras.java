@@ -74,6 +74,7 @@ public class MeterHoras extends javax.swing.JFrame {
         btnBorrarClave = new javax.swing.JButton();
         checkVacaciones = new javax.swing.JCheckBox();
         btnLimpiar = new javax.swing.JButton();
+        selectorClave = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Introducir horarios");
@@ -213,6 +214,13 @@ public class MeterHoras extends javax.swing.JFrame {
             }
         });
 
+        selectorClave.setEditable(true);
+        selectorClave.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                selectorClaveItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -223,15 +231,15 @@ public class MeterHoras extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(selectorClave, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnInsertar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnBorrarClave)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnGuardarClave))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,7 +262,7 @@ public class MeterHoras extends javax.swing.JFrame {
                                             .addComponent(jLabel4)
                                             .addComponent(txtSalida2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtSalida1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(18, 23, Short.MAX_VALUE)
+                                .addGap(18, 18, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
@@ -262,7 +270,8 @@ public class MeterHoras extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnAdelante))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnBorrarClave)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnLimpiar)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnAceptar)))
@@ -307,11 +316,12 @@ public class MeterHoras extends javax.swing.JFrame {
                     .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnInsertar)
                     .addComponent(btnGuardarClave)
-                    .addComponent(btnBorrarClave))
+                    .addComponent(selectorClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
-                    .addComponent(btnLimpiar))
+                    .addComponent(btnLimpiar)
+                    .addComponent(btnBorrarClave))
                 .addGap(20, 20, 20))
         );
 
@@ -475,6 +485,11 @@ public class MeterHoras extends javax.swing.JFrame {
         Obj.principal.claves.remove(txtClave.getText());
         txtClave.setText("");
     }//GEN-LAST:event_btnBorrarClaveActionPerformed
+
+    private void selectorClaveItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectorClaveItemStateChanged
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_selectorClaveItemStateChanged
     private void mostrar() {
         String diaSemana = "";
         switch (Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getDiaSemana()) {
@@ -657,6 +672,7 @@ public class MeterHoras extends javax.swing.JFrame {
     private javax.swing.JLabel lblFecha;
     private javax.swing.JRadioButton optBasica;
     private javax.swing.JRadioButton optPortuaria;
+    private javax.swing.JComboBox selectorClave;
     private javax.swing.JTextField txtClave;
     private javax.swing.JTextField txtEntrada1;
     private javax.swing.JTextField txtEntrada2;

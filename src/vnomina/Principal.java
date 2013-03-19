@@ -836,6 +836,7 @@ public class Principal extends javax.swing.JFrame {
         recuperarDatos();
         mostrarResultado();
         }catch(NumberFormatException e){
+            txtIrpf.setText("¿Irpf?");
             txtIrpf.requestFocus();
             txtIrpf.selectAll();
         }

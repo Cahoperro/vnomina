@@ -1,5 +1,6 @@
 package vnomina;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -15,9 +16,9 @@ public class MeterHoras extends javax.swing.JFrame {
     private double horas, nocturnas, festivas, radio, radioB, arma, vacaciones;
     MeterHoras meteHora;
     // Constructor de la ventana meter horas
-    
+
     public MeterHoras(Principal Obj) {
-        
+
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -343,7 +344,7 @@ public class MeterHoras extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         insertar();
         for (int i = 0; i < Obj.principal.mes[Obj.principal.mesActual].getN(); i++) {
-            
+
             Obj.principal.mes[Obj.principal.mesActual].dia[i].calHoras(Obj.principal);
             horas += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempHoras();
             nocturnas += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempNocturnas();
@@ -351,42 +352,44 @@ public class MeterHoras extends javax.swing.JFrame {
             radio += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempRadio();
             radioB += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempRadioB();
         }
-        
+
         // Limitar el numero de decimales a 2
-        
-        horas = (Math.floor(horas*100)/100);
-        nocturnas = (Math.floor(nocturnas*100)/100);
-        festivas = (Math.floor(festivas*100)/100);
-        radio = (Math.floor(radio*100)/100);
-        radioB = (Math.floor(radioB*100)/100);
+
+        horas = (Math.floor(horas * 100) / 100);
+        nocturnas = (Math.floor(nocturnas * 100) / 100);
+        festivas = (Math.floor(festivas * 100) / 100);
+        radio = (Math.floor(radio * 100) / 100);
+        radioB = (Math.floor(radioB * 100) / 100);
 
         // Introducir las horas en el Objeto principal
-  
+
         Obj.principal.mes[Obj.principal.mesActual].setHorasMes(horas);
         Obj.principal.mes[Obj.principal.mesActual].setHorasNocturnas(nocturnas);
         Obj.principal.mes[Obj.principal.mesActual].setHorasFestivas(festivas);
         Obj.principal.mes[Obj.principal.mesActual].setHorasRadio(radio);
         Obj.principal.mes[Obj.principal.mesActual].setHorasRadioB(radioB);
-        
-        
+
+
         System.out.println("total horas: " + horas);
         System.out.println("total nocturnas: " + nocturnas);
         System.out.println("total festivas: " + festivas);
         System.out.println("total radio: " + radio);
         System.out.println("total radioB: " + radioB);
-        
+
         Obj.recuperarDatos();
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnGuardarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClaveActionPerformed
         Dias tem = new Dias();
+        
         tem.setServicio1(txtServicio1.getText());
         tem.setServicio2(txtServicio2.getText());
         tem.setEntrada1(txtEntrada1.getText());
         tem.setEntrada2(txtEntrada2.getText());
         tem.setSalida1(txtSalida1.getText());
         tem.setSalida2(txtSalida2.getText());
+
         if (checkArma.isSelected()) {
             tem.setArma(true);
         } else {
@@ -409,8 +412,18 @@ public class MeterHoras extends javax.swing.JFrame {
         } else {
             tem.setRadio(false);
         }
+        if (!"".equals(txtClave.getText())) {
+            Obj.principal.claves.put(txtClave.getText(), tem);
+             JOptionPane.showMessageDialog(null,
+                    "La clave ("+txtClave.getText()+") ha sido guardada con exito",
+                    "Enhorabuena",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
 
-        Obj.principal.claves.put(txtClave.getText(), tem);
+            txtClave.setText("¿clave?");
+            txtClave.requestFocus();
+            txtClave.selectAll();
+        }
 
     }//GEN-LAST:event_btnGuardarClaveActionPerformed
 
@@ -426,26 +439,29 @@ public class MeterHoras extends javax.swing.JFrame {
     }//GEN-LAST:event_checkRadioStateChanged
 
     private void txtClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyPressed
-
+        Dias clave = Obj.principal.claves.get(txtClave.getText());
         if (evt.getKeyCode() == 10) {
             if (Obj.principal.claves.get(txtClave.getText()) != null) {
-                Dias clave = Obj.principal.claves.get(txtClave.getText());
-                txtServicio1.setText(clave.getServicio1());
-                txtServicio2.setText(clave.getServicio2());
-                txtSalida1.setText(clave.getSalida1());
-                txtSalida2.setText(clave.getSalida2());
-                txtEntrada1.setText(clave.getEntrada1());
-                txtEntrada2.setText(clave.getEntrada2());
-                checkArma.setSelected(clave.isArma());
-                checkFestivo.setSelected(clave.isFestivo());
-                checkRadio.setSelected(clave.isRadioscopia());
-                optPortuaria.setSelected(clave.isRadio());
-                optBasica.setSelected(clave.isRadioB());
-                checkVacaciones.setSelected(clave.isVacaciones());
-                txtClave.setText("");
+
                 insertar();
             }
+        } else {
+            // arreglar esto
+            if (Obj.principal.claves.get(txtClave.getText()) != null) {
+            txtServicio1.setText(clave.getServicio1());
+            txtServicio2.setText(clave.getServicio2());
+            txtSalida1.setText(clave.getSalida1());
+            txtSalida2.setText(clave.getSalida2());
+            txtEntrada1.setText(clave.getEntrada1());
+            txtEntrada2.setText(clave.getEntrada2());
+            checkArma.setSelected(clave.isArma());
+            checkRadio.setSelected(clave.isRadioscopia());
+            optPortuaria.setSelected(clave.isRadio());
+            optBasica.setSelected(clave.isRadioB());
+            checkVacaciones.setSelected(clave.isVacaciones());
+            }
         }
+        
     }//GEN-LAST:event_txtClaveKeyPressed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -455,6 +471,7 @@ public class MeterHoras extends javax.swing.JFrame {
 
     private void btnBorrarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarClaveActionPerformed
         // TODO add your handling code here:
+        
         Obj.principal.claves.remove(txtClave.getText());
         txtClave.setText("");
     }//GEN-LAST:event_btnBorrarClaveActionPerformed
@@ -483,7 +500,7 @@ public class MeterHoras extends javax.swing.JFrame {
                 diaSemana = "Domingo";
                 break;
         }
-        
+
         lblFecha.setText(diaSemana + " " + (Obj.principal.diaActual + 1) + " de " + nombreMeses[Obj.principal.mesActual]);
         txtServicio1.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getServicio1());
         txtServicio2.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getServicio2());

@@ -213,7 +213,6 @@ public class MeterHoras extends javax.swing.JFrame {
             }
         });
 
-        selectorClave.setEditable(true);
         selectorClave.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "------" }));
         selectorClave.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -452,13 +451,13 @@ public class MeterHoras extends javax.swing.JFrame {
     }//GEN-LAST:event_checkRadioStateChanged
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        
         limpiar();
 
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnBorrarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarClaveActionPerformed
 
-        // TODO add your handling code here:
         if (!"------".equals(selectorClave.getSelectedItem().toString())) {
             int g = JOptionPane.showConfirmDialog(null,
                     "Se va ha borrar la clave " + selectorClave.getSelectedItem().toString()
@@ -473,7 +472,7 @@ public class MeterHoras extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBorrarClaveActionPerformed
 
     private void selectorClaveItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectorClaveItemStateChanged
-        // TODO add your handling code here:
+        
         if (!"------".equals(selectorClave.getSelectedItem().toString())) {
             Dias clave = Obj.principal.claves.get(selectorClave.getSelectedItem().toString());
             txtServicio1.setText(clave.getServicio1());
@@ -490,6 +489,7 @@ public class MeterHoras extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_selectorClaveItemStateChanged
+    
     private void mostrar() {
         String diaSemana = "";
         switch (Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getDiaSemana()) {
@@ -532,6 +532,7 @@ public class MeterHoras extends javax.swing.JFrame {
     }
 
     public void insertar() {
+        
         boolean valido = true;
 
         Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setServicio1(txtServicio1.getText());

@@ -47,7 +47,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnInsertar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="txtClave" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnBorrarClave" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnGuardarClave" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -90,8 +90,7 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnBorrarClave" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
@@ -148,16 +147,15 @@
               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtClave" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnInsertar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnGuardarClave" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="selectorClave" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnBorrarClave" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnBorrarClave" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
@@ -238,14 +236,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Salida"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtClave">
-      <Properties>
-        <Property name="columns" type="int" value="4"/>
-      </Properties>
-      <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtClaveKeyPressed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnInsertar">
       <Properties>
@@ -377,7 +367,9 @@
       <Properties>
         <Property name="editable" type="boolean" value="true"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
+          <StringArray count="1">
+            <StringItem index="0" value="------"/>
+          </StringArray>
         </Property>
       </Properties>
       <Events>

@@ -1,5 +1,13 @@
 package vnomina;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author cahoperro
@@ -367,7 +375,39 @@ public class MeterDatos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnObtenerDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerDatosActionPerformed
-        // TODO add your handling code here:
+       
+        String[] datos = new String[14];
+        String[] temp = new String[2];
+        try {
+            URL pagina = new URL("http://chapuzas.comocreartuweb.es/documentos/datos.txt");
+            HttpURLConnection con = (HttpURLConnection) pagina.openConnection();
+            con.connect();
+            InputStreamReader in = new InputStreamReader((InputStream) con.getContent());
+            BufferedReader buff = new BufferedReader(in);
+            for (int i = 0; i < 14; i++) {
+                temp = buff.readLine().split(" ");
+                datos[i] = temp[1];
+            }
+            txtSalarioBase.setText(datos[0]);
+            txtTransporte.setText(datos[1]);
+            txtVestuario.setText(datos[2]);
+            txtPeligrosidad.setText(datos[3]);
+            txtTrienio.setText(datos[4]);
+            txtQuinquenio.setText(datos[5]);
+            txtHoraNocturna.setText(datos[6]);
+            txtHoraFestiva.setText(datos[7]);
+            txtHoraArma.setText(datos[8]);
+            txtNochebuena.setText(datos[9]);
+            txtKilometraje.setText(datos[10]);
+            txtRadio.setText(datos[11]);
+            txtRadioBasica.setText(datos[12]);
+            txtHorasConvenio.setText(datos[13]);
+        } catch (IOException ioe) {
+            JOptionPane.showMessageDialog(null,
+                    "Chungo, Ha fallado la conexion",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnObtenerDatosActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -395,12 +435,12 @@ public class MeterDatos extends javax.swing.JFrame {
                 inicio.d.setTrienio(Double.parseDouble(txtTrienio.getText().replace(',', '.')));
                 inicio.d.setVestuario(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
                 inicio.mostrarTitulo();
-                
+
                 this.dispose();
             } catch (NumberFormatException ex) {
                 lblInfo.setVisible(true);
             }
-        }else{
+        } else {
             try {
                 inicio.principal.datos.setAntiguedad(Integer.parseInt(txtAntiguedad.getText()));
                 inicio.principal.datos.setHoraArma(Double.parseDouble(txtHoraArma.getText().replace(',', '.')));
@@ -419,7 +459,7 @@ public class MeterDatos extends javax.swing.JFrame {
                 inicio.principal.datos.setTrienio(Double.parseDouble(txtTrienio.getText().replace(',', '.')));
                 inicio.principal.datos.setVestuario(Double.parseDouble(txtVestuario.getText().replace(',', '.')));
                 inicio.mostrarTitulo();
-                
+
                 this.dispose();
             } catch (NumberFormatException ex) {
                 lblInfo.setVisible(true);

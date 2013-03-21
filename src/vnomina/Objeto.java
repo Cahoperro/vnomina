@@ -54,6 +54,7 @@ public class Objeto implements Serializable {
         }
 
         mes[0].dia[0].setFestivo(true);
+        
         mes[0].dia[5].setFestivo(true);
         mes[4].dia[0].setFestivo(true);
         mes[7].dia[14].setFestivo(true);

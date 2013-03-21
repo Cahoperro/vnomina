@@ -2,7 +2,6 @@ package vnomina;
 
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /**
  *
@@ -338,6 +337,7 @@ public class MeterHoras extends javax.swing.JFrame {
         }
         Obj.principal.diaActual--;
         mostrar();
+        selectorClave.setSelectedIndex(0);
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnAdelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdelanteActionPerformed
@@ -347,6 +347,7 @@ public class MeterHoras extends javax.swing.JFrame {
         }
         Obj.principal.diaActual++;
         mostrar();
+        selectorClave.setSelectedIndex(0);
     }//GEN-LAST:event_btnAdelanteActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
@@ -452,7 +453,7 @@ public class MeterHoras extends javax.swing.JFrame {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         
-        limpiar();
+        limpiar(true);
 
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
@@ -466,7 +467,7 @@ public class MeterHoras extends javax.swing.JFrame {
                 Obj.principal.claves.remove(selectorClave.getSelectedItem().toString());
                 selectorClave.removeItem(selectorClave.getSelectedItem().toString());
                 selectorClave.setSelectedIndex(0);
-                limpiar();
+                limpiar(true);
             }
         }
     }//GEN-LAST:event_btnBorrarClaveActionPerformed
@@ -486,6 +487,8 @@ public class MeterHoras extends javax.swing.JFrame {
             optPortuaria.setSelected(clave.isRadio());
             optBasica.setSelected(clave.isRadioB());
             checkVacaciones.setSelected(clave.isVacaciones());
+        }else{
+            limpiar(false);
         }
 
     }//GEN-LAST:event_selectorClaveItemStateChanged
@@ -613,19 +616,26 @@ public class MeterHoras extends javax.swing.JFrame {
         }
         if (valido) {
             mostrar();
-            limpiar();
+            limpiar(true);
             Obj.principal.guardado = false;
         }
     }
 
-    void limpiar() {
+    void limpiar(boolean b) {
+        
         txtServicio1.setText("");
         txtServicio2.setText("");
         txtSalida1.setText("");
         txtSalida2.setText("");
         txtEntrada1.setText("");
         txtEntrada2.setText("");
-        selectorClave.setSelectedIndex(0);
+        checkVacaciones.setSelected(false);
+        checkArma.setSelected(false);
+        checkRadio.setSelected(false);
+        if (b){
+            selectorClave.setSelectedIndex(0);
+        }
+        
     }
 
     private boolean validar(String hora) {

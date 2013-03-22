@@ -341,7 +341,7 @@ public class MeterHoras extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnAdelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdelanteActionPerformed
-
+        
         if (Obj.principal.diaActual >= Obj.principal.mes[Obj.principal.mesActual].getN() - 1) {
             Obj.principal.diaActual = -1;
         }
@@ -353,7 +353,7 @@ public class MeterHoras extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         insertar();
         for (int i = 0; i < Obj.principal.mes[Obj.principal.mesActual].getN(); i++) {
-
+            Obj.principal.diaActual = i;
             Obj.principal.mes[Obj.principal.mesActual].dia[i].calHoras(Obj.principal);
             horas += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempHoras();
             nocturnas += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempNocturnas();
@@ -361,9 +361,9 @@ public class MeterHoras extends javax.swing.JFrame {
             radio += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempRadio();
             radioB += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempRadioB();
         }
-
+        
         // Limitar el numero de decimales a 2
-
+    
         horas = (Math.floor(horas * 100) / 100);
         nocturnas = (Math.floor(nocturnas * 100) / 100);
         festivas = (Math.floor(festivas * 100) / 100);
@@ -384,7 +384,7 @@ public class MeterHoras extends javax.swing.JFrame {
         System.out.println("total festivas: " + festivas);
         System.out.println("total radio: " + radio);
         System.out.println("total radioB: " + radioB);
-
+        
         Obj.recuperarDatos();
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
@@ -452,7 +452,7 @@ public class MeterHoras extends javax.swing.JFrame {
     }//GEN-LAST:event_checkRadioStateChanged
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        
+
         limpiar(true);
 
     }//GEN-LAST:event_btnLimpiarActionPerformed
@@ -473,7 +473,7 @@ public class MeterHoras extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBorrarClaveActionPerformed
 
     private void selectorClaveItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectorClaveItemStateChanged
-        
+
         if (!"------".equals(selectorClave.getSelectedItem().toString())) {
             Dias clave = Obj.principal.claves.get(selectorClave.getSelectedItem().toString());
             txtServicio1.setText(clave.getServicio1());
@@ -487,12 +487,12 @@ public class MeterHoras extends javax.swing.JFrame {
             optPortuaria.setSelected(clave.isRadio());
             optBasica.setSelected(clave.isRadioB());
             checkVacaciones.setSelected(clave.isVacaciones());
-        }else{
+        } else {
             limpiar(false);
         }
 
     }//GEN-LAST:event_selectorClaveItemStateChanged
-    
+
     private void mostrar() {
         String diaSemana = "";
         switch (Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getDiaSemana()) {
@@ -535,7 +535,7 @@ public class MeterHoras extends javax.swing.JFrame {
     }
 
     public void insertar() {
-        
+
         boolean valido = true;
 
         Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setServicio1(txtServicio1.getText());
@@ -622,7 +622,7 @@ public class MeterHoras extends javax.swing.JFrame {
     }
 
     void limpiar(boolean b) {
-        
+
         txtServicio1.setText("");
         txtServicio2.setText("");
         txtSalida1.setText("");
@@ -632,10 +632,10 @@ public class MeterHoras extends javax.swing.JFrame {
         checkVacaciones.setSelected(false);
         checkArma.setSelected(false);
         checkRadio.setSelected(false);
-        if (b){
+        if (b) {
             selectorClave.setSelectedIndex(0);
         }
-        
+
     }
 
     private boolean validar(String hora) {

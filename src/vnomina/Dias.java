@@ -128,6 +128,7 @@ public class Dias implements Serializable {
                 manana = Ob.mes[Ob.mesActual].dia[Ob.diaActual + 1].isFestivo();
             }
         }
+        
         if (hoy && manana){
           fest = horas;  
         }else if (hoy && !manana){
@@ -147,6 +148,7 @@ public class Dias implements Serializable {
         }
         if (fest < 0) fest = 0;
         if (fest > horas) fest = horas;
+        
         return fest;
     }
 

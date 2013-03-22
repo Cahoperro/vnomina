@@ -386,6 +386,8 @@ public class MeterHoras extends javax.swing.JFrame {
         System.out.println("total radioB: " + radioB);
         
         Obj.recuperarDatos();
+        Obj.mostrarResultado();
+        Obj.calcular();
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 

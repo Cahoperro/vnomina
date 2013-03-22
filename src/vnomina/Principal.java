@@ -24,11 +24,12 @@ public class Principal extends javax.swing.JFrame {
     String fichero, textomes;
     double horas, horasFestivas, horasNocturnas, horasRadio, horasRadioB, horasArma;
     double salarioBase, antiguedad, tAntiguedad, festivos, nocturnos, pPeligrosidad;
-    double horasVacaciones, pPagasExtras, horasExtra,  pTransporte, pVestuario;
-    double cComunes, desempleo, fp, tAportaciones, tDevengado, tDeducir,tExtra, liquido;
+    double horasVacaciones, pPagasExtras, horasExtra, pTransporte, pVestuario;
+    double cComunes, desempleo, fp, tAportaciones, tDevengado, tDeducir, tExtra, liquido;
     double vExtra, vNocturna, vFestiva, vRadio, vRadioB, vArma;
     double vNochebuena, vQuinquenio, vTrienio, vKilometro, horasConvenio;
     double dCcomunes, dHorasExtra, IRPF, tIrpf, JefeEquipo, tNochebuena;
+
     /**
      * Creates new form Principal
      */
@@ -359,7 +360,7 @@ public class Principal extends javax.swing.JFrame {
 
         chkBuena.setText("Nochebuena");
 
-        chkJefeEquipo.setText("Jefe de equipo");
+        chkJefeEquipo.setText("Responsable de equipo");
 
         chkVieja.setText("Nochevieja");
 
@@ -375,7 +376,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(chkBuena)
                     .addComponent(chkJefeEquipo)
                     .addComponent(chkVieja))
-                .addGap(0, 37, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,7 +455,7 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(lblTolalAportaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblIrpf, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblTotalDeducir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31))
                     .addGroup(panelNominaLayout.createSequentialGroup()
@@ -618,7 +619,7 @@ public class Principal extends javax.swing.JFrame {
         panelHoras.setLayout(panelHorasLayout);
         panelHorasLayout.setHorizontalGroup(
             panelHorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
         );
         panelHorasLayout.setVerticalGroup(
             panelHorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -684,7 +685,7 @@ public class Principal extends javax.swing.JFrame {
         if (principal != null) {
             meteHora = new MeterHoras(this);
         }
-         
+
     }//GEN-LAST:event_btnMeterHorasActionPerformed
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
@@ -708,6 +709,8 @@ public class Principal extends javax.swing.JFrame {
                     recuperarDatos();
                     mostrarTitulo();
                     mostrarResultado();
+                    calcular();
+
                 }
             } catch (HeadlessException | IOException | ClassNotFoundException e) {
                 JOptionPane.showMessageDialog(null,
@@ -727,13 +730,18 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         //codigo cerrar archivo
-        if (principal != null || !principal.guardado) {
-            int g = JOptionPane.showConfirmDialog(null, "¿Quieres guardar antes de cerrar?");
-            if (g == 0) {
-                guardar();
-                principal = null;
-                reiniciar();
-            } else if (g == 1) {
+        if (principal != null) {
+            if (!principal.guardado) {
+                int g = JOptionPane.showConfirmDialog(null, "¿Quieres guardar antes de cerrar?");
+                if (g == 0) {
+                    guardar();
+                    principal = null;
+                    reiniciar();
+                } else if (g == 1) {
+                    principal = null;
+                    reiniciar();
+                }
+            } else {
                 principal = null;
                 reiniciar();
             }
@@ -783,66 +791,15 @@ public class Principal extends javax.swing.JFrame {
         mostrarTitulo();
         recuperarDatos();
         mostrarResultado();
+        calcular();
     }//GEN-LAST:event_selectorMesItemStateChanged
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-        
+
         // Calcular todos los totales
-        try{
-        tIrpf = Double.parseDouble(txtIrpf.getText());
-        
-        if (chkJefeEquipo.isSelected()){
-            JefeEquipo = salarioBase/10;
-        }else{
-            JefeEquipo = 0;
-        }
-        if (chkBuena.isSelected() && chkVieja.isSelected()){
-            tNochebuena = vNochebuena * 2;
-        }else if (!chkBuena.isSelected() && !chkVieja.isSelected()){
-            tNochebuena = 0;
-        }else{
-            tNochebuena = vNochebuena;
-        }
-        horasExtra = horas - 176;
-        if(horasExtra < 0) horasExtra = 0;
-        tExtra = redondear(horasExtra * vExtra);
-        if(radioQuinquenios.isSelected()){
-            tAntiguedad = (Math.floor(antiguedad/5))*vQuinquenio;
-        }else{
-            tAntiguedad = (Math.floor(antiguedad/3))*vTrienio;
-        }
-        tAntiguedad = redondear(tAntiguedad);
-        festivos = redondear(horasFestivas * vFestiva);
-        nocturnos = redondear(horasNocturnas * vNocturna);
-        if (chkPagas.isSelected()){
-        pPagasExtras = ((salarioBase + tAntiguedad + pPeligrosidad + pTransporte + pVestuario)*3)/12;
-        }else{
-            pPagasExtras = 0;
-        }
-        pPagasExtras = redondear(pPagasExtras);
-        cComunes = redondear(salarioBase + tAntiguedad + festivos + nocturnos + pPeligrosidad + 
-                pPagasExtras + JefeEquipo + tNochebuena + horasRadio + horasRadioB);
-        tDevengado = redondear(cComunes + tExtra + pTransporte + pVestuario);
-        dCcomunes = redondear((cComunes * 4.7) / 100);
-        desempleo = redondear(((cComunes + tExtra) * 1.55) / 100);
-        fp = redondear(((cComunes + tExtra) * 0.1) / 100);
-        dHorasExtra = (tExtra * 4.7)/100;
-        IRPF = redondear((tDevengado * tIrpf) / 100);
-        tAportaciones = redondear(dCcomunes + fp + desempleo);
-        tDeducir = redondear(dCcomunes + desempleo + fp + dHorasExtra + IRPF);
-        liquido = redondear(tDevengado - tDeducir);
-        
-        insertarDatos();
-        recuperarDatos();
-        mostrarResultado();
-        }catch(NumberFormatException e){
-            txtIrpf.setText("¿Irpf?");
-            txtIrpf.requestFocus();
-            txtIrpf.selectAll();
-        }
-     
+        calcular();
     }//GEN-LAST:event_btnCalcularActionPerformed
-    public void recuperarDatos(){
+    public void recuperarDatos() {
         horasConvenio = principal.datos.getHorasConvenio();
         salarioBase = principal.datos.getSalarioBase();
         antiguedad = principal.datos.getAntiguedad();
@@ -882,13 +839,14 @@ public class Principal extends javax.swing.JFrame {
         chkBuena.setSelected(principal.mes[principal.mesActual].isNochebuena());
         chkVieja.setSelected(principal.mes[principal.mesActual].isNochevieja());
         chkJefeEquipo.setSelected(principal.mes[principal.mesActual].isJefeEquipo());
-        if (principal.mes[principal.mesActual].isTrienios()){
+        if (principal.mes[principal.mesActual].isTrienios()) {
             radioTrienio.setSelected(true);
-        }else{
+        } else {
             radioQuinquenios.setSelected(true);
         }
-      }
-    private void insertarDatos(){
+    }
+
+    private void insertarDatos() {
         principal.mes[principal.mesActual].setIrpf(IRPF);
         principal.mes[principal.mesActual].setcComunes(dCcomunes);
         principal.mes[principal.mesActual].setTotalDevengado(tDevengado);
@@ -901,28 +859,33 @@ public class Principal extends javax.swing.JFrame {
         principal.mes[principal.mesActual].setLiquido(liquido);
         principal.mes[principal.mesActual].settIrpf(tIrpf);
         principal.mes[principal.mesActual].setExtras(tExtra);
-        
-        if(chkPagas.isSelected()) {
+
+        if (chkPagas.isSelected()) {
             principal.mes[principal.mesActual].setPorrateo(true);
-        }else{
+        } else {
             principal.mes[principal.mesActual].setPorrateo(false);
         }
-        if (chkBuena.isSelected()){
+        if (chkBuena.isSelected()) {
             principal.mes[principal.mesActual].setNochebuena(true);
-        }else{
-            principal.mes[principal.mesActual].setNochebuena(false); 
+        } else {
+            principal.mes[principal.mesActual].setNochebuena(false);
         }
-        if (chkVieja.isSelected()){
+        if (chkVieja.isSelected()) {
             principal.mes[principal.mesActual].setNochevieja(true);
-        }else{
+        } else {
             principal.mes[principal.mesActual].setNochevieja(false);
         }
-        if (chkJefeEquipo.isSelected()){
+        if (chkJefeEquipo.isSelected()) {
             principal.mes[principal.mesActual].setJefeEquipo(true);
-        }else{
+        } else {
             principal.mes[principal.mesActual].setJefeEquipo(false);
         }
-        
+        if (radioTrienio.isSelected()) {
+            principal.mes[principal.mesActual].setTrienios(true);
+        }else{
+            principal.mes[principal.mesActual].setTrienios(false);
+        }
+
     }
     private void btnCambioDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambioDatosActionPerformed
         // Cambiar los datos iniciales del año
@@ -970,6 +933,63 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
+    public void calcular() {
+        try {
+            tIrpf = Double.parseDouble(txtIrpf.getText());
+
+            if (chkJefeEquipo.isSelected()) {
+                JefeEquipo = salarioBase / 10;
+            } else {
+                JefeEquipo = 0;
+            }
+            if (chkBuena.isSelected() && chkVieja.isSelected()) {
+                tNochebuena = vNochebuena * 2;
+            } else if (!chkBuena.isSelected() && !chkVieja.isSelected()) {
+                tNochebuena = 0;
+            } else {
+                tNochebuena = vNochebuena;
+            }
+            horasExtra = horas - 176;
+            if (horasExtra < 0) {
+                horasExtra = 0;
+            }
+            tExtra = redondear(horasExtra * vExtra);
+            if (radioQuinquenios.isSelected()) {
+                tAntiguedad = (Math.floor(antiguedad / 5)) * vQuinquenio;
+            } else {
+                tAntiguedad = (Math.floor(antiguedad / 3)) * vTrienio;
+            }
+            tAntiguedad = redondear(tAntiguedad);
+            festivos = redondear(horasFestivas * vFestiva);
+            nocturnos = redondear(horasNocturnas * vNocturna);
+            if (chkPagas.isSelected()) {
+                pPagasExtras = ((salarioBase + tAntiguedad + pPeligrosidad + pTransporte + pVestuario) * 3) / 12;
+            } else {
+                pPagasExtras = 0;
+            }
+            pPagasExtras = redondear(pPagasExtras);
+            cComunes = redondear(salarioBase + tAntiguedad + festivos + nocturnos + pPeligrosidad
+                    + pPagasExtras + JefeEquipo + tNochebuena + horasRadio + horasRadioB);
+            tDevengado = redondear(cComunes + tExtra + pTransporte + pVestuario);
+            dCcomunes = redondear((cComunes * 4.7) / 100);
+            desempleo = redondear(((cComunes + tExtra) * 1.55) / 100);
+            fp = redondear(((cComunes + tExtra) * 0.1) / 100);
+            dHorasExtra = (tExtra * 4.7) / 100;
+            IRPF = redondear((tDevengado * tIrpf) / 100);
+            tAportaciones = redondear(dCcomunes + fp + desempleo);
+            tDeducir = redondear(dCcomunes + desempleo + fp + dHorasExtra + IRPF);
+            liquido = redondear(tDevengado - tDeducir);
+            principal.guardado = false;
+            insertarDatos();
+            recuperarDatos();
+            mostrarResultado();
+        } catch (NumberFormatException e) {
+            txtIrpf.setText("¿Irpf?");
+            txtIrpf.requestFocus();
+            txtIrpf.selectAll();
+        }
+    }
+
     public void mostrarTitulo() {
         int texto = anio;
         textomes = selectorMes.getSelectedItem().toString();
@@ -988,14 +1008,14 @@ public class Principal extends javax.swing.JFrame {
         lblIrpf.setText("" + IRPF);
         lblTotalDevengado.setText("" + tDevengado);
         lblTotalDeducir.setText("" + tDeducir);
-        lblLiquido.setText("" + liquido +" €");
+        lblLiquido.setText("" + liquido + " €");
         lblPagas.setText("" + pPagasExtras);
         lblFestivos.setText("" + festivos);
         lblNocturnidad.setText("" + nocturnos);
         lblAntiguedad.setText("" + tAntiguedad);
         lblHorasExtras.setText("" + tExtra);
-        txtIrpf.setText(""+tIrpf);
-        
+        txtIrpf.setText("" + tIrpf);
+
     }
 
     private void reiniciar() {
@@ -1017,6 +1037,7 @@ public class Principal extends javax.swing.JFrame {
         lblTolalAportaciones.setText("0.0");
         lblTotalDeducir.setText("0.0");
         lblTotalDevengado.setText("0.0");
+        txtIrpf.setText("");
         selectorMes.setEnabled(false);
         btnCalcular.setEnabled(false);
     }
@@ -1026,9 +1047,9 @@ public class Principal extends javax.swing.JFrame {
         this.dispose();
         System.exit(0);
     }
-    
-    private double redondear(double n){
-        return (Math.floor(n*100))/100;
+
+    private double redondear(double n) {
+        return (Math.floor(n * 100)) / 100;
     }
 
     public static void main(String args[]) {

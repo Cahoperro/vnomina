@@ -341,7 +341,7 @@
                                   <Component id="lblIrpf" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                                   <Component id="lblTotalDeducir" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="109" max="32767" attributes="0"/>
+                              <EmptySpace pref="67" max="32767" attributes="0"/>
                               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
@@ -695,7 +695,7 @@
                               <Component id="chkJefeEquipo" min="-2" max="-2" attributes="0"/>
                               <Component id="chkVieja" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="37" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -749,7 +749,7 @@
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="chkJefeEquipo">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Jefe de equipo"/>
+                    <Property name="text" type="java.lang.String" value="Responsable de equipo"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="chkVieja">
@@ -773,7 +773,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="820" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="817" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">

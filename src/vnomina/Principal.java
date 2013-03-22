@@ -1015,7 +1015,20 @@ public class Principal extends javax.swing.JFrame {
         lblAntiguedad.setText("" + tAntiguedad);
         lblHorasExtras.setText("" + tExtra);
         txtIrpf.setText("" + tIrpf);
-
+        
+        for(int i = 0; i < principal.mes[principal.mesActual].getN(); i++){
+            tabla.setValueAt(i+1, i, 0);
+            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getServicio1(), i, 1);
+            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getEntrada1(), i, 2);
+            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getSalida1(), i, 3);
+            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getServicio2(), i, 4);
+            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getEntrada2(), i, 5);
+            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getSalida2(), i, 6);
+            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getTempHoras(), i, 7);
+            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getTempNocturnas(), i, 8);
+            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getTempFestivas(), i, 9);
+        }
+        
     }
 
     private void reiniciar() {

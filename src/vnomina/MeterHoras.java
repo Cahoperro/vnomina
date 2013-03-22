@@ -428,12 +428,7 @@ public class MeterHoras extends javax.swing.JFrame {
         if (!"".equals(p)) {
             Obj.principal.claves.put(p, tem);
             selectorClave.addItem(p);
-            JOptionPane.showMessageDialog(null,
-                    "La clave (" + p + ") ha sido guardada con exito",
-                    "Enhorabuena",
-                    JOptionPane.INFORMATION_MESSAGE);
-
-        } else {
+          } else {
             JOptionPane.showMessageDialog(null,
                     "Tienes que escribir una clave",
                     "Aviso",

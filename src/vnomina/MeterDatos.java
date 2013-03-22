@@ -12,10 +12,10 @@ import javax.swing.JOptionPane;
  *
  * @author cahoperro
  */
-public class MeterDatos extends javax.swing.JFrame {
+public class MeterDatos extends javax.swing.JFrame implements Runnable{
 
     Principal inicio;
-
+    Thread hilo;
     /**
      * Creates new form MeterDatos
      */
@@ -375,15 +375,30 @@ public class MeterDatos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnObtenerDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerDatosActionPerformed
-       
+        btnObtenerDatos.setText("Espera...");
+        if(hilo == null){
+            hilo = new Thread(this);
+            hilo.start();
+        }
+    }//GEN-LAST:event_btnObtenerDatosActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    @Override
+    public void run() {
         String[] datos = new String[14];
         String[] temp = new String[2];
         try {
+            
             URL pagina = new URL("http://chapuzas.comocreartuweb.es/documentos/datos.txt");
             HttpURLConnection con = (HttpURLConnection) pagina.openConnection();
             con.connect();
             InputStreamReader in = new InputStreamReader((InputStream) con.getContent());
             BufferedReader buff = new BufferedReader(in);
+            
             for (int i = 0; i < 14; i++) {
                 temp = buff.readLine().split(" ");
                 datos[i] = temp[1];
@@ -407,14 +422,12 @@ public class MeterDatos extends javax.swing.JFrame {
                     "Chungo, Ha fallado la conexion",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
+        }finally{
+            btnObtenerDatos.setText("Obtener datos");
+            hilo = null;
         }
-    }//GEN-LAST:event_btnObtenerDatosActionPerformed
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-
-        this.dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
+    }
+    
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         if (inicio.principal.datos == null) {
             try {
@@ -504,4 +517,5 @@ public class MeterDatos extends javax.swing.JFrame {
     private javax.swing.JTextField txtTrienio;
     private javax.swing.JTextField txtVestuario;
     // End of variables declaration//GEN-END:variables
+
 }

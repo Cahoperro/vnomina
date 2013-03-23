@@ -6,9 +6,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -43,6 +46,8 @@ public class Principal extends javax.swing.JFrame {
         chkVieja.setVisible(false);
         selectorMes.setEnabled(false);
         btnCalcular.setEnabled(false);
+        TableCellRenderer renderer = new RenderCelda();
+        tabla.setDefaultRenderer(Object.class, renderer);
     }
 
     @SuppressWarnings("unchecked")
@@ -666,9 +671,9 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        
+
         // Creacion de un archivo nuevo
-        
+
         if (principal == null) {
             String p = JOptionPane.showInputDialog("Introduce el año");
             try {
@@ -689,9 +694,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnMeterHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMeterHorasActionPerformed
-        
+
         // Crear instancia MeterHoras para introducir horarios
-        
+
         if (principal != null) {
             meteHora = new MeterHoras(this);
         }
@@ -699,9 +704,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMeterHorasActionPerformed
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
-       
+
         // Codigo de abrir archivo
-        
+
         if (principal == null) {
             JFileChooser selector = new JFileChooser();
             FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos chp", "chp");
@@ -741,9 +746,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-        
+
         //codigo cerrar archivo
-        
+
         if (principal != null) {
             if (!principal.guardado) {
                 int g = JOptionPane.showConfirmDialog(null, "¿Quieres guardar antes de cerrar?");
@@ -763,9 +768,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        
+
         //codigo guardar
-        
+
         if (principal != null) {
             if (fichero == null) {
                 guardarComo();
@@ -776,9 +781,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarComoActionPerformed
-        
+
         //codigo guardar como
-        
+
         if (principal != null) {
             guardarComo();
         }
@@ -1034,24 +1039,24 @@ public class Principal extends javax.swing.JFrame {
         lblNocturnidad.setText("" + nocturnos);
         lblAntiguedad.setText("" + tAntiguedad);
         lblHorasExtras.setText("" + tExtra);
-        lblArma.setText(""+tArma);
+        lblArma.setText("" + tArma);
         txtIrpf.setText("" + tIrpf);
         for (int i = 0; i < 32; i++) {
             for (int j = 0; j < 10; j++) {
                 tabla.setValueAt(null, i, j);
             }
         }
-
+        tabla.setShowHorizontalLines(true);
         for (int i = 0; i < principal.mes[principal.mesActual].getN(); i++) {
             tabla.setValueAt(i + 1, i, 0);
-
+            
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getServicio1(), i, 1);
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getEntrada1(), i, 2);
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getSalida1(), i, 3);
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getServicio2(), i, 4);
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getEntrada2(), i, 5);
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getSalida2(), i, 6);
-            
+
             if (principal.mes[principal.mesActual].dia[i].getTempHoras() == 0) {
                 tabla.setValueAt(null, i, 7);
             } else {
@@ -1069,8 +1074,8 @@ public class Principal extends javax.swing.JFrame {
             }
         }
         tabla.setValueAt("Totales ", principal.mes[principal.mesActual].getN(), 6);
-        double sumaHoras = (principal.mes[principal.mesActual].getHorasMes()) + 
-                (principal.mes[principal.mesActual].getHorasVacaciones());
+        double sumaHoras = (principal.mes[principal.mesActual].getHorasMes())
+                + (principal.mes[principal.mesActual].getHorasVacaciones());
         tabla.setValueAt(sumaHoras, principal.mes[principal.mesActual].getN(), 7);
         tabla.setValueAt(principal.mes[principal.mesActual].getHorasNocturnas(), principal.mes[principal.mesActual].getN(), 8);
         tabla.setValueAt(principal.mes[principal.mesActual].getHorasFestivas(), principal.mes[principal.mesActual].getN(), 9);

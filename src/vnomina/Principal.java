@@ -666,7 +666,9 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        
         // Creacion de un archivo nuevo
+        
         if (principal == null) {
             String p = JOptionPane.showInputDialog("Introduce el año");
             try {
@@ -687,7 +689,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnMeterHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMeterHorasActionPerformed
+        
         // Crear instancia MeterHoras para introducir horarios
+        
         if (principal != null) {
             meteHora = new MeterHoras(this);
         }
@@ -695,7 +699,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMeterHorasActionPerformed
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
+       
         // Codigo de abrir archivo
+        
         if (principal == null) {
             JFileChooser selector = new JFileChooser();
             FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos chp", "chp");
@@ -735,7 +741,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        
         //codigo cerrar archivo
+        
         if (principal != null) {
             if (!principal.guardado) {
                 int g = JOptionPane.showConfirmDialog(null, "¿Quieres guardar antes de cerrar?");
@@ -755,7 +763,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        
         //codigo guardar
+        
         if (principal != null) {
             if (fichero == null) {
                 guardarComo();
@@ -766,7 +776,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarComoActionPerformed
+        
         //codigo guardar como
+        
         if (principal != null) {
             guardarComo();
         }

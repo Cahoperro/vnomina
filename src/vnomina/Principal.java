@@ -26,7 +26,7 @@ public class Principal extends javax.swing.JFrame {
     double salarioBase, antiguedad, tAntiguedad, festivos, nocturnos, pPeligrosidad;
     double horasVacaciones, pPagasExtras, horasExtra, pTransporte, pVestuario;
     double cComunes, desempleo, fp, tAportaciones, tDevengado, tDeducir, tExtra, liquido;
-    double vExtra, vNocturna, vFestiva, vRadio, vRadioB, vArma;
+    double vExtra, vNocturna, vFestiva, vRadio, vRadioB, vArma, tArma;
     double vNochebuena, vQuinquenio, vTrienio, vKilometro, horasConvenio;
     double dCcomunes, dHorasExtra, IRPF, tIrpf, JefeEquipo, tNochebuena;
 
@@ -112,6 +112,8 @@ public class Principal extends javax.swing.JFrame {
         chkBuena = new javax.swing.JCheckBox();
         chkJefeEquipo = new javax.swing.JCheckBox();
         chkVieja = new javax.swing.JCheckBox();
+        jLabel14 = new javax.swing.JLabel();
+        lblArma = new javax.swing.JLabel();
         panelHoras = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
@@ -395,6 +397,10 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel14.setText("Plus arma");
+
+        lblArma.setText("0.0");
+
         javax.swing.GroupLayout panelNominaLayout = new javax.swing.GroupLayout(panelNomina);
         panelNomina.setLayout(panelNominaLayout);
         panelNominaLayout.setHorizontalGroup(
@@ -403,7 +409,6 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel9)
                     .addGroup(panelNominaLayout.createSequentialGroup()
                         .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -432,8 +437,11 @@ public class Principal extends javax.swing.JFrame {
                                     .addComponent(lblAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblPagas, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblHorasExtras, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblSalarioBase, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(2, 2, 2)))))
+                                    .addComponent(lblSalarioBase, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblArma, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(2, 2, 2))))
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel9))
                 .addGap(110, 110, 110)
                 .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel24)
@@ -476,54 +484,52 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel23))
                 .addGap(18, 18, 18)
-                .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(panelNominaLayout.createSequentialGroup()
-                            .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel24)
-                                .addComponent(lblComunes)
-                                .addComponent(lblSalarioBase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel25)
-                                .addComponent(lblDesempleo))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel26)
-                                .addComponent(lblFP))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel27)
-                                .addComponent(lblTolalAportaciones))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel28)
-                                .addComponent(lblIrpf))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel29)
-                                .addComponent(lblTotalDeducir))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel8))
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNominaLayout.createSequentialGroup()
-                        .addComponent(lblHorasExtras)
+                .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelNominaLayout.createSequentialGroup()
+                        .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel24)
+                            .addComponent(lblComunes)
+                            .addComponent(lblSalarioBase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblAntiguedad)
+                        .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel25)
+                            .addComponent(lblDesempleo)
+                            .addComponent(lblHorasExtras))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblFestivos)
+                        .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel26)
+                            .addComponent(lblFP)
+                            .addComponent(lblAntiguedad))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblPeligrosidad)
+                        .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel27)
+                            .addComponent(lblTolalAportaciones)
+                            .addComponent(lblFestivos))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblNocturnidad)
+                        .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel28)
+                            .addComponent(lblIrpf)
+                            .addComponent(lblPeligrosidad))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblPagas)))
+                        .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel29)
+                            .addComponent(lblTotalDeducir)
+                            .addComponent(lblNocturnidad))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(lblPagas))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(lblArma)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(28, 28, 28)
                 .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -942,6 +948,7 @@ public class Principal extends javax.swing.JFrame {
             } else {
                 JefeEquipo = 0;
             }
+            tArma = horasArma * vArma;
             if (chkBuena.isSelected() && chkVieja.isSelected()) {
                 tNochebuena = vNochebuena * 2;
             } else if (!chkBuena.isSelected() && !chkVieja.isSelected()) {
@@ -949,6 +956,7 @@ public class Principal extends javax.swing.JFrame {
             } else {
                 tNochebuena = vNochebuena;
             }
+            horas = horas + horasVacaciones;
             horasExtra = horas - 176;
             if (horasExtra < 0) {
                 horasExtra = 0;
@@ -969,7 +977,7 @@ public class Principal extends javax.swing.JFrame {
             }
             pPagasExtras = redondear(pPagasExtras);
             cComunes = redondear(salarioBase + tAntiguedad + festivos + nocturnos + pPeligrosidad
-                    + pPagasExtras + JefeEquipo + tNochebuena + horasRadio + horasRadioB);
+                    + pPagasExtras + JefeEquipo + tNochebuena + horasRadio + horasRadioB + tArma);
             tDevengado = redondear(cComunes + tExtra + pTransporte + pVestuario);
             dCcomunes = redondear((cComunes * 4.7) / 100);
             desempleo = redondear(((cComunes + tExtra) * 1.55) / 100);
@@ -1014,6 +1022,7 @@ public class Principal extends javax.swing.JFrame {
         lblNocturnidad.setText("" + nocturnos);
         lblAntiguedad.setText("" + tAntiguedad);
         lblHorasExtras.setText("" + tExtra);
+        lblArma.setText(""+tArma);
         txtIrpf.setText("" + tIrpf);
         for (int i = 0; i < 32; i++) {
             for (int j = 0; j < 10; j++) {
@@ -1030,6 +1039,7 @@ public class Principal extends javax.swing.JFrame {
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getServicio2(), i, 4);
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getEntrada2(), i, 5);
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getSalida2(), i, 6);
+            
             if (principal.mes[principal.mesActual].dia[i].getTempHoras() == 0) {
                 tabla.setValueAt(null, i, 7);
             } else {
@@ -1047,7 +1057,9 @@ public class Principal extends javax.swing.JFrame {
             }
         }
         tabla.setValueAt("Totales ", principal.mes[principal.mesActual].getN(), 6);
-        tabla.setValueAt(principal.mes[principal.mesActual].getHorasMes(), principal.mes[principal.mesActual].getN(), 7);
+        double sumaHoras = (principal.mes[principal.mesActual].getHorasMes()) + 
+                (principal.mes[principal.mesActual].getHorasVacaciones());
+        tabla.setValueAt(sumaHoras, principal.mes[principal.mesActual].getN(), 7);
         tabla.setValueAt(principal.mes[principal.mesActual].getHorasNocturnas(), principal.mes[principal.mesActual].getN(), 8);
         tabla.setValueAt(principal.mes[principal.mesActual].getHorasFestivas(), principal.mes[principal.mesActual].getN(), 9);
     }
@@ -1071,6 +1083,7 @@ public class Principal extends javax.swing.JFrame {
         lblTolalAportaciones.setText("0.0");
         lblTotalDeducir.setText("0.0");
         lblTotalDevengado.setText("0.0");
+        lblArma.setText("0.0");
         txtIrpf.setText("");
         selectorMes.setEnabled(false);
         btnCalcular.setEnabled(false);
@@ -1140,6 +1153,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
@@ -1159,6 +1173,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAntiguedad;
+    private javax.swing.JLabel lblArma;
     private javax.swing.JLabel lblComunes;
     private javax.swing.JLabel lblDesempleo;
     private javax.swing.JLabel lblFP;

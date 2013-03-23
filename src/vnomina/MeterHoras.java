@@ -360,6 +360,15 @@ public class MeterHoras extends javax.swing.JFrame {
             festivas += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempFestivas();
             radio += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempRadio();
             radioB += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempRadioB();
+            if(Obj.principal.mes[Obj.principal.mesActual].dia[i].isArma()){
+                arma += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempHoras();
+            }
+            if(arma > 162){
+                arma = 162;
+            }
+            if(Obj.principal.mes[Obj.principal.mesActual].dia[i].isVacaciones()){
+                vacaciones += (double)162/Obj.principal.mes[Obj.principal.mesActual].getN();
+            }
         }
         
         // Limitar el numero de decimales a 2
@@ -369,7 +378,9 @@ public class MeterHoras extends javax.swing.JFrame {
         festivas = (Math.floor(festivas * 100) / 100);
         radio = (Math.floor(radio * 100) / 100);
         radioB = (Math.floor(radioB * 100) / 100);
-
+        arma = (Math.floor(arma * 100) / 100);
+        vacaciones = (Math.floor(vacaciones * 100) / 100);
+        
         // Introducir las horas en el Objeto principal
 
         Obj.principal.mes[Obj.principal.mesActual].setHorasMes(horas);
@@ -377,13 +388,16 @@ public class MeterHoras extends javax.swing.JFrame {
         Obj.principal.mes[Obj.principal.mesActual].setHorasFestivas(festivas);
         Obj.principal.mes[Obj.principal.mesActual].setHorasRadio(radio);
         Obj.principal.mes[Obj.principal.mesActual].setHorasRadioB(radioB);
-
+        Obj.principal.mes[Obj.principal.mesActual].setHorasArma(arma);
+        Obj.principal.mes[Obj.principal.mesActual].setHorasVacaciones(vacaciones);
 
         System.out.println("total horas: " + horas);
         System.out.println("total nocturnas: " + nocturnas);
         System.out.println("total festivas: " + festivas);
         System.out.println("total radio: " + radio);
         System.out.println("total radioB: " + radioB);
+        System.out.println("total arma: "+ arma);
+        System.out.println("total vacaciones: "+ vacaciones);
         
         Obj.recuperarDatos();
         Obj.mostrarResultado();

@@ -802,8 +802,8 @@
                         <Column editable="false" title="Ent" type="java.lang.String"/>
                         <Column editable="false" title="Sal" type="java.lang.String"/>
                         <Column editable="false" title="Horas" type="java.lang.Double"/>
-                        <Column editable="true" title="Nocturnas" type="java.lang.Double"/>
-                        <Column editable="true" title="Festivas" type="java.lang.Double"/>
+                        <Column editable="false" title="Nocturnas" type="java.lang.Double"/>
+                        <Column editable="false" title="Festivas" type="java.lang.Double"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

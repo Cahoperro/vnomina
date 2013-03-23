@@ -595,7 +595,7 @@ public class Principal extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, true, true
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -882,7 +882,7 @@ public class Principal extends javax.swing.JFrame {
         }
         if (radioTrienio.isSelected()) {
             principal.mes[principal.mesActual].setTrienios(true);
-        }else{
+        } else {
             principal.mes[principal.mesActual].setTrienios(false);
         }
 
@@ -1015,20 +1015,41 @@ public class Principal extends javax.swing.JFrame {
         lblAntiguedad.setText("" + tAntiguedad);
         lblHorasExtras.setText("" + tExtra);
         txtIrpf.setText("" + tIrpf);
-        
-        for(int i = 0; i < principal.mes[principal.mesActual].getN(); i++){
-            tabla.setValueAt(i+1, i, 0);
+        for (int i = 0; i < 32; i++) {
+            for (int j = 0; j < 10; j++) {
+                tabla.setValueAt(null, i, j);
+            }
+        }
+
+        for (int i = 0; i < principal.mes[principal.mesActual].getN(); i++) {
+            tabla.setValueAt(i + 1, i, 0);
+
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getServicio1(), i, 1);
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getEntrada1(), i, 2);
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getSalida1(), i, 3);
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getServicio2(), i, 4);
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getEntrada2(), i, 5);
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getSalida2(), i, 6);
-            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getTempHoras(), i, 7);
-            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getTempNocturnas(), i, 8);
-            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getTempFestivas(), i, 9);
+            if (principal.mes[principal.mesActual].dia[i].getTempHoras() == 0) {
+                tabla.setValueAt(null, i, 7);
+            } else {
+                tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getTempHoras(), i, 7);
+            }
+            if (principal.mes[principal.mesActual].dia[i].getTempNocturnas() == 0) {
+                tabla.setValueAt(null, i, 8);
+            } else {
+                tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getTempNocturnas(), i, 8);
+            }
+            if (principal.mes[principal.mesActual].dia[i].getTempFestivas() == 0) {
+                tabla.setValueAt(null, i, 9);
+            } else {
+                tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getTempFestivas(), i, 9);
+            }
         }
-        
+        tabla.setValueAt("Totales ", principal.mes[principal.mesActual].getN(), 6);
+        tabla.setValueAt(principal.mes[principal.mesActual].getHorasMes(), principal.mes[principal.mesActual].getN(), 7);
+        tabla.setValueAt(principal.mes[principal.mesActual].getHorasNocturnas(), principal.mes[principal.mesActual].getN(), 8);
+        tabla.setValueAt(principal.mes[principal.mesActual].getHorasFestivas(), principal.mes[principal.mesActual].getN(), 9);
     }
 
     private void reiniciar() {

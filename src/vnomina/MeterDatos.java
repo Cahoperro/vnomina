@@ -129,7 +129,7 @@ public class MeterDatos extends javax.swing.JFrame implements Runnable{
 
         txtHoraFestiva.setColumns(6);
 
-        jLabel1.setText("Horas convenio");
+        jLabel1.setText("Horas anuales");
 
         jLabel2.setText("Años antiguedad");
 
@@ -185,7 +185,7 @@ public class MeterDatos extends javax.swing.JFrame implements Runnable{
 
         jLabel15.setText("Radioscopia basica");
 
-        jLabel16.setText("Radioscopia");
+        jLabel16.setText("Radioscopia A.port");
 
         btnObtenerDatos.setText("Obtener datos");
         btnObtenerDatos.setToolTipText("Obtener los datos desde internet");
@@ -214,7 +214,7 @@ public class MeterDatos extends javax.swing.JFrame implements Runnable{
                 .addComponent(btnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,7 +256,7 @@ public class MeterDatos extends javax.swing.JFrame implements Runnable{
                                 .addComponent(txtRadio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel16)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(24, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()

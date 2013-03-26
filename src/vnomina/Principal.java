@@ -1,5 +1,6 @@
 package vnomina;
 
+import java.awt.Color;
 import java.awt.HeadlessException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -710,7 +711,7 @@ public class Principal extends javax.swing.JFrame {
             FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos chp", "chp");
             selector.setFileFilter(filtro);
             try {
-                if (selector.showOpenDialog(null) == selector.APPROVE_OPTION) {
+                if (selector.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                     fichero = selector.getSelectedFile().toString();
                     FileInputStream fis = new FileInputStream(fichero);
                     ObjectInputStream ois = new ObjectInputStream(fis);
@@ -796,7 +797,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAyudaActionPerformed
 
     private void btnAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcercaActionPerformed
-        new AcercaDe();
+        AcercaDe acercaDe = new AcercaDe();
     }//GEN-LAST:event_btnAcercaActionPerformed
 
     private void selectorMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectorMesItemStateChanged
@@ -917,7 +918,7 @@ public class Principal extends javax.swing.JFrame {
     public void guardarComo() {
         JFileChooser selector = new JFileChooser();
         try {
-            if (selector.showSaveDialog(null) == selector.APPROVE_OPTION) {
+            if (selector.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
                 fichero = selector.getSelectedFile().toString();
                 //Creamos el archivo
                 FileOutputStream fs = new FileOutputStream(fichero + ".chp");
@@ -1028,6 +1029,7 @@ public class Principal extends javax.swing.JFrame {
             }
         }
         tabla.setShowHorizontalLines(true);
+        tabla.setGridColor(Color.lightGray);
         for (int i = 0; i < principal.mes[principal.mesActual].getN(); i++) {
             tabla.setValueAt(i + 1, i, 0);
             
@@ -1119,6 +1121,7 @@ public class Principal extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 Principal inicio = new Principal();
             }

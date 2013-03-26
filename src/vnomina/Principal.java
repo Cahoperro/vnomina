@@ -125,7 +125,7 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Vnomina");
         setName("principal"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(825, 535));
+        setPreferredSize(new java.awt.Dimension(900, 540));
         setResizable(false);
 
         barra.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -264,6 +264,8 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        panelGeneral.setPreferredSize(new java.awt.Dimension(900, 510));
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
         jLabel1.setText("PERCEPCIONES SALARIALES:");
 
@@ -348,6 +350,7 @@ public class Principal extends javax.swing.JFrame {
         txtIrpf.setColumns(3);
 
         btnCalcular.setText("Calcular");
+        btnCalcular.setPreferredSize(new java.awt.Dimension(120, 30));
         btnCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCalcularActionPerformed(evt);
@@ -410,74 +413,82 @@ public class Principal extends javax.swing.JFrame {
         panelNominaLayout.setHorizontalGroup(
             panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelNominaLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
                 .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(panelNominaLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panelNominaLayout.createSequentialGroup()
-                                .addGap(65, 65, 65)
                                 .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTotalDevengado, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblVestuario, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNominaLayout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel14))
+                                .addGap(110, 110, 110)
+                                .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel24)
+                                    .addComponent(jLabel23)
+                                    .addComponent(jLabel25)
+                                    .addComponent(jLabel26)
+                                    .addComponent(jLabel27)
+                                    .addComponent(jLabel28)
+                                    .addComponent(jLabel29))
+                                .addGap(34, 34, 34)
+                                .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblComunes, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblDesempleo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFP, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTolalAportaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblIrpf, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTotalDeducir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 164, Short.MAX_VALUE))
+                            .addGroup(panelNominaLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel13))
+                            .addGroup(panelNominaLayout.createSequentialGroup()
                                 .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNocturnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblPeligrosidad, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblFestivos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblPagas, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblHorasExtras, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblSalarioBase, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblArma, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(2, 2, 2))))
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel9))
-                .addGap(110, 110, 110)
-                .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel24)
-                    .addComponent(jLabel23)
-                    .addComponent(jLabel25)
-                    .addComponent(jLabel26)
-                    .addComponent(jLabel27)
-                    .addComponent(jLabel28)
-                    .addComponent(jLabel29)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel30))
-                .addGap(34, 34, 34)
-                .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelNominaLayout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
+                                .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(panelNominaLayout.createSequentialGroup()
+                                        .addGap(65, 65, 65)
+                                        .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblTotalDevengado, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblVestuario, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNominaLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblNocturnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblPeligrosidad, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblFestivos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblPagas, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblHorasExtras, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblSalarioBase, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblArma, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(2, 2, 2)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel30)
+                                .addGap(9, 9, 9)))
                         .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblComunes, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDesempleo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblFP, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTolalAportaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblIrpf, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTotalDeducir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))
-                    .addGroup(panelNominaLayout.createSequentialGroup()
-                        .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIrpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblLiquido, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(142, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNominaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCalcular)
+                            .addGroup(panelNominaLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtIrpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(panelNominaLayout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(lblLiquido, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNominaLayout.createSequentialGroup()
+                        .addContainerGap(738, Short.MAX_VALUE)
+                        .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(24, 24, 24))
         );
         panelNominaLayout.setVerticalGroup(
@@ -548,64 +559,62 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addComponent(lblVestuario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel30)
-                        .addComponent(lblLiquido))
-                    .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel12)
-                        .addComponent(lblTotalDevengado)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(btnCalcular)
-                .addContainerGap())
+                .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(lblTotalDevengado)
+                    .addComponent(lblLiquido)
+                    .addComponent(jLabel30))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         panelGeneral.addTab("Mostrar nomina", panelNomina);
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Dia", "Servicio 1", "Ent", "Sal", "Servicio 2", "Ent", "Sal", "Horas", "Nocturnas", "Festivas"
+                "F", "Dia", "Servicio 1", "Ent", "Sal", "Servicio 2", "Ent", "Sal", "Horas", "Nocturnas", "Festivas"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -620,20 +629,24 @@ public class Principal extends javax.swing.JFrame {
         tabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabla);
         tabla.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        tabla.getColumnModel().getColumn(0).setPreferredWidth(35);
-        tabla.getColumnModel().getColumn(0).setMaxWidth(35);
-        tabla.getColumnModel().getColumn(1).setPreferredWidth(180);
-        tabla.getColumnModel().getColumn(4).setPreferredWidth(180);
+        tabla.getColumnModel().getColumn(0).setPreferredWidth(20);
+        tabla.getColumnModel().getColumn(0).setMaxWidth(20);
+        tabla.getColumnModel().getColumn(1).setPreferredWidth(35);
+        tabla.getColumnModel().getColumn(1).setMaxWidth(35);
+        tabla.getColumnModel().getColumn(2).setPreferredWidth(170);
+        tabla.getColumnModel().getColumn(5).setPreferredWidth(170);
 
         javax.swing.GroupLayout panelHorasLayout = new javax.swing.GroupLayout(panelHoras);
         panelHoras.setLayout(panelHorasLayout);
         panelHorasLayout.setHorizontalGroup(
             panelHorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 882, Short.MAX_VALUE)
         );
         panelHorasLayout.setVerticalGroup(
             panelHorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(panelHorasLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         panelGeneral.addTab("Mostrar horarios", panelHoras);
@@ -649,9 +662,7 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(selectorMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 825, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+            .addComponent(panelGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -662,8 +673,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(lblInfo)
                         .addComponent(selectorMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelGeneral)
-                .addContainerGap())
+                .addComponent(panelGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE))
         );
 
         pack();
@@ -1024,44 +1034,50 @@ public class Principal extends javax.swing.JFrame {
         lblArma.setText("" + tArma);
         txtIrpf.setText("" + tIrpf);
         for (int i = 0; i < 32; i++) {
-            for (int j = 0; j < 10; j++) {
+            for (int j = 0; j < 11; j++) {
                 tabla.setValueAt(null, i, j);
             }
         }
         tabla.setShowHorizontalLines(true);
         tabla.setGridColor(Color.lightGray);
         for (int i = 0; i < principal.mes[principal.mesActual].getN(); i++) {
-            tabla.setValueAt(i + 1, i, 0);
+            tabla.setValueAt(i + 1, i, 1);
             
-            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getServicio1(), i, 1);
-            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getEntrada1(), i, 2);
-            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getSalida1(), i, 3);
-            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getServicio2(), i, 4);
-            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getEntrada2(), i, 5);
-            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getSalida2(), i, 6);
+            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getServicio1(), i, 2);
+            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getEntrada1(), i, 3);
+            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getSalida1(), i, 4);
+            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getServicio2(), i, 5);
+            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getEntrada2(), i, 6);
+            tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getSalida2(), i, 7);
 
-            if (principal.mes[principal.mesActual].dia[i].getTempHoras() == 0) {
-                tabla.setValueAt(null, i, 7);
-            } else {
-                tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getTempHoras(), i, 7);
+            if (principal.mes[principal.mesActual].dia[i].isFestivo()){
+                tabla.setValueAt(" ", i, 0);
+            }else{
+                tabla.setValueAt("", i, 0);
             }
-            if (principal.mes[principal.mesActual].dia[i].getTempNocturnas() == 0) {
+            
+            if (principal.mes[principal.mesActual].dia[i].getTempHoras() == 0) {
                 tabla.setValueAt(null, i, 8);
             } else {
-                tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getTempNocturnas(), i, 8);
+                tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getTempHoras(), i, 8);
             }
-            if (principal.mes[principal.mesActual].dia[i].getTempFestivas() == 0) {
+            if (principal.mes[principal.mesActual].dia[i].getTempNocturnas() == 0) {
                 tabla.setValueAt(null, i, 9);
             } else {
-                tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getTempFestivas(), i, 9);
+                tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getTempNocturnas(), i, 9);
+            }
+            if (principal.mes[principal.mesActual].dia[i].getTempFestivas() == 0) {
+                tabla.setValueAt(null, i, 10);
+            } else {
+                tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getTempFestivas(), i, 10);
             }
         }
-        tabla.setValueAt("Totales ", principal.mes[principal.mesActual].getN(), 6);
+        tabla.setValueAt("Totales ", principal.mes[principal.mesActual].getN(), 7);
         double sumaHoras = (principal.mes[principal.mesActual].getHorasMes())
                 + (principal.mes[principal.mesActual].getHorasVacaciones());
-        tabla.setValueAt(sumaHoras, principal.mes[principal.mesActual].getN(), 7);
-        tabla.setValueAt(principal.mes[principal.mesActual].getHorasNocturnas(), principal.mes[principal.mesActual].getN(), 8);
-        tabla.setValueAt(principal.mes[principal.mesActual].getHorasFestivas(), principal.mes[principal.mesActual].getN(), 9);
+        tabla.setValueAt(sumaHoras, principal.mes[principal.mesActual].getN(), 8);
+        tabla.setValueAt(principal.mes[principal.mesActual].getHorasNocturnas(), principal.mes[principal.mesActual].getN(), 9);
+        tabla.setValueAt(principal.mes[principal.mesActual].getHorasFestivas(), principal.mes[principal.mesActual].getN(), 10);
     }
 
     private void reiniciar() {

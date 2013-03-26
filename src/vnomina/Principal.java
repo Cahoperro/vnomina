@@ -6,8 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -957,6 +955,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     public void calcular() {
+        Calculo cal = new Calculo(this);
         try {
             tIrpf = Double.parseDouble(txtIrpf.getText());
 
@@ -965,7 +964,7 @@ public class Principal extends javax.swing.JFrame {
             } else {
                 JefeEquipo = 0;
             }
-            tArma = horasArma * vArma;
+            
             if (chkBuena.isSelected() && chkVieja.isSelected()) {
                 tNochebuena = vNochebuena * 2;
             } else if (!chkBuena.isSelected() && !chkVieja.isSelected()) {
@@ -973,37 +972,19 @@ public class Principal extends javax.swing.JFrame {
             } else {
                 tNochebuena = vNochebuena;
             }
-            horas = horas + horasVacaciones;
-            horasExtra = horas - 176;
-            if (horasExtra < 0) {
-                horasExtra = 0;
-            }
-            tExtra = redondear(horasExtra * vExtra);
+            
             if (radioQuinquenios.isSelected()) {
                 tAntiguedad = (Math.floor(antiguedad / 5)) * vQuinquenio;
             } else {
                 tAntiguedad = (Math.floor(antiguedad / 3)) * vTrienio;
             }
-            tAntiguedad = redondear(tAntiguedad);
-            festivos = redondear(horasFestivas * vFestiva);
-            nocturnos = redondear(horasNocturnas * vNocturna);
+            // comprobar que esta marcado el prorrateo de pagas extras
             if (chkPagas.isSelected()) {
                 pPagasExtras = ((salarioBase + tAntiguedad + pPeligrosidad + pTransporte + pVestuario) * 3) / 12;
             } else {
                 pPagasExtras = 0;
             }
-            pPagasExtras = redondear(pPagasExtras);
-            cComunes = redondear(salarioBase + tAntiguedad + festivos + nocturnos + pPeligrosidad
-                    + pPagasExtras + JefeEquipo + tNochebuena + horasRadio + horasRadioB + tArma);
-            tDevengado = redondear(cComunes + tExtra + pTransporte + pVestuario);
-            dCcomunes = redondear((cComunes * 4.7) / 100);
-            desempleo = redondear(((cComunes + tExtra) * 1.55) / 100);
-            fp = redondear(((cComunes + tExtra) * 0.1) / 100);
-            dHorasExtra = (tExtra * 4.7) / 100;
-            IRPF = redondear((tDevengado * tIrpf) / 100);
-            tAportaciones = redondear(dCcomunes + fp + desempleo);
-            tDeducir = redondear(dCcomunes + desempleo + fp + dHorasExtra + IRPF);
-            liquido = redondear(tDevengado - tDeducir);
+            cal.calcular();
             principal.guardado = false;
             insertarDatos();
             recuperarDatos();
@@ -1112,11 +1093,7 @@ public class Principal extends javax.swing.JFrame {
         System.exit(0);
     }
 
-    private double redondear(double n) {
-        return (Math.floor(n * 100)) / 100;
-    }
-
-    public static void main(String args[]) {
+   public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

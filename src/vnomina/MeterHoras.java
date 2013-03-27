@@ -13,7 +13,7 @@ public class MeterHoras extends javax.swing.JFrame {
     private String[] nombreMeses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo",
         "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
     int diaSem;
-    private double horas, nocturnas, festivas, radio, radioB, arma, vacaciones;
+    private double horas, nocturnas, festivas, radio, radioB, arma;
     MeterHoras meteHora;
     // Constructor de la ventana meter horas
 
@@ -77,9 +77,9 @@ public class MeterHoras extends javax.swing.JFrame {
         btnGuardarClave = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnBorrarClave = new javax.swing.JButton();
-        checkVacaciones = new javax.swing.JCheckBox();
         btnLimpiar = new javax.swing.JButton();
         selectorClave = new javax.swing.JComboBox();
+        lblFestividad = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Introducir horarios");
@@ -203,8 +203,6 @@ public class MeterHoras extends javax.swing.JFrame {
             }
         });
 
-        checkVacaciones.setText("Vacaciones");
-
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,6 +216,9 @@ public class MeterHoras extends javax.swing.JFrame {
                 selectorClaveItemStateChanged(evt);
             }
         });
+
+        lblFestividad.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
+        lblFestividad.setForeground(new java.awt.Color(205, 46, 46));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -253,13 +254,13 @@ public class MeterHoras extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(txtEntrada1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(jLabel3)
-                                                    .addComponent(txtEntrada2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addComponent(checkVacaciones))
+                                                    .addComponent(txtEntrada2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel4)
                                             .addComponent(txtSalida2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtSalida1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(txtSalida1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(lblFestividad, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,7 +283,7 @@ public class MeterHoras extends javax.swing.JFrame {
                     .addComponent(btnAdelante)
                     .addComponent(btnAtras)
                     .addComponent(lblFecha))
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -303,8 +304,8 @@ public class MeterHoras extends javax.swing.JFrame {
                                 .addComponent(txtSalida1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtSalida2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(checkVacaciones))
+                        .addGap(18, 18, 18)
+                        .addComponent(lblFestividad, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
@@ -366,9 +367,7 @@ public class MeterHoras extends javax.swing.JFrame {
             if(arma > 162){
                 arma = 162;
             }
-            if(Obj.principal.mes[Obj.principal.mesActual].dia[i].isVacaciones()){
-                vacaciones += (double)162/Obj.principal.mes[Obj.principal.mesActual].getN();
-            }
+            
         }
         
         // Limitar el numero de decimales a 2
@@ -379,7 +378,7 @@ public class MeterHoras extends javax.swing.JFrame {
         radio = (Math.floor(radio * 100) / 100);
         radioB = (Math.floor(radioB * 100) / 100);
         arma = (Math.floor(arma * 100) / 100);
-        vacaciones = (Math.floor(vacaciones * 100) / 100);
+        
         
         // Introducir las horas en el Objeto principal
 
@@ -389,15 +388,6 @@ public class MeterHoras extends javax.swing.JFrame {
         Obj.principal.mes[Obj.principal.mesActual].setHorasRadio(radio);
         Obj.principal.mes[Obj.principal.mesActual].setHorasRadioB(radioB);
         Obj.principal.mes[Obj.principal.mesActual].setHorasArma(arma);
-        Obj.principal.mes[Obj.principal.mesActual].setHorasVacaciones(vacaciones);
-
-        System.out.println("total horas: " + horas);
-        System.out.println("total nocturnas: " + nocturnas);
-        System.out.println("total festivas: " + festivas);
-        System.out.println("total radio: " + radio);
-        System.out.println("total radioB: " + radioB);
-        System.out.println("total arma: "+ arma);
-        System.out.println("total vacaciones: "+ vacaciones);
         
         Obj.recuperarDatos();
         Obj.mostrarResultado();
@@ -497,7 +487,7 @@ public class MeterHoras extends javax.swing.JFrame {
             checkRadio.setSelected(clave.isRadioscopia());
             optPortuaria.setSelected(clave.isRadio());
             optBasica.setSelected(clave.isRadioB());
-            checkVacaciones.setSelected(clave.isVacaciones());
+            
         } else {
             limpiar(false);
         }
@@ -531,6 +521,7 @@ public class MeterHoras extends javax.swing.JFrame {
         }
 
         lblFecha.setText(diaSemana + " " + (Obj.principal.diaActual + 1) + " de " + nombreMeses[Obj.principal.mesActual]);
+        lblFestividad.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getFestividad());
         txtServicio1.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getServicio1());
         txtServicio2.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getServicio2());
         txtSalida1.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getSalida1());
@@ -542,7 +533,7 @@ public class MeterHoras extends javax.swing.JFrame {
         checkRadio.setSelected(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].isRadioscopia());
         optPortuaria.setSelected(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].isRadio());
         optBasica.setSelected(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].isRadioB());
-        checkVacaciones.setSelected(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].isVacaciones());
+        
     }
 
     public void insertar() {
@@ -616,12 +607,6 @@ public class MeterHoras extends javax.swing.JFrame {
             Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadio(false);
         }
 
-        if (checkVacaciones.isSelected()) {
-            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setVacaciones(true);
-        } else {
-            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setVacaciones(false);
-        }
-
         if (Obj.principal.diaActual < Obj.principal.mes[Obj.principal.mesActual].getN() - 1) {
             Obj.principal.diaActual++;
         }
@@ -640,13 +625,11 @@ public class MeterHoras extends javax.swing.JFrame {
         txtSalida2.setText("");
         txtEntrada1.setText("");
         txtEntrada2.setText("");
-        checkVacaciones.setSelected(false);
         checkArma.setSelected(false);
         checkRadio.setSelected(false);
         if (b) {
             selectorClave.setSelectedIndex(0);
         }
-
     }
 
     private boolean validar(String hora) {
@@ -684,7 +667,6 @@ public class MeterHoras extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkArma;
     private javax.swing.JCheckBox checkFestivo;
     private javax.swing.JCheckBox checkRadio;
-    private javax.swing.JCheckBox checkVacaciones;
     private javax.swing.ButtonGroup grupoRadio;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -692,6 +674,7 @@ public class MeterHoras extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblFestividad;
     private javax.swing.JRadioButton optBasica;
     private javax.swing.JRadioButton optPortuaria;
     private javax.swing.JComboBox selectorClave;

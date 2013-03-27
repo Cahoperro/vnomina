@@ -54,15 +54,23 @@ public class Objeto implements Serializable {
         }
 
         mes[0].dia[0].setFestivo(true);
-        
+        mes[0].dia[0].setFestividad("Año nuevo");
         mes[0].dia[5].setFestivo(true);
+        mes[0].dia[5].setFestividad("Dia de Reyes");
         mes[4].dia[0].setFestivo(true);
+        mes[4].dia[0].setFestividad("Dia del trabajo");
         mes[7].dia[14].setFestivo(true);
+        mes[7].dia[14].setFestividad("Virgen de agosto");
         mes[9].dia[11].setFestivo(true);
+        mes[9].dia[11].setFestividad("Dia de la hispanidad");
         mes[10].dia[0].setFestivo(true);
+        mes[10].dia[0].setFestividad("Todos los santos");
         mes[11].dia[5].setFestivo(true);
+        mes[11].dia[5].setFestividad("Dia de la constitución");
         mes[11].dia[7].setFestivo(true);
+        mes[11].dia[7].setFestividad("Inmaculada");
         mes[11].dia[24].setFestivo(true);
+        mes[11].dia[24].setFestividad("Navidad");
 
         // calculo semana santa
         int a, b, c, d, e;
@@ -86,20 +94,28 @@ public class Objeto implements Serializable {
             switch (dm) {
                 case 3:
                     mes[m - 1].dia[dm - 3].setFestivo(true);
+                    mes[m - 1].dia[dm - 3].setFestividad("Viernes santo");
                     mes[m - 2].dia[30].setFestivo(true);
+                    mes[m - 2].dia[30].setFestividad("Jueves santo");
                     break;
                 case 2:
                     mes[m - 2].dia[30].setFestivo(true);
+                    mes[m - 2].dia[30].setFestividad("Viernes santo");
                     mes[m - 2].dia[29].setFestivo(true);
+                    mes[m - 2].dia[29].setFestividad("Jueves santo");
                     break;
                 case 1:
                     mes[m - 2].dia[29].setFestivo(true);
+                    mes[m - 2].dia[29].setFestividad("Viernes santo");
                     mes[m - 2].dia[28].setFestivo(true);
+                    mes[m - 2].dia[28].setFestividad("Jueves santo");
                     break;
             }
         } else {
             mes[m - 1].dia[dm - 3].setFestivo(true);
+            mes[m - 1].dia[dm - 3].setFestividad("Viernes santo");
             mes[m - 1].dia[dm - 4].setFestivo(true);
+            mes[m - 1].dia[dm - 4].setFestividad("Jueves santo");
         }
     }
 }

@@ -126,6 +126,7 @@ public class Principal extends javax.swing.JFrame {
         setTitle("Vnomina");
         setName("principal"); // NOI18N
         setPreferredSize(new java.awt.Dimension(900, 550));
+        setResizable(false);
 
         barra.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         barra.setFloatable(false);
@@ -263,7 +264,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        panelGeneral.setPreferredSize(new java.awt.Dimension(900, 460));
+        panelGeneral.setPreferredSize(new java.awt.Dimension(900, 440));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
         jLabel1.setText("PERCEPCIONES SALARIALES:");
@@ -411,11 +412,8 @@ public class Principal extends javax.swing.JFrame {
         panelNomina.setLayout(panelNominaLayout);
         panelNominaLayout.setHorizontalGroup(
             panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNominaLayout.createSequentialGroup()
-                .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelNominaLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelNominaLayout.createSequentialGroup()
+                .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelNominaLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -446,7 +444,7 @@ public class Principal extends javax.swing.JFrame {
                                         .addComponent(lblTotalDevengado, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(lblVestuario, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(lblTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, Short.MAX_VALUE))
+                                .addGap(15, 450, Short.MAX_VALUE))
                             .addGroup(panelNominaLayout.createSequentialGroup()
                                 .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panelNominaLayout.createSequentialGroup()
@@ -475,13 +473,19 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel30)
                         .addGap(18, 18, 18)
                         .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelNominaLayout.createSequentialGroup()
-                                .addComponent(txtIrpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel13))
-                            .addComponent(lblLiquido, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(27, 27, 27))
+                                .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelNominaLayout.createSequentialGroup()
+                                        .addComponent(txtIrpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel13)))
+                                .addGap(41, 41, 41))
+                            .addComponent(lblLiquido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelNominaLayout.createSequentialGroup()
+                        .addContainerGap(738, Short.MAX_VALUE)
+                        .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24))
         );
         panelNominaLayout.setVerticalGroup(
             panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -537,12 +541,11 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jLabel14)
                             .addComponent(lblArma)))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIrpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
-                .addGap(5, 5, 5)
-                .addComponent(jLabel9)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel13)
+                    .addComponent(txtIrpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelNominaLayout.createSequentialGroup()
@@ -552,21 +555,19 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel12))
                     .addGroup(panelNominaLayout.createSequentialGroup()
-                        .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTransporte)
-                            .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblLiquido)
-                                .addComponent(jLabel30)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblVestuario)
+                        .addComponent(lblTransporte)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelNominaLayout.createSequentialGroup()
+                                .addComponent(lblVestuario)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lblTotalDevengado))
-                            .addGroup(panelNominaLayout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(39, Short.MAX_VALUE))
+                            .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblLiquido)
+                                .addComponent(jLabel30)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         panelGeneral.addTab("Mostrar nomina", panelNomina);
@@ -644,7 +645,9 @@ public class Principal extends javax.swing.JFrame {
         );
         panelHorasLayout.setVerticalGroup(
             panelHorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+            .addGroup(panelHorasLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         panelGeneral.addTab("Mostrar horarios", panelHoras);
@@ -671,8 +674,8 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(lblInfo)
                         .addComponent(selectorMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addComponent(panelGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
@@ -990,7 +993,9 @@ public class Principal extends javax.swing.JFrame {
             }
             // comprobar que esta marcado el prorrateo de pagas extras
             if (chkPagas.isSelected()) {
-                pPagasExtras = ((salarioBase + tAntiguedad + pPeligrosidad + pTransporte + pVestuario) * 3) / 12;
+                // descomentar para el año 2014
+                pPagasExtras = ((salarioBase + tAntiguedad + pPeligrosidad 
+                        /*+ pTransporte + pVestuario*/) * 3) / 12;
             } else {
                 pPagasExtras = 0;
             }

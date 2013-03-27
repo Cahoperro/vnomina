@@ -9,8 +9,9 @@ import java.util.GregorianCalendar;
  */
 public class Dias implements Serializable {
 
-    private boolean arma, festivo, radioscopia, radio, radioB, vacaciones;
-    private String servicio1, servicio2, entrada1, entrada2, salida1, salida2, claveServicio;
+    private boolean arma, festivo, radioscopia, radio, radioB;
+    private String servicio1, servicio2, entrada1, entrada2;
+    private String festividad, salida1, salida2, claveServicio;
     private double tempHoras, tempNocturnas, tempFestivas, tempRadio, tempRadioB;
     private double tempHoras1, tempHoras2, tempNoct1, tempNoct2, tempFest1, tempFest2;
     private int diaSemana;
@@ -152,20 +153,20 @@ public class Dias implements Serializable {
         return fest;
     }
 
+    public String getFestividad() {
+        return festividad;
+    }
+
+    public void setFestividad(String festividad) {
+        this.festividad = festividad;
+    }
+
     public double getTempRadio() {
         return tempRadio;
     }
 
     public double getTempRadioB() {
         return tempRadioB;
-    }
-
-    public boolean isVacaciones() {
-        return vacaciones;
-    }
-
-    public void setVacaciones(boolean vacaciones) {
-        this.vacaciones = vacaciones;
     }
 
     public int getDiaSemana() {

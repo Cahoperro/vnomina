@@ -1,7 +1,9 @@
 package vnomina;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.HeadlessException;
+import java.awt.Toolkit;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -36,8 +38,14 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     public Principal() {
-
+        Toolkit t = Toolkit.getDefaultToolkit();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         initComponents();
+        if(screenSize.height > 600){
+            setSize(950,650);
+        }else{
+            setSize(900, 540);
+        }
         this.addWindowListener(new EscuchaVentana(this));
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -564,7 +572,7 @@ public class Principal extends javax.swing.JFrame {
                             .addGroup(panelNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblLiquido)
                                 .addComponent(jLabel30)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -640,13 +648,14 @@ public class Principal extends javax.swing.JFrame {
         panelHoras.setLayout(panelHorasLayout);
         panelHorasLayout.setHorizontalGroup(
             panelHorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 882, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHorasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 858, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelHorasLayout.setVerticalGroup(
             panelHorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHorasLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 26, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
         );
 
         panelGeneral.addTab("Mostrar horarios", panelHoras);
@@ -673,8 +682,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(lblInfo)
                         .addComponent(selectorMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(panelGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE))
         );
 
         pack();

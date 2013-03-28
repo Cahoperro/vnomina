@@ -55,7 +55,7 @@ public class AcercaDe extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Acerca de Vnomina");
-        setPreferredSize(new java.awt.Dimension(400, 400));
+        setPreferredSize(new java.awt.Dimension(400, 420));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(235, 178, 120));

@@ -1,5 +1,6 @@
 package vnomina;
 
+import java.awt.Color;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
@@ -84,7 +85,7 @@ public class MeterHoras extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Introducir horarios");
         setName("MeterHoras"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(530, 355));
+        setPreferredSize(new java.awt.Dimension(530, 370));
         setResizable(false);
 
         btnAdelante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/Button_Next.png"))); // NOI18N
@@ -131,6 +132,7 @@ public class MeterHoras extends javax.swing.JFrame {
         });
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.setPreferredSize(new java.awt.Dimension(100, 25));
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
@@ -188,6 +190,7 @@ public class MeterHoras extends javax.swing.JFrame {
         );
 
         btnGuardarClave.setText("Guardar clave");
+        btnGuardarClave.setPreferredSize(new java.awt.Dimension(120, 25));
         btnGuardarClave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarClaveActionPerformed(evt);
@@ -197,6 +200,7 @@ public class MeterHoras extends javax.swing.JFrame {
         jLabel5.setText("Clave servicio");
 
         btnBorrarClave.setText("Borrar clave");
+        btnBorrarClave.setPreferredSize(new java.awt.Dimension(120, 25));
         btnBorrarClave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBorrarClaveActionPerformed(evt);
@@ -204,6 +208,7 @@ public class MeterHoras extends javax.swing.JFrame {
         });
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.setPreferredSize(new java.awt.Dimension(100, 25));
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
@@ -237,9 +242,9 @@ public class MeterHoras extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnInsertar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnBorrarClave)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnGuardarClave))
+                                .addComponent(btnBorrarClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnGuardarClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,9 +275,9 @@ public class MeterHoras extends javax.swing.JFrame {
                                         .addComponent(btnAdelante))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnLimpiar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnAceptar)))
+                                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(26, 26, 26))))
         );
         layout.setVerticalGroup(
@@ -312,13 +317,13 @@ public class MeterHoras extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInsertar)
-                    .addComponent(btnGuardarClave)
+                    .addComponent(btnGuardarClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(selectorClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBorrarClave))
+                    .addComponent(btnBorrarClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptar)
-                    .addComponent(btnLimpiar))
+                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -342,7 +347,7 @@ public class MeterHoras extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnAdelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdelanteActionPerformed
-        
+
         if (Obj.principal.diaActual >= Obj.principal.mes[Obj.principal.mesActual].getN() - 1) {
             Obj.principal.diaActual = -1;
         }
@@ -361,25 +366,24 @@ public class MeterHoras extends javax.swing.JFrame {
             festivas += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempFestivas();
             radio += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempRadio();
             radioB += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempRadioB();
-            if(Obj.principal.mes[Obj.principal.mesActual].dia[i].isArma()){
+            if (Obj.principal.mes[Obj.principal.mesActual].dia[i].isArma()) {
                 arma += Obj.principal.mes[Obj.principal.mesActual].dia[i].getTempHoras();
             }
-            if(arma > 162){
+            if (arma > 162) {
                 arma = 162;
             }
-            
         }
-        
+
         // Limitar el numero de decimales a 2
-    
+
         horas = (Math.floor(horas * 100) / 100);
         nocturnas = (Math.floor(nocturnas * 100) / 100);
         festivas = (Math.floor(festivas * 100) / 100);
         radio = (Math.floor(radio * 100) / 100);
         radioB = (Math.floor(radioB * 100) / 100);
         arma = (Math.floor(arma * 100) / 100);
-        
-        
+
+
         // Introducir las horas en el Objeto principal
 
         Obj.principal.mes[Obj.principal.mesActual].setHorasMes(horas);
@@ -388,7 +392,7 @@ public class MeterHoras extends javax.swing.JFrame {
         Obj.principal.mes[Obj.principal.mesActual].setHorasRadio(radio);
         Obj.principal.mes[Obj.principal.mesActual].setHorasRadioB(radioB);
         Obj.principal.mes[Obj.principal.mesActual].setHorasArma(arma);
-        
+
         Obj.recuperarDatos();
         Obj.mostrarResultado();
         Obj.calcular();
@@ -398,47 +402,17 @@ public class MeterHoras extends javax.swing.JFrame {
     private void btnGuardarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClaveActionPerformed
 
         String p = JOptionPane.showInputDialog("Introduce la clave a guardar");
-        Dias tem = new Dias();
-
-        tem.setServicio1(txtServicio1.getText());
-        tem.setServicio2(txtServicio2.getText());
-        tem.setEntrada1(txtEntrada1.getText());
-        tem.setEntrada2(txtEntrada2.getText());
-        tem.setSalida1(txtSalida1.getText());
-        tem.setSalida2(txtSalida2.getText());
-
-        if (checkArma.isSelected()) {
-            tem.setArma(true);
+        if (Obj.principal.claves.get(p) != null) {
+            int g = JOptionPane.showConfirmDialog(null,
+                    "La clave (" + p + ") ya existe"
+                    + " ¿Quieres sobreescribirla?");
+            if (g == 0) {
+                selectorClave.removeItem(p);
+                guardarClave(p);
+            }
         } else {
-            tem.setArma(false);
+            guardarClave(p);
         }
-
-        if (checkRadio.isSelected()) {
-            tem.setRadioscopia(true);
-        } else {
-            tem.setRadioscopia(false);
-        }
-
-        if (optBasica.isSelected()) {
-            tem.setRadioB(true);
-        } else {
-            tem.setRadioB(false);
-        }
-        if (optPortuaria.isSelected()) {
-            tem.setRadio(true);
-        } else {
-            tem.setRadio(false);
-        }
-        if (!"".equals(p)) {
-            Obj.principal.claves.put(p, tem);
-            selectorClave.addItem(p);
-          } else {
-            JOptionPane.showMessageDialog(null,
-                    "Tienes que escribir una clave",
-                    "Aviso",
-                    JOptionPane.INFORMATION_MESSAGE);
-        }
-
     }//GEN-LAST:event_btnGuardarClaveActionPerformed
 
     private void checkRadioStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_checkRadioStateChanged
@@ -477,6 +451,12 @@ public class MeterHoras extends javax.swing.JFrame {
 
         if (!"------".equals(selectorClave.getSelectedItem().toString())) {
             Dias clave = Obj.principal.claves.get(selectorClave.getSelectedItem().toString());
+            txtServicio1.setForeground(Color.red);
+            txtServicio2.setForeground(Color.red);
+            txtSalida1.setForeground(Color.red);
+            txtSalida2.setForeground(Color.red);
+            txtEntrada1.setForeground(Color.red);
+            txtEntrada2.setForeground(Color.red);
             txtServicio1.setText(clave.getServicio1());
             txtServicio2.setText(clave.getServicio2());
             txtSalida1.setText(clave.getSalida1());
@@ -487,7 +467,7 @@ public class MeterHoras extends javax.swing.JFrame {
             checkRadio.setSelected(clave.isRadioscopia());
             optPortuaria.setSelected(clave.isRadio());
             optBasica.setSelected(clave.isRadioB());
-            
+
         } else {
             limpiar(false);
         }
@@ -519,7 +499,12 @@ public class MeterHoras extends javax.swing.JFrame {
                 diaSemana = "Domingo";
                 break;
         }
-
+        txtServicio1.setForeground(Color.BLACK);
+        txtServicio2.setForeground(Color.BLACK);
+        txtSalida1.setForeground(Color.BLACK);
+        txtSalida2.setForeground(Color.BLACK);
+        txtEntrada1.setForeground(Color.BLACK);
+        txtEntrada2.setForeground(Color.BLACK);
         lblFecha.setText(diaSemana + " " + (Obj.principal.diaActual + 1) + " de " + nombreMeses[Obj.principal.mesActual]);
         lblFestividad.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getFestividad());
         txtServicio1.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getServicio1());
@@ -533,7 +518,7 @@ public class MeterHoras extends javax.swing.JFrame {
         checkRadio.setSelected(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].isRadioscopia());
         optPortuaria.setSelected(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].isRadio());
         optBasica.setSelected(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].isRadioB());
-        
+
     }
 
     public void insertar() {
@@ -629,6 +614,48 @@ public class MeterHoras extends javax.swing.JFrame {
         checkRadio.setSelected(false);
         if (b) {
             selectorClave.setSelectedIndex(0);
+        }
+    }
+
+    private void guardarClave(String p) {
+        Dias tem = new Dias();
+        tem.setServicio1(txtServicio1.getText());
+        tem.setServicio2(txtServicio2.getText());
+        tem.setEntrada1(txtEntrada1.getText());
+        tem.setEntrada2(txtEntrada2.getText());
+        tem.setSalida1(txtSalida1.getText());
+        tem.setSalida2(txtSalida2.getText());
+
+        if (checkArma.isSelected()) {
+            tem.setArma(true);
+        } else {
+            tem.setArma(false);
+        }
+
+        if (checkRadio.isSelected()) {
+            tem.setRadioscopia(true);
+        } else {
+            tem.setRadioscopia(false);
+        }
+
+        if (optBasica.isSelected()) {
+            tem.setRadioB(true);
+        } else {
+            tem.setRadioB(false);
+        }
+        if (optPortuaria.isSelected()) {
+            tem.setRadio(true);
+        } else {
+            tem.setRadio(false);
+        }
+        if (!"".equals(p)) {
+            Obj.principal.claves.put(p, tem);
+            selectorClave.addItem(p);
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Tienes que escribir una clave",
+                    "Aviso",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

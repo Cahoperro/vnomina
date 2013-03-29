@@ -44,7 +44,7 @@ public class Principal extends javax.swing.JFrame {
         if(screenSize.height > 600){
             setSize(950,650);
         }else{
-            setSize(900, 540);
+            setExtendedState(MAXIMIZED_BOTH);
         }
         this.addWindowListener(new EscuchaVentana(this));
         this.setLocationRelativeTo(null);

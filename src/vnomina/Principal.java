@@ -42,7 +42,7 @@ public class Principal extends javax.swing.JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         initComponents();
         if(screenSize.height > 600){
-            setSize(950,650);
+            setSize(1024,650);
         }else{
             setExtendedState(MAXIMIZED_BOTH);
         }

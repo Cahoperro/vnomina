@@ -4,11 +4,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -42,9 +47,9 @@ public class Principal extends javax.swing.JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         initComponents();
         if(screenSize.height > 600){
-            setSize(1024,650);
+            setSize(1000,650);
         }else{
-            setExtendedState(MAXIMIZED_BOTH);
+           setExtendedState(MAXIMIZED_BOTH);
         }
         this.addWindowListener(new EscuchaVentana(this));
         this.setLocationRelativeTo(null);
@@ -813,6 +818,15 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
         // Codigo de ayuda
+        File archivo=new File("../vnomina/ayuda/index.html");
+        //String curDir = System.getProperty("user.dir");
+        URL hsURL = null;
+        try {
+            hsURL = archivo.toURI().toURL();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        UtilNavegador.abrirURL(hsURL.toString());
     }//GEN-LAST:event_btnAyudaActionPerformed
 
     private void btnAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcercaActionPerformed
@@ -1112,6 +1126,11 @@ public class Principal extends javax.swing.JFrame {
         lblTotalDevengado.setText("0.0");
         lblArma.setText("0.0");
         txtIrpf.setText("");
+        for (int i = 0; i < 32; i++) {
+            for (int j = 0; j < 11; j++) {
+                tabla.setValueAt(null, i, j);
+            }
+        }
         selectorMes.setEnabled(false);
         btnCalcular.setEnabled(false);
     }

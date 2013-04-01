@@ -4,16 +4,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -818,15 +813,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
         // Codigo de ayuda
-        File archivo=new File("../vnomina/ayuda/index.html");
-        //String curDir = System.getProperty("user.dir");
-        URL hsURL = null;
-        try {
-            hsURL = archivo.toURI().toURL();
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        UtilNavegador.abrirURL(hsURL.toString());
+        
+        UtilNavegador.abrirURL("http://www.chapuzas.comocreartuweb.es/ayuda/index.html");
     }//GEN-LAST:event_btnAyudaActionPerformed
 
     private void btnAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcercaActionPerformed

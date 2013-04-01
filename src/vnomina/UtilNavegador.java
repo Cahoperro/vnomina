@@ -25,8 +25,8 @@ public class UtilNavegador {
             if (nombreSO.startsWith("Windows")) {
                 Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
             } else {
-                //se asume  Unix or Linux
-                String[] navegadores = {"firefox", "opera", "konqueror", "epiphany", "mozilla", "netscape"};
+                //se asume  Unix o Linux
+                String[] navegadores = {"chrome","firefox", "opera", "konqueror", "epiphany", "mozilla", "netscape"};
                 String navegador = null;
                 for (int contador = 0; contador < navegadores.length && navegador == null; contador++) {
                     if (Runtime.getRuntime().exec(new String[]{"which", navegadores[contador]}).waitFor() == 0) {

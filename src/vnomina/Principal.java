@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -41,10 +42,10 @@ public class Principal extends javax.swing.JFrame {
         Toolkit t = Toolkit.getDefaultToolkit();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         initComponents();
-        if(screenSize.height > 600){
-            setSize(1000,650);
-        }else{
-           setExtendedState(MAXIMIZED_BOTH);
+        if (screenSize.height > 600) {
+            setSize(1000, 650);
+        } else {
+            setExtendedState(MAXIMIZED_BOTH);
         }
         this.addWindowListener(new EscuchaVentana(this));
         this.setLocationRelativeTo(null);
@@ -813,7 +814,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
         // Codigo de ayuda
-        
+
         UtilNavegador.abrirURL("http://www.chapuzas.comocreartuweb.es/ayuda/index.html");
     }//GEN-LAST:event_btnAyudaActionPerformed
 
@@ -941,15 +942,22 @@ public class Principal extends javax.swing.JFrame {
         try {
             if (selector.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
                 fichero = selector.getSelectedFile().toString();
-                //Creamos el archivo
-                FileOutputStream fs = new FileOutputStream(fichero + ".chp");
-                //Esta clase tiene el método writeObject() que necesitamos
-                ObjectOutputStream os = new ObjectOutputStream(fs);
-                //El método writeObject() serializa el objeto y lo escribe en el archivo
-                os.writeObject(principal);
-                //Hay que cerrar siempre el archivo
-                os.close();
-                principal.guardado = true;
+                File fl = new File(fichero + ".chp");
+                
+                if (fl.exists()) {
+                    int g = JOptionPane.showConfirmDialog(null, "El archivo " + fl.getName() + " ya existe, ¿sobreescribir?");
+                    if (g == 0) {
+                        //Creamos el archivo
+                        FileOutputStream fs = new FileOutputStream(fichero + ".chp");
+                        //Esta clase tiene el método writeObject() que necesitamos
+                        ObjectOutputStream os = new ObjectOutputStream(fs);
+                        //El método writeObject() serializa el objeto y lo escribe en el archivo
+                        os.writeObject(principal);
+                        //Hay que cerrar siempre el archivo
+                        os.close();
+                        principal.guardado = true;
+                    }
+                }
             }
         } catch (HeadlessException | IOException e) {
             fichero = null;
@@ -986,7 +994,7 @@ public class Principal extends javax.swing.JFrame {
             } else {
                 JefeEquipo = 0;
             }
-            
+
             if (chkBuena.isSelected() && chkVieja.isSelected()) {
                 tNochebuena = vNochebuena * 2;
             } else if (!chkBuena.isSelected() && !chkVieja.isSelected()) {
@@ -994,7 +1002,7 @@ public class Principal extends javax.swing.JFrame {
             } else {
                 tNochebuena = vNochebuena;
             }
-            
+
             if (radioQuinquenios.isSelected()) {
                 tAntiguedad = (Math.floor(antiguedad / 5)) * vQuinquenio;
             } else {
@@ -1003,8 +1011,7 @@ public class Principal extends javax.swing.JFrame {
             // comprobar que esta marcado el prorrateo de pagas extras
             if (chkPagas.isSelected()) {
                 // descomentar para el año 2014
-                pPagasExtras = ((salarioBase + tAntiguedad + pPeligrosidad 
-                        /*+ pTransporte + pVestuario*/) * 3) / 12;
+                pPagasExtras = ((salarioBase + tAntiguedad + pPeligrosidad /*+ pTransporte + pVestuario*/) * 3) / 12;
             } else {
                 pPagasExtras = 0;
             }
@@ -1055,7 +1062,7 @@ public class Principal extends javax.swing.JFrame {
         tabla.setGridColor(Color.lightGray);
         for (int i = 0; i < principal.mes[principal.mesActual].getN(); i++) {
             tabla.setValueAt(i + 1, i, 1);
-            
+
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getServicio1(), i, 2);
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getEntrada1(), i, 3);
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getSalida1(), i, 4);
@@ -1063,12 +1070,12 @@ public class Principal extends javax.swing.JFrame {
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getEntrada2(), i, 6);
             tabla.setValueAt(principal.mes[principal.mesActual].dia[i].getSalida2(), i, 7);
 
-            if (principal.mes[principal.mesActual].dia[i].isFestivo()){
+            if (principal.mes[principal.mesActual].dia[i].isFestivo()) {
                 tabla.setValueAt(" ", i, 0);
-            }else{
+            } else {
                 tabla.setValueAt("", i, 0);
             }
-            
+
             if (principal.mes[principal.mesActual].dia[i].getTempHoras() == 0) {
                 tabla.setValueAt(null, i, 8);
             } else {
@@ -1129,7 +1136,7 @@ public class Principal extends javax.swing.JFrame {
         System.exit(0);
     }
 
-   public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

@@ -34,6 +34,7 @@ public class Principal extends javax.swing.JFrame {
     double vExtra, vNocturna, vFestiva, vRadio, vRadioB, vArma, tArma;
     double vNochebuena, vQuinquenio, vTrienio, vKilometro, horasConvenio;
     double dCcomunes, dHorasExtra, IRPF, tIrpf, JefeEquipo, tNochebuena;
+    double tHorasRadio, tHorasRadioB;
 
     /**
      * Creates new form Principal
@@ -810,11 +811,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
         // Codigo de imprimir
+        Impresion.imprimir(this,textomes);
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
         // Codigo de ayuda
-
         UtilNavegador.abrirURL("http://www.chapuzas.comocreartuweb.es/ayuda/index.html");
     }//GEN-LAST:event_btnAyudaActionPerformed
 
@@ -943,7 +944,7 @@ public class Principal extends javax.swing.JFrame {
             if (selector.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
                 fichero = selector.getSelectedFile().toString();
                 File fl = new File(fichero + ".chp");
-                
+
                 if (fl.exists()) {
                     int g = JOptionPane.showConfirmDialog(null, "El archivo " + fl.getName() + " ya existe, ¿sobreescribir?");
                     if (g == 0) {

@@ -28,8 +28,11 @@ public class Calculo {
         p.festivos = redondear(p.horasFestivas * p.vFestiva);
         p.nocturnos = redondear(p.horasNocturnas * p.vNocturna);
         p.pPagasExtras = redondear(p.pPagasExtras);
+        p.tHorasRadio = p.horasRadio * p.vRadio;
+        p.tHorasRadioB = p.horasRadioB * p.vRadioB;
+        
         p.cComunes = redondear(p.salarioBase + p.tAntiguedad + p.festivos + p.nocturnos + p.pPeligrosidad
-                + p.pPagasExtras + p.JefeEquipo + p.tNochebuena + p.horasRadio + p.horasRadioB + p.tArma);
+                + p.pPagasExtras + p.JefeEquipo + p.tNochebuena + p.tHorasRadio + p.tHorasRadioB + p.tArma);
         p.tDevengado = redondear(p.cComunes + p.tExtra + p.pTransporte + p.pVestuario);
         p.dCcomunes = redondear((p.cComunes * 4.7) / 100);
         p.desempleo = redondear(((p.cComunes + p.tExtra) * 1.55) / 100);

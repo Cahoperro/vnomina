@@ -357,7 +357,7 @@ public class MeterHoras extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdelanteActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        insertar();
+        
         for (int i = 0; i < Obj.principal.mes[Obj.principal.mesActual].getN(); i++) {
             Obj.principal.diaActual = i;
             Obj.principal.mes[Obj.principal.mesActual].dia[i].calHoras(Obj.principal);
@@ -382,7 +382,6 @@ public class MeterHoras extends javax.swing.JFrame {
         radio = (Math.floor(radio * 100) / 100);
         radioB = (Math.floor(radioB * 100) / 100);
         arma = (Math.floor(arma * 100) / 100);
-
 
         // Introducir las horas en el Objeto principal
 
@@ -577,19 +576,21 @@ public class MeterHoras extends javax.swing.JFrame {
 
         if (checkRadio.isSelected()) {
             Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadioscopia(true);
+
+            if (optBasica.isSelected()) {
+                Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadioB(true);
+            } else {
+                Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadioB(false);
+            }
+            if (optPortuaria.isSelected()) {
+                Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadio(true);
+            } else {
+                Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadio(false);
+            }
         } else {
             Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadioscopia(false);
-        }
-
-        if (optBasica.isSelected()) {
-            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadioB(true);
-        } else {
-            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadioB(false);
-        }
-        if (optPortuaria.isSelected()) {
-            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadio(true);
-        } else {
             Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadio(false);
+            Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].setRadioB(false);
         }
 
         if (Obj.principal.diaActual < Obj.principal.mes[Obj.principal.mesActual].getN() - 1) {

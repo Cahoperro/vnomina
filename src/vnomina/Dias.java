@@ -66,8 +66,10 @@ public class Dias implements Serializable {
         if (radioscopia) {
             if (radio) {
                 tempRadio = tempHoras;
+                tempRadioB = 0;
             } else if (radioB) {
                 tempRadioB = tempHoras;
+                tempRadio = 0;
             }
         } else {
             tempRadio = 0;

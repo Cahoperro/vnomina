@@ -84,7 +84,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="DejaVu Sans" size="14" style="3"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Vnomina 1.0"/>
+            <Property name="text" type="java.lang.String" value="Vnomina 1.0 Beta"/>
           </Properties>
         </Component>
       </SubComponents>

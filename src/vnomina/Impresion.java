@@ -24,7 +24,7 @@ public class Impresion {
             texto.append("Nocturnos: \t" + Obj.nocturnos + "\tTotal a deducir: \t" + Obj.tDeducir + "\n");
             texto.append("P. pagas extra: \t" + Obj.pPagasExtras + "\tLiquido a percibir: \t" + Obj.liquido + "\n");
             texto.append("Plus arma: \t" + Obj.tArma + "\n");
-            texto.append("Radioscopia: \t" + (Obj.tHorasRadio + Obj.tHorasRadioB)+ "\n\n");
+            texto.append("Radioscopia: \t" + ((Math.floor(Obj.tHorasRadio + Obj.tHorasRadioB)*100)/100)+ "\n\n");
             texto.append("PERCEPCIONES NO SALARIALES: \n\n");
             texto.append("Plus transporte: \t" + Obj.pTransporte+ "\n");
             texto.append("Plus vestuario: \t" + Obj.pVestuario+ "\n");

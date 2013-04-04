@@ -61,7 +61,7 @@ public class AcercaDe extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(235, 178, 120));
 
         jLabel5.setFont(new java.awt.Font("DejaVu Sans", 3, 14)); // NOI18N
-        jLabel5.setText("Vnomina 1.0");
+        jLabel5.setText("Vnomina 1.0 Beta");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

@@ -1191,6 +1191,7 @@ public class Principal extends javax.swing.JFrame {
         lblRadio.setText("0.0");
         lblRestantes.setText("0");
         lblTendencia.setText("0");
+        lblTendencia.setForeground(Color.BLACK);
         txtIrpf.setText("");
         for (int i = 0; i < 32; i++) {
             for (int j = 0; j < 11; j++) {

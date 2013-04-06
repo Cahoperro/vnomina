@@ -6,6 +6,7 @@ import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -21,6 +22,7 @@ import javax.swing.table.TableCellRenderer;
  */
 public class Principal extends javax.swing.JFrame {
 
+    String nombre = "Vnomina 1.0 Beta";
     int anio;
     Objeto principal;
     Datos d;
@@ -43,6 +45,7 @@ public class Principal extends javax.swing.JFrame {
         Toolkit t = Toolkit.getDefaultToolkit();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         initComponents();
+        setTitle(nombre);
         if (screenSize.height > 600) {
             setSize(1000, 650);
         } else {
@@ -789,6 +792,8 @@ public class Principal extends javax.swing.JFrame {
                     selectorMes.setSelectedIndex(principal.mesActual);
                     selectorMes.setEnabled(true);
                     btnCalcular.setEnabled(true);
+                    File f1 = new File(fichero);
+                    this.setTitle(nombre + " - "+f1.getName());
                     recuperarDatos();
                     mostrarTitulo();
                     mostrarResultado();
@@ -994,21 +999,10 @@ public class Principal extends javax.swing.JFrame {
                 if (fl.exists()) {
                     int g = JOptionPane.showConfirmDialog(null, "El archivo " + fl.getName() + " ya existe, ¿sobreescribir?");
                     if (g == 0) {
-                        //Creamos el archivo
-                        FileOutputStream fs = new FileOutputStream(fichero + ".chp");
-                        //Esta clase tiene el método writeObject() que necesitamos
-                        ObjectOutputStream os = new ObjectOutputStream(fs);
-                        //El método writeObject() serializa el objeto y lo escribe en el archivo
-                        os.writeObject(principal);
-                        //Hay que cerrar siempre el archivo
-                        os.close();
-                        principal.guardado = true;
+                        proceder();                     
                     }
                 } else {
-                    FileOutputStream fs = new FileOutputStream(fichero + ".chp");
-                    ObjectOutputStream os = new ObjectOutputStream(fs);
-                    os.writeObject(principal);
-                    os.close();
+                    proceder();                   
                 }
             }
         } catch (HeadlessException | IOException e) {
@@ -1034,6 +1028,20 @@ public class Principal extends javax.swing.JFrame {
                     "Aviso",
                     JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void proceder() throws FileNotFoundException, IOException {
+        //Creamos el archivo
+        FileOutputStream fs = new FileOutputStream(fichero + ".chp");
+        //Esta clase tiene el método writeObject() que necesitamos
+        ObjectOutputStream os = new ObjectOutputStream(fs);
+        //El método writeObject() serializa el objeto y lo escribe en el archivo
+        os.writeObject(principal);
+        //Hay que cerrar siempre el archivo
+        os.close();
+        File f1 = new File(fichero);
+        this.setTitle(nombre + " - " + f1.getName() + ".chp");
+        principal.guardado = true;
     }
 
     public void calcular() {
@@ -1205,6 +1213,7 @@ public class Principal extends javax.swing.JFrame {
         }
         selectorMes.setEnabled(false);
         btnCalcular.setEnabled(false);
+        this.setTitle(nombre);
     }
 
     public void cerrar() {

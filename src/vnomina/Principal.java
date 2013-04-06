@@ -857,7 +857,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
         // Codigo de imprimir
-        Impresion.imprimir(this,textomes);
+        Impresion.imprimir(this, textomes);
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
@@ -1004,6 +1004,11 @@ public class Principal extends javax.swing.JFrame {
                         os.close();
                         principal.guardado = true;
                     }
+                } else {
+                    FileOutputStream fs = new FileOutputStream(fichero + ".chp");
+                    ObjectOutputStream os = new ObjectOutputStream(fs);
+                    os.writeObject(principal);
+                    os.close();
                 }
             }
         } catch (HeadlessException | IOException e) {
@@ -1099,28 +1104,28 @@ public class Principal extends javax.swing.JFrame {
         lblAntiguedad.setText("" + tAntiguedad);
         lblHorasExtras.setText("" + tExtra);
         lblArma.setText("" + tArma);
-        lblRadio.setText(""+ ((Math.floor(tHorasRadio + tHorasRadioB)*100)/100));
+        lblRadio.setText("" + ((Math.floor(tHorasRadio + tHorasRadioB) * 100) / 100));
         txtIrpf.setText("" + tIrpf);
         double horasAnio = 0;
-        for (int i = 0; i < 12; i++){
+        for (int i = 0; i < 12; i++) {
             horasAnio += principal.mes[i].getHorasMes();
         }
-        lblRestantes.setText(""+(horasConvenio - horasAnio));
+        lblRestantes.setText("" + (horasConvenio - horasAnio));
         double tendencia = 0;
         int diferencia;
-        for (int i = 0; i < (selectorMes.getSelectedIndex()+1); i++){
+        for (int i = 0; i < (selectorMes.getSelectedIndex() + 1); i++) {
             tendencia += principal.mes[i].getHorasMes();
         }
-        tendencia = tendencia/(selectorMes.getSelectedIndex()+1);
-        diferencia = (int)tendencia - 162;
-        if(diferencia < 0){
+        tendencia = tendencia / (selectorMes.getSelectedIndex() + 1);
+        diferencia = (int) tendencia - 162;
+        if (diferencia < 0) {
             lblTendencia.setForeground(Color.red);
-            lblTendencia.setText(""+diferencia);
-        }else{
+            lblTendencia.setText("" + diferencia);
+        } else {
             lblTendencia.setForeground(Color.BLACK);
-            lblTendencia.setText("+"+diferencia);
+            lblTendencia.setText("+" + diferencia);
         }
-        
+
         for (int i = 0; i < 32; i++) {
             for (int j = 0; j < 11; j++) {
                 tabla.setValueAt(null, i, j);

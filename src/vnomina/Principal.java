@@ -826,13 +826,16 @@ public class Principal extends javax.swing.JFrame {
                 if (g == 0) {
                     guardar();
                     principal = null;
+                    fichero = null;
                     reiniciar();
                 } else if (g == 1) {
                     principal = null;
+                    fichero = null;
                     reiniciar();
                 }
             } else {
                 principal = null;
+                fichero = null;
                 reiniciar();
             }
         }

@@ -868,16 +868,27 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
         // Codigo de imprimir
-        Imprimir imp;
-        try {
-            imp = new Imprimir(this);
-        } catch (PrinterException ex) {
-            JOptionPane.showMessageDialog(null, "Error al imprimir, "+ex.getMessage(),
-                    "ERROR", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            imp = null;
+        int a = panelGeneral.getSelectedIndex();
+        // a = 0 imprimir nomina
+        // a = 1 imprimir horarios
+        if (a == 0) {
+            Imprimir imp;
+            try {
+                imp = new Imprimir(this);
+            } catch (PrinterException ex) {
+                JOptionPane.showMessageDialog(null, "Error al imprimir, " + ex.getMessage(),
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                imp = null;
+            }
+        } else if (a == 1) {
+            try {
+                tabla.print();
+            } catch (PrinterException ex) {
+                JOptionPane.showMessageDialog(null, "Error al imprimir, " + ex.getMessage(),
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
-
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed

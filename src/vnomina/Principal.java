@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
+import java.awt.print.PrinterException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,6 +12,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -793,7 +796,7 @@ public class Principal extends javax.swing.JFrame {
                     selectorMes.setEnabled(true);
                     btnCalcular.setEnabled(true);
                     File f1 = new File(fichero);
-                    this.setTitle(nombre + " - "+f1.getName());
+                    this.setTitle(nombre + " - " + f1.getName());
                     recuperarDatos();
                     mostrarTitulo();
                     mostrarResultado();
@@ -865,7 +868,16 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
         // Codigo de imprimir
-        Impresion.imprimir(this, textomes);
+        Imprimir imp;
+        try {
+            imp = new Imprimir(this);
+        } catch (PrinterException ex) {
+            JOptionPane.showMessageDialog(null, "Error al imprimir, "+ex.getMessage(),
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            imp = null;
+        }
+
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
@@ -1002,10 +1014,10 @@ public class Principal extends javax.swing.JFrame {
                 if (fl.exists()) {
                     int g = JOptionPane.showConfirmDialog(null, "El archivo " + fl.getName() + " ya existe, ¿sobreescribir?");
                     if (g == 0) {
-                        proceder();                     
+                        proceder();
                     }
                 } else {
-                    proceder();                   
+                    proceder();
                 }
             }
         } catch (HeadlessException | IOException e) {

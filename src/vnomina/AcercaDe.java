@@ -14,10 +14,11 @@ import javax.swing.JOptionPane;
  */
 public class AcercaDe extends javax.swing.JFrame implements Runnable {
 
-    String version = "Vnomina 1.0 Beta";
+    String version;
     Thread hilo;
 
-    public AcercaDe() {
+    public AcercaDe(String version) {
+        this.version = version;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);

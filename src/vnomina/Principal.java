@@ -23,7 +23,7 @@ import javax.swing.table.TableCellRenderer;
  */
 public class Principal extends javax.swing.JFrame {
 
-    String nombre = "Vnomina 1.0 Beta";
+    String version = "Vnomina 1.0 Beta";
     int anio;
     Objeto principal;
     Datos d;
@@ -46,7 +46,7 @@ public class Principal extends javax.swing.JFrame {
         Toolkit t = Toolkit.getDefaultToolkit();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         initComponents();
-        setTitle(nombre);
+        setTitle(version);
         if (screenSize.height > 600) {
             setSize(1000, 650);
         } else {
@@ -794,7 +794,7 @@ public class Principal extends javax.swing.JFrame {
                     selectorMes.setEnabled(true);
                     btnCalcular.setEnabled(true);
                     File f1 = new File(fichero);
-                    this.setTitle(nombre + " - " + f1.getName());
+                    this.setTitle(version + " - " + f1.getName());
                     recuperarDatos();
                     mostrarTitulo();
                     mostrarResultado();
@@ -888,7 +888,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAyudaActionPerformed
 
     private void btnAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcercaActionPerformed
-        AcercaDe acercaDe = new AcercaDe();
+        AcercaDe acercaDe = new AcercaDe(version);
     }//GEN-LAST:event_btnAcercaActionPerformed
 
     private void selectorMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectorMesItemStateChanged
@@ -1057,7 +1057,7 @@ public class Principal extends javax.swing.JFrame {
         //Hay que cerrar siempre el archivo
         os.close();
         File f1 = new File(fichero);
-        this.setTitle(nombre + " - " + f1.getName() + ".chp");
+        this.setTitle(version + " - " + f1.getName() + ".chp");
         principal.guardado = true;
     }
 
@@ -1230,7 +1230,7 @@ public class Principal extends javax.swing.JFrame {
         }
         selectorMes.setEnabled(false);
         btnCalcular.setEnabled(false);
-        this.setTitle(nombre);
+        this.setTitle(version);
     }
 
     public void cerrar() {

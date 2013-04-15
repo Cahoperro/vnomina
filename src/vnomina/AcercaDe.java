@@ -152,11 +152,6 @@ public class AcercaDe extends javax.swing.JFrame implements Runnable {
         jTabbedPane1.addTab("Licencia", jScrollPane1);
 
         jSplitPane1.setDividerLocation(240);
-        jSplitPane1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSplitPane1MouseClicked(evt);
-            }
-        });
 
         btnCerrar.setText("Cerrar");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -198,10 +193,6 @@ public class AcercaDe extends javax.swing.JFrame implements Runnable {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jSplitPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSplitPane1MouseClicked
-
-    }//GEN-LAST:event_jSplitPane1MouseClicked
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         btnBuscar.setText("Espera...");

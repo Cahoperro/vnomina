@@ -168,6 +168,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/vnomina/Images/Button_Next.png"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Ir un dia adelante"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdelanteActionPerformed"/>
@@ -178,7 +179,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/vnomina/Images/Button_Back.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="toolTipText" type="java.lang.String" value="Ir un dia atras"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtrasActionPerformed"/>
@@ -196,31 +197,49 @@
       <Properties>
         <Property name="columns" type="int" value="15"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pulsarTecla"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEntrada1">
       <Properties>
         <Property name="columns" type="int" value="4"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pulsarTecla"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtSalida1">
       <Properties>
         <Property name="columns" type="int" value="4"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pulsarTecla"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtServicio2">
       <Properties>
         <Property name="columns" type="int" value="15"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pulsarTecla"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEntrada2">
       <Properties>
         <Property name="columns" type="int" value="4"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pulsarTecla"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtSalida2">
       <Properties>
         <Property name="columns" type="int" value="4"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pulsarTecla"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>

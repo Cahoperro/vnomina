@@ -1,6 +1,8 @@
 package vnomina;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
@@ -23,6 +25,7 @@ public class MeterHoras extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        this.addKeyListener(new EscuchaTeclas());
         this.Obj = Obj;
         Obj.principal.diaActual = 0;
         mostrar();
@@ -39,13 +42,7 @@ public class MeterHoras extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MeterHoras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MeterHoras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MeterHoras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MeterHoras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
@@ -89,6 +86,7 @@ public class MeterHoras extends javax.swing.JFrame {
         setResizable(false);
 
         btnAdelante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/Button_Next.png"))); // NOI18N
+        btnAdelante.setToolTipText("Ir un dia adelante");
         btnAdelante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdelanteActionPerformed(evt);
@@ -96,7 +94,7 @@ public class MeterHoras extends javax.swing.JFrame {
         });
 
         btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vnomina/Images/Button_Back.png"))); // NOI18N
-        btnAtras.setToolTipText("");
+        btnAtras.setToolTipText("Ir un dia atras");
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtrasActionPerformed(evt);
@@ -107,16 +105,46 @@ public class MeterHoras extends javax.swing.JFrame {
         lblFecha.setText("Ninguna fecha seleccionada");
 
         txtServicio1.setColumns(15);
+        txtServicio1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pulsarTecla(evt);
+            }
+        });
 
         txtEntrada1.setColumns(4);
+        txtEntrada1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pulsarTecla(evt);
+            }
+        });
 
         txtSalida1.setColumns(4);
+        txtSalida1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pulsarTecla(evt);
+            }
+        });
 
         txtServicio2.setColumns(15);
+        txtServicio2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pulsarTecla(evt);
+            }
+        });
 
         txtEntrada2.setColumns(4);
+        txtEntrada2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pulsarTecla(evt);
+            }
+        });
 
         txtSalida2.setColumns(4);
+        txtSalida2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pulsarTecla(evt);
+            }
+        });
 
         jLabel2.setText("Servicio");
 
@@ -331,33 +359,19 @@ public class MeterHoras extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
-
         insertar();
-
     }//GEN-LAST:event_btnInsertarActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-
-        if (Obj.principal.diaActual < 1) {
-            Obj.principal.diaActual = Obj.principal.mes[Obj.principal.mesActual].getN();
-        }
-        Obj.principal.diaActual--;
-        mostrar();
-        selectorClave.setSelectedIndex(0);
+        atras();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnAdelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdelanteActionPerformed
-
-        if (Obj.principal.diaActual >= Obj.principal.mes[Obj.principal.mesActual].getN() - 1) {
-            Obj.principal.diaActual = -1;
-        }
-        Obj.principal.diaActual++;
-        mostrar();
-        selectorClave.setSelectedIndex(0);
+        adelante();
     }//GEN-LAST:event_btnAdelanteActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        
+
         for (int i = 0; i < Obj.principal.mes[Obj.principal.mesActual].getN(); i++) {
             Obj.principal.diaActual = i;
             Obj.principal.mes[Obj.principal.mesActual].dia[i].calHoras(Obj.principal);
@@ -427,7 +441,7 @@ public class MeterHoras extends javax.swing.JFrame {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
 
-        limpiar(true);
+        limpiar();
 
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
@@ -441,7 +455,7 @@ public class MeterHoras extends javax.swing.JFrame {
                 Obj.principal.claves.remove(selectorClave.getSelectedItem().toString());
                 selectorClave.removeItem(selectorClave.getSelectedItem().toString());
                 selectorClave.setSelectedIndex(0);
-                limpiar(true);
+                limpiar();
             }
         }
     }//GEN-LAST:event_btnBorrarClaveActionPerformed
@@ -450,12 +464,7 @@ public class MeterHoras extends javax.swing.JFrame {
 
         if (!"------".equals(selectorClave.getSelectedItem().toString())) {
             Dias clave = Obj.principal.claves.get(selectorClave.getSelectedItem().toString());
-            txtServicio1.setForeground(Color.red);
-            txtServicio2.setForeground(Color.red);
-            txtSalida1.setForeground(Color.red);
-            txtSalida2.setForeground(Color.red);
-            txtEntrada1.setForeground(Color.red);
-            txtEntrada2.setForeground(Color.red);
+            ponerRojo();
             txtServicio1.setText(clave.getServicio1());
             txtServicio2.setText(clave.getServicio2());
             txtSalida1.setText(clave.getSalida1());
@@ -466,12 +475,31 @@ public class MeterHoras extends javax.swing.JFrame {
             checkRadio.setSelected(clave.isRadioscopia());
             optPortuaria.setSelected(clave.isRadio());
             optBasica.setSelected(clave.isRadioB());
-
-        } else {
-            limpiar(false);
         }
-
     }//GEN-LAST:event_selectorClaveItemStateChanged
+
+    private void pulsarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pulsarTecla
+        ponerRojo();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pulsarTecla
+
+    private void adelante() {
+        if (Obj.principal.diaActual >= Obj.principal.mes[Obj.principal.mesActual].getN() - 1) {
+            Obj.principal.diaActual = -1;
+        }
+        Obj.principal.diaActual++;
+        mostrar();
+        selectorClave.setSelectedIndex(0);
+    }
+
+    private void atras() {
+        if (Obj.principal.diaActual < 1) {
+            Obj.principal.diaActual = Obj.principal.mes[Obj.principal.mesActual].getN();
+        }
+        Obj.principal.diaActual--;
+        mostrar();
+        selectorClave.setSelectedIndex(0);
+    }
 
     private void mostrar() {
         String diaSemana = "";
@@ -498,12 +526,8 @@ public class MeterHoras extends javax.swing.JFrame {
                 diaSemana = "Domingo";
                 break;
         }
-        txtServicio1.setForeground(Color.BLACK);
-        txtServicio2.setForeground(Color.BLACK);
-        txtSalida1.setForeground(Color.BLACK);
-        txtSalida2.setForeground(Color.BLACK);
-        txtEntrada1.setForeground(Color.BLACK);
-        txtEntrada2.setForeground(Color.BLACK);
+        ponerNegro();
+
         lblFecha.setText(diaSemana + " " + (Obj.principal.diaActual + 1) + " de " + nombreMeses[Obj.principal.mesActual]);
         lblFestividad.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getFestividad());
         txtServicio1.setText(Obj.principal.mes[Obj.principal.mesActual].dia[Obj.principal.diaActual].getServicio1());
@@ -598,12 +622,30 @@ public class MeterHoras extends javax.swing.JFrame {
         }
         if (valido) {
             mostrar();
-            limpiar(true);
+            selectorClave.setSelectedIndex(0);
             Obj.principal.guardado = false;
         }
     }
 
-    void limpiar(boolean b) {
+    private void ponerRojo() {
+        txtServicio1.setForeground(Color.red);
+        txtServicio2.setForeground(Color.red);
+        txtSalida1.setForeground(Color.red);
+        txtSalida2.setForeground(Color.red);
+        txtEntrada1.setForeground(Color.red);
+        txtEntrada2.setForeground(Color.red);
+    }
+
+    private void ponerNegro() {
+        txtServicio1.setForeground(Color.BLACK);
+        txtServicio2.setForeground(Color.BLACK);
+        txtSalida1.setForeground(Color.BLACK);
+        txtSalida2.setForeground(Color.BLACK);
+        txtEntrada1.setForeground(Color.BLACK);
+        txtEntrada2.setForeground(Color.BLACK);
+    }
+
+    void limpiar() {
 
         txtServicio1.setText("");
         txtServicio2.setText("");
@@ -613,9 +655,7 @@ public class MeterHoras extends javax.swing.JFrame {
         txtEntrada2.setText("");
         checkArma.setSelected(false);
         checkRadio.setSelected(false);
-        if (b) {
-            selectorClave.setSelectedIndex(0);
-        }
+        selectorClave.setSelectedIndex(0);
     }
 
     private void guardarClave(String p) {
@@ -713,4 +753,19 @@ public class MeterHoras extends javax.swing.JFrame {
     private javax.swing.JTextField txtServicio1;
     private javax.swing.JTextField txtServicio2;
     // End of variables declaration//GEN-END:variables
+
+    public class EscuchaTeclas implements KeyListener {
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+        }
+    }
 }

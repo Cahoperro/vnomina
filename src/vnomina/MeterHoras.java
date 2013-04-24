@@ -1,8 +1,6 @@
 package vnomina;
 
 import java.awt.Color;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
@@ -25,7 +23,6 @@ public class MeterHoras extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.addKeyListener(new EscuchaTeclas());
         this.Obj = Obj;
         Obj.principal.diaActual = 0;
         mostrar();
@@ -754,18 +751,4 @@ public class MeterHoras extends javax.swing.JFrame {
     private javax.swing.JTextField txtServicio2;
     // End of variables declaration//GEN-END:variables
 
-    public class EscuchaTeclas implements KeyListener {
-
-        @Override
-        public void keyTyped(KeyEvent e) {
-        }
-
-        @Override
-        public void keyPressed(KeyEvent e) {
-        }
-
-        @Override
-        public void keyReleased(KeyEvent e) {
-        }
-    }
 }

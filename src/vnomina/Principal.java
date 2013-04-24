@@ -23,7 +23,7 @@ import javax.swing.table.TableCellRenderer;
  */
 public class Principal extends javax.swing.JFrame {
 
-    String version = "Vnomina 1.0 Beta";
+    String version = "Vnomina 1.0";
     int anio;
     Objeto principal;
     Datos d;

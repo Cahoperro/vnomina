@@ -23,7 +23,7 @@ import javax.swing.table.TableCellRenderer;
  */
 public class Principal extends javax.swing.JFrame {
 
-    String version = "Vnomina 1.0";
+    String version = "Vnomina 2014";
     int anio;
     Objeto principal;
     Datos d;
@@ -689,12 +689,14 @@ public class Principal extends javax.swing.JFrame {
         tabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabla);
         tabla.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        tabla.getColumnModel().getColumn(0).setPreferredWidth(20);
-        tabla.getColumnModel().getColumn(0).setMaxWidth(20);
-        tabla.getColumnModel().getColumn(1).setPreferredWidth(35);
-        tabla.getColumnModel().getColumn(1).setMaxWidth(35);
-        tabla.getColumnModel().getColumn(2).setPreferredWidth(170);
-        tabla.getColumnModel().getColumn(5).setPreferredWidth(170);
+        if (tabla.getColumnModel().getColumnCount() > 0) {
+            tabla.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tabla.getColumnModel().getColumn(0).setMaxWidth(20);
+            tabla.getColumnModel().getColumn(1).setPreferredWidth(35);
+            tabla.getColumnModel().getColumn(1).setMaxWidth(35);
+            tabla.getColumnModel().getColumn(2).setPreferredWidth(170);
+            tabla.getColumnModel().getColumn(5).setPreferredWidth(170);
+        }
 
         javax.swing.GroupLayout panelHorasLayout = new javax.swing.GroupLayout(panelHoras);
         panelHoras.setLayout(panelHorasLayout);

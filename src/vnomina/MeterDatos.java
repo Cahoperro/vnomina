@@ -12,10 +12,11 @@ import javax.swing.JOptionPane;
  *
  * @author cahoperro
  */
-public class MeterDatos extends javax.swing.JFrame implements Runnable{
+public class MeterDatos extends javax.swing.JFrame implements Runnable {
 
     Principal inicio;
     Thread hilo;
+
     /**
      * Creates new form MeterDatos
      */
@@ -199,7 +200,7 @@ public class MeterDatos extends javax.swing.JFrame implements Runnable{
         txtHorasConvenio.setColumns(6);
 
         lblInfo.setForeground(java.awt.Color.red);
-        lblInfo.setText("Hay errores en la entrada de datos");
+        lblInfo.setText("Hay errores o falta algún dato");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -376,7 +377,7 @@ public class MeterDatos extends javax.swing.JFrame implements Runnable{
 
     private void btnObtenerDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObtenerDatosActionPerformed
         btnObtenerDatos.setText("Espera...");
-        if(hilo == null){
+        if (hilo == null) {
             hilo = new Thread(this);
             hilo.start();
         }
@@ -392,13 +393,13 @@ public class MeterDatos extends javax.swing.JFrame implements Runnable{
         String[] datos = new String[14];
         String[] temp = new String[2];
         try {
-            
+
             URL pagina = new URL("http://chapuzas.comocreartuweb.es/documentos/datos.txt");
             HttpURLConnection con = (HttpURLConnection) pagina.openConnection();
             con.connect();
             InputStreamReader in = new InputStreamReader((InputStream) con.getContent());
             BufferedReader buff = new BufferedReader(in);
-            
+
             for (int i = 0; i < 14; i++) {
                 temp = buff.readLine().split(" ");
                 datos[i] = temp[1];
@@ -422,12 +423,12 @@ public class MeterDatos extends javax.swing.JFrame implements Runnable{
                     "Chungo, Ha fallado la conexion",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
-        }finally{
+        } finally {
             btnObtenerDatos.setText("Obtener datos");
             hilo = null;
         }
     }
-    
+
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         if (inicio.principal.datos == null) {
             try {
@@ -517,5 +518,4 @@ public class MeterDatos extends javax.swing.JFrame implements Runnable{
     private javax.swing.JTextField txtTrienio;
     private javax.swing.JTextField txtVestuario;
     // End of variables declaration//GEN-END:variables
-
 }

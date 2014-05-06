@@ -745,7 +745,6 @@ public class Principal extends javax.swing.JFrame {
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
 
         // Creacion de un archivo nuevo
-
         if (principal == null) {
             String p = JOptionPane.showInputDialog("Introduce el año");
             try {
@@ -768,7 +767,6 @@ public class Principal extends javax.swing.JFrame {
     private void btnMeterHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMeterHorasActionPerformed
 
         // Crear instancia MeterHoras para introducir horarios
-
         if (principal != null) {
             meteHora = new MeterHoras(this);
         }
@@ -778,7 +776,6 @@ public class Principal extends javax.swing.JFrame {
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
 
         // Codigo de abrir archivo
-
         if (principal == null) {
             JFileChooser selector = new JFileChooser();
             FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos chp", "chp");
@@ -801,7 +798,7 @@ public class Principal extends javax.swing.JFrame {
                     mostrarTitulo();
                     mostrarResultado();
                     calcular();
-
+                    principal.guardado = true;
                 }
             } catch (HeadlessException | IOException | ClassNotFoundException e) {
                 JOptionPane.showMessageDialog(null,
@@ -822,7 +819,6 @@ public class Principal extends javax.swing.JFrame {
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
 
         //codigo cerrar archivo
-
         if (principal != null) {
             if (!principal.guardado) {
                 int g = JOptionPane.showConfirmDialog(null, "¿Quieres guardar antes de cerrar?");
@@ -847,7 +843,6 @@ public class Principal extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
         //codigo guardar
-
         if (principal != null) {
             if (fichero == null) {
                 guardarComo();
@@ -860,7 +855,6 @@ public class Principal extends javax.swing.JFrame {
     private void btnGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarComoActionPerformed
 
         //codigo guardar como
-
         if (principal != null) {
             guardarComo();
         }
@@ -879,7 +873,7 @@ public class Principal extends javax.swing.JFrame {
         } catch (PrinterException ex) {
             JOptionPane.showMessageDialog(null, "Error al imprimir, " + ex.getMessage(),
                     "ERROR", JOptionPane.ERROR_MESSAGE);
-        }finally{
+        } finally {
             imp = null;
         }
     }//GEN-LAST:event_btnImprimirActionPerformed
@@ -1036,6 +1030,9 @@ public class Principal extends javax.swing.JFrame {
     public void guardar() {
 
         try {
+            if (!fichero.contains(".chp")) {
+                fichero = fichero + ".chp";
+            }
             FileOutputStream fs = new FileOutputStream(fichero);
             ObjectOutputStream os = new ObjectOutputStream(fs);
             os.writeObject(principal);
